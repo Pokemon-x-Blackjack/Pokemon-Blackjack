@@ -2,7 +2,7 @@
     // Contains "Start Button"
         // onClick: display none star button, render Game.js
 
-import './App.css';
+import './css/App.css';
 
 function App() {
   return (
