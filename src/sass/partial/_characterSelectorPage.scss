@@ -1,1 +1,56 @@
 @use './variables' as *;
+
+// need to be in global
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.pokemonCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(124, 124, 241);
+    border: none;
+    border-radius: 10px;
+    height: 200px;
+    width: 200px;
+
+    transition: 0.2s ease;
+
+    img,
+    h3 {
+        pointer-events: none;
+    }
+
+    img {
+        width: 75%;
+        height: 75%;
+    }
+
+    h3 {
+        color: white;
+        text-transform: capitalize;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: rgb(56, 56, 246);
+        cursor: pointer;
+    }
+}
+
+.activeCard {
+    background-color: rgb(74, 164, 74);
+    scale: 1.05;
+    rotate: 2deg;
+
+    &:hover,
+    &:focus {
+        background-color: rgb(74, 164, 74);
+    }
+}
