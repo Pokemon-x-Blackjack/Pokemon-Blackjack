@@ -4,7 +4,7 @@ import audio from '../assets/audio/kung-fu-fighting.mp3';
 
 
 const Header = () => {
-    
+
   const [volume, setVolume] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioElementRef = useRef(null);
@@ -31,31 +31,35 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">
-        <img src={logo} alt="pokejack with pokeball as the o" />
+      <div className="wrapper">
+        <div className="logo">
+          <img src={logo} alt="pokejack with pokeball as the o" />
+        </div>
+
+        <i
+          className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
+          onClick={togglePlay}
+        ></i>
+
+
+        {isPlaying && (
+          <div id="audioSlider">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              className="slider"
+              id="volumeSlider"
+              onChange={handleVolumeChange}
+            />
+          </div>
+        )}
+
+        <audio src={audio} ref={audioElementRef} />
       </div>
 
-      <i
-        className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
-        onClick={togglePlay}
-      ></i>
-    
 
-      {isPlaying && (
-        <div id="audioSlider">
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={volume}
-          className="slider"
-          id="volumeSlider"
-          onChange={handleVolumeChange}
-        />
-      </div>
-      )}
-
-      <audio src={audio} ref={audioElementRef} />
     </header>
   );
 };

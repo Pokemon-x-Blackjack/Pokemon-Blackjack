@@ -4,9 +4,11 @@ function getYear() {
 
 const Footer = () => {
     return (
-        <div className='footer'>
-            <p>Copyright © {getYear()} Hadiya, Katie, Solivan and Amir</p>
-        </div>
+        <footer className='footer'>
+            <div className="wrapper">
+                <p>Copyright © {getYear()} Hadiya, Katie, Solivan and Amir</p>
+            </div>
+        </footer>
     )
 }
 

@@ -1,6 +1,6 @@
 @use './variables' as *;
 
-html{
+html {
     font-size: 125%;
 }
 
@@ -22,11 +22,17 @@ h2,
 h3,
 h4,
 p,
-ul{
+ul {
     margin: 0;
     padding: 0;
 }
 
-li {
+ul {
     list-style: none;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
 }
