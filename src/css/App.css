@@ -219,17 +219,41 @@ html {
   overflow: hidden;
 }
 
-body {
+.playerCardList,
+.dealerCardList {
+  display: flex;
+}
+
+.dealerCardList li:nth-child(1) {
+  opacity: 0.2;
+}
+
+html {
+  font-size: 125%;
+}
+
+.wrapper {
+  max-width: 1440px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-body {
-  background-color: red;
+li {
+  list-style: none;
 }

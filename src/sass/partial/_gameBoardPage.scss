@@ -1,1 +1,12 @@
 @use './variables' as *;
+
+.playerCardList,
+.dealerCardList {
+    display: flex;
+}
+
+.dealerCardList {
+    li:nth-child(1) {
+        opacity: 0.2;
+    }
+}

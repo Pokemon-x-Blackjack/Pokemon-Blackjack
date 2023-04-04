@@ -1,4 +1,72 @@
 // Game.js
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import Player from './Player.js';
+
+const Game = () => {
+console.log("render")
+    // After character selection:
+    // 1. Run shuffle()
+    // 2. Run drawCard() to draw two cards to player and Dealer
+    // 3. Wait for player response
+
+    const [deckId, setDeckId] = useState('')
+
+    const [ playerCards, setPlayerCards ] = useState([])
+    const [ dealerCards, setDealerCards ] = useState([])
+
+// call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state
+    const startNewRound = (cardDrawCount) => {
+        axios({
+            url:'https://deckofcardsapi.com/api/deck/new/draw/',
+            params:{
+                count: cardDrawCount
+            }
+        }).then((res) => {
+            const cardArray = res.data.cards
+            setPlayerCards([cardArray[0], cardArray[2]])
+            setDealerCards([cardArray[1], cardArray[3]])
+        })
+    }
+
+    useEffect(() => { startNewRound(4) }, [])
+    
+    
+    return (
+    <div className="App">
+
+        {/* <button onClick={() => { drawCard(deckId, 1) }}>draw card</button>
+        <button onClick={() => { shuffle(deckId) }}>Shuffle</button> */}
+
+        <ul className='playerCardList'>Player's cards
+        {
+            playerCards.map((card) => {
+                return (
+                    <li key={card.code}><img src={card.image} alt={card.value + card.suit} /></li>
+                )
+            })
+        }
+        </ul>
+
+        <Player />
+
+        <ul className='dealerCardList'>Dealer's cards
+        {
+            dealerCards.map((card) => {
+                return (
+                    <li key={card.code}><img src={card.image} alt={card.value + card.suit} /></li>
+                )
+            })
+        }
+        </ul>
+
+    </div>
+    );
+}
+
+export default Game;
+
     // On Load: render CharacterSelector.js
 
     // States: 
