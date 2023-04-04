@@ -1,13 +1,13 @@
 // App.js
-    // Contains "Start Button"
-        // onClick: display none star button, render Game.js
+// Contains "Start Button"
+// onClick: display none star button, render Game.js
 
-import './css/App.css';
-
+import './sass/App.scss';
+import CharacterSelector from './components/CharacterSelector';
 function App() {
   return (
     <div className="App">
-
+      <CharacterSelector />
     </div>
   );
 }
