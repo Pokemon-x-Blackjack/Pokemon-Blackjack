@@ -31,6 +31,9 @@ const CharacterSelector = () => {
     // 1. hard coded starter characters - all have 3 evolutions total
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur']
 
+
+
+
     // 1.b  api call for 1 pokemon base on name, sends to a specified array
     const apiCallPokemon = (idOrName, setArr) => {
         const pokeUrl = new URL(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
