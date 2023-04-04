@@ -37,8 +37,20 @@ ul {
         text-transform: capitalize;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: rgb(56, 56, 246);
         cursor: pointer;
+    }
+}
+
+.activeCard {
+    background-color: rgb(74, 164, 74);
+    scale: 1.05;
+    rotate: 2deg;
+
+    &:hover,
+    &:focus {
+        background-color: rgb(74, 164, 74);
     }
 }
