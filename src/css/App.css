@@ -219,6 +219,56 @@ html {
   overflow: hidden;
 }
 
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.modalContent {
+  position: relative;
+  background-color: #000;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modalTitle {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 2px 2px #ff4136;
+  letter-spacing: 5px;
+}
+
+.modalButton {
+  padding: 15px 30px;
+  border: none;
+  background-color: #ff4136;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 40px;
+  text-shadow: 2px 2px #000;
+}
+
 .playerCardList,
 .dealerCardList {
   display: flex;
@@ -234,7 +284,7 @@ p.bust {
 
 
 html {
-  font-size: 125%;
+  height: 100vh;
 }
 
 .landing {
@@ -301,4 +351,41 @@ ul {
 
 li {
   list-style: none;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.pokemonCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(124, 124, 241);
+  border: none;
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
+  transition: 0.2s ease;
+}
+.pokemonCard img,
+.pokemonCard h3 {
+  pointer-events: none;
+}
+.pokemonCard img {
+  width: 75%;
+  height: 75%;
+}
+.pokemonCard h3 {
+  color: white;
+  text-transform: capitalize;
+}
+.pokemonCard:hover {
+  background-color: rgb(56, 56, 246);
+  cursor: pointer;
 }
