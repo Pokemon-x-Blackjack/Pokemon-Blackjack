@@ -219,6 +219,20 @@ html {
   overflow: hidden;
 }
 
+.playerCardList,
+.dealerCardList {
+  display: flex;
+}
+
+.dealerCardList li:nth-child(1) {
+  opacity: 0.2;
+}
+
+p.bust {
+  color: red;
+}
+
+
 html {
   font-size: 125%;
 }
@@ -283,4 +297,8 @@ p,
 ul {
   margin: 0;
   padding: 0;
+
+
+li {
+  list-style: none;
 }
