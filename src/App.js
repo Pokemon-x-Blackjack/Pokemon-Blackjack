@@ -4,20 +4,14 @@ import CharacterSelector from './components/CharacterSelector';
 import Game from './components/Game';
 
 // App.js
-    // Contains "Start Button"
-        // onClick: display none star button, render Game.js
+// Contains "Start Button"
+// onClick: display none star button, render Game.js
 
-import './css/App.css';
-
+import './sass/App.scss';
+import CharacterSelector from './components/CharacterSelector';
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/play" element={<Game/>}/>
-      </Routes>
-      
-
     </div>
   );
 }
