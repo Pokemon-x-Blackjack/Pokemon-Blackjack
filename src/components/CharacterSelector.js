@@ -1,4 +1,5 @@
 // CharacterSelector.js
+
 // 6 buttons for 6 pokemon options
 // onClick: 
 // store value to "selected pokemon" state
@@ -109,3 +110,4 @@ const CharacterSelector = () => {
 }
 
 export default CharacterSelector;
+
