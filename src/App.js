@@ -6,8 +6,6 @@ import Footer from './components/Footer';
 import CharacterSelector from './components/CharacterSelector';
 import './sass/App.scss';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Landing from './components/Landing';
 
 
 
