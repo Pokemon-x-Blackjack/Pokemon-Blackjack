@@ -1,12 +1,12 @@
-// App.js
-    // Contains "Start Button"
-        // onClick: display none star button, render Game.js
-
-import './css/App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import './sass/App.scss';
 
 function App() {
   return (
     <div className="App">
+      <Header />
+      <Footer />
 
     </div>
   );
