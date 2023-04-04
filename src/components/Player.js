@@ -1,30 +1,38 @@
 // Player.js
-        // Contains: player pokemon, current cards, action buttons
-            // all render onLoad
 
-// import { isButtonElement } from "react-router-dom/dist/dom"
-
-        
-        // PlayerInfo.js (player pokemon)   
-            // listens to: "selected pokemon" state, "player evolution" state
-
-        // Cards.js
-            // listens to: "player drawn card" state
-
-        // ButtonList.js
-            // Stand: set "status" state to "stand" (or false), pass turn to dealer (disable action buttons)
-            // Hit: 
-                // 1. run draw card function 
-                // 2. evaluate player's card value
-                    // if player card value >21, set player bust status = true
-                    // if player card value <21, set player stand mode = false
-                    // if player card value =21, set player stand mode = true
-
-const Player = () => {
+const Player = (props) => {
+    const playerCardsProp =  props.playerCards
+    
     return (
         <section className="playerSection">
-            <button>HIT</button>
-            <button>STAND</button>
+            <ul className='playerCardList'>Player's cards
+                {
+                    playerCardsProp.map((card) => {
+                        return (
+                            <li key={card.code}><img src={card.image} alt={card.value + card.suit} /></li>
+                        )
+                    })
+                }
+            </ul>
+            
+            <p>player's card value: {props.cardValue}</p>
+
+            {
+                props.standMode
+                ? null
+                : ( <>
+                        <button onClick={props.handleStand}>STAND</button>
+                        <button onClick={props.handleHit}>HIT</button>
+                    </>
+                )
+            }
+
+            {
+                props.bustStatus
+                ? <p className="bust">BUST</p>
+                : null
+            }
+            
         </section>
     )
 }

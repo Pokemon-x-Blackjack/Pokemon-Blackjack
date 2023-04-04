@@ -228,6 +228,10 @@ html {
   opacity: 0.2;
 }
 
+p.bust {
+  color: red;
+}
+
 html {
   font-size: 125%;
 }
