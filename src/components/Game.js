@@ -6,7 +6,7 @@ import axios from 'axios';
 import Player from './Player.js';
 import Dealer from './Dealer.js';
 
-const Game = () => {
+const Game = (props) => {
 
     const [deckId, setDeckId] = useState('')
 
@@ -16,6 +16,10 @@ const Game = () => {
     const [playerStandMode, setPlayerStandMode] = useState(false);
 
     const [playerBustStatus, setPlayerBustStatus] = useState(false);
+
+
+    const evolutionArr  =  props.evolutionArr
+
 
     // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
     const startNewRound = (cardDrawCount) => {
@@ -131,6 +135,8 @@ const Game = () => {
                         handleStand={handleStand}
                         handleHit={handleHit}
                         cardValue={calcCardValue()}
+                        evolutionArr={evolutionArr}
+
                     />
 
                     <Dealer
@@ -184,4 +190,3 @@ export default Game;
 // after updating evolution state, check if any evolution state = 3 (fully evolved)
 // if evolution state = 3, render Result.js, dismount Player.js and Dealer.js
 // if no fully evolved pokemon, start a new round (rerender Player.js and Dealer.js)
-

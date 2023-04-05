@@ -1,8 +1,19 @@
-// Player.js
+import { useEffect, useState } from 'react';
+
 
 const Player = (props) => {
+    const [evolutionLevel, setEvolutionLevel] = useState(0);
     const playerCardsProp =  props.playerCards
-    
+    const currentEvolution = props.evolutionArr[evolutionLevel];
+  
+
+    useEffect(() => {
+        if (props.cardValue >= 21 ) {
+          setEvolutionLevel(evolutionLevel + 1);
+        }
+    }, [props.cardValue]);
+   
+   
     return (
         <section className="playerSection">
             <ul className='playerCardList'>Player's cards
@@ -14,6 +25,15 @@ const Player = (props) => {
                     })
                 }
             </ul>
+
+            
+            <div>
+                <img src={currentEvolution.frontGifUrl} alt={currentEvolution.altFront} />
+                <h3>{currentEvolution.name}</h3>
+            </div>
+
+
+
             
             <p>player's card value: {props.cardValue}</p>
 
