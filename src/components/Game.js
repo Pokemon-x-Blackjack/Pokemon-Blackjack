@@ -17,6 +17,7 @@ const Game = (props) => {
 
     const [playerBustStatus, setPlayerBustStatus] = useState(false);
 
+
     const evolutionArr  =  props.evolutionArr
 
 
@@ -135,6 +136,7 @@ const Game = (props) => {
                         handleHit={handleHit}
                         cardValue={calcCardValue()}
                         evolutionArr={evolutionArr}
+
                     />
 
                     <Dealer

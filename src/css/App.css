@@ -219,6 +219,15 @@ html {
   overflow: hidden;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer .wrapper {
+  text-align: center;
+}
+
 .modalContainer {
   position: fixed;
   top: 0;
@@ -236,8 +245,8 @@ html {
 .modalContent {
   position: relative;
   background-color: #000;
-  width: 400px;
-  height: 300px;
+  width: 50%;
+  height: 40%;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -281,7 +290,6 @@ html {
 p.bust {
   color: red;
 }
-
 
 html {
   height: 100vh;
@@ -347,10 +355,14 @@ p,
 ul {
   margin: 0;
   padding: 0;
+}
 
-
-li {
+ul {
   list-style: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 ul {
@@ -385,7 +397,16 @@ ul {
   color: white;
   text-transform: capitalize;
 }
-.pokemonCard:hover {
+.pokemonCard:hover, .pokemonCard:focus {
   background-color: rgb(56, 56, 246);
   cursor: pointer;
+}
+
+.activeCard {
+  background-color: rgb(74, 164, 74);
+  scale: 1.05;
+  rotate: 2deg;
+}
+.activeCard:hover, .activeCard:focus {
+  background-color: rgb(74, 164, 74);
 }
