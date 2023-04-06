@@ -1,18 +1,27 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CharacterSelector from './CharacterSelector';
+import HowToPlay from './HowToPlay';
+
 
 const Landing = () => {
-
   const [buttonSelected, setButtonSelected] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const handleButtonClick = () => {
     setButtonSelected(true);
+  }
 
+  const handleHowToPlayClick = () => {
+    setShowHowToPlay(true);
+  }
+
+  const handleCloseHowToPlay = () => {
+    setShowHowToPlay(false);
   }
 
   return (
     <>
+      {showHowToPlay && <HowToPlay closeHowToPlay={handleCloseHowToPlay} />}
       {buttonSelected ? (
         <CharacterSelector />
       ) : (
@@ -26,6 +35,7 @@ const Landing = () => {
             <h3>img here</h3>
             <div className="buttonContainer">
               <button onClick={handleButtonClick}>START</button>
+              <button onClick={handleHowToPlayClick}>HOW TO PLAY</button> {/* Add a button to show/hide the HowToPlay component */}
             </div>
             {/* Add Link to characterSelect once component is created */}
             {/* ADD FOOTER */}

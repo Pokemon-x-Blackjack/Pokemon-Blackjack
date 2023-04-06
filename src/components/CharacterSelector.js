@@ -8,6 +8,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Game from "./Game"
+import pikaLoading from '../assets/loadingScreen/pikachu-running.gif'
 
 const CharacterSelector = () => {
     // all pokemon from roster - populates ul
@@ -30,6 +31,11 @@ const CharacterSelector = () => {
     const [formSubmit, setFormSubmit] = useState(false)
 
 
+    // loading screen
+    const [isLoading, setIsLoading] = useState(false);
+    const [data, setData] = useState(null);
+
+
 
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
 
@@ -41,6 +47,7 @@ const CharacterSelector = () => {
         // storing axios request in variable
         const pokemonRequest = axios.get(pokeInfoUrl)
         return pokemonRequest
+
     }
 
     // takes api response: creates direct path to data, makes obj and pushes to temp arr to be set to state
@@ -63,6 +70,10 @@ const CharacterSelector = () => {
     // generate enemy evolutions
     // make api call for pokemon info, store in state
     useEffect(() => {
+            // loading page
+            setIsLoading(true);
+
+            
 
         evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
         // empty promise arr
@@ -185,8 +196,10 @@ const CharacterSelector = () => {
     }
 
 
+    
     return (
         <>
+
             {formSubmit === true ?
 
                 <Game
@@ -221,11 +234,12 @@ const CharacterSelector = () => {
                         </form>
                     </div>
                 </section >
-            }
+                )}
 
         </>
+        
     )
-}
 
+}
 export default CharacterSelector;
 
