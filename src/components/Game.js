@@ -190,6 +190,7 @@ const Game = (props) => {
             playerCards={playerCards}
             bustStatus={playerBustStatus}
             cardValue={playerCardVal}
+            evolutionArr={evolutionArr}
             handleStand={handleStand}
             handleHit={handleHit}
         />
