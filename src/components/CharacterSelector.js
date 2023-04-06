@@ -71,9 +71,7 @@ const CharacterSelector = () => {
     // make api call for pokemon info, store in state
     useEffect(() => {
             // loading page
-            setIsLoading(true);
-
-            
+            setIsLoading(true);           
 
         evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
         // empty promise arr
@@ -234,7 +232,7 @@ const CharacterSelector = () => {
                         </form>
                     </div>
                 </section >
-                )}
+                }
 
         </>
         

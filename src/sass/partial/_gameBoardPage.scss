@@ -1,16 +1,63 @@
 @use './variables' as *;
 
+@mixin flipAnime($animeName) {
+    animation: $animeName 1s forwards;
+}
+
 .playerCardList,
 .dealerCardList {
     display: flex;
 }
 
+li.cardContainer {
+    position: relative;
+    width: 10%;
+    perspective: 800px;
+
+    .innerCard {
+        height: 173px;
+        // transition: transform 0.6s;
+        transform-style: preserve-3d;
+        // animation: 1s flip1 forwards;
+
+        .card {
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .cardFront {
+            transform: rotateY(180deg)
+        }
+    }
+}
+
+.playerCardList {
+    li:nth-child(1) {
+        .innerCard {
+            @include flipAnime(flip1);
+        }
+    }
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip2);
+        }
+    }
+}
+
+
 .dealerCardList {
     li:nth-child(1) {
         opacity: 0.2;
+    }
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip3);
+        }
     }
 }
 
 p.bust {
     color: red;
 }
+
+

@@ -12,7 +12,6 @@ const Game = (props) => {
     const [playerCards, setPlayerCards] = useState([])
     const [dealerCards, setDealerCards] = useState([])
 
-
     const [ playerCardVal, setPlayerCardVal ] = useState(0);
     const [ dealerCardVal, setDealerCardVal ] = useState(0);
 
@@ -24,6 +23,7 @@ const Game = (props) => {
 
 
     const evolutionArr  =  props.evolutionArr
+    const dealerEvolutionArr = props.dealerEvolutionArr
 
 
     // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
@@ -198,6 +198,7 @@ const Game = (props) => {
         <Dealer
             dealerCards={dealerCards}
             cardValue={dealerCardVal}
+            dealerEvolutionArr={dealerEvolutionArr}
         />
 
     </div>
