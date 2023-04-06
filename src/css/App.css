@@ -404,7 +404,8 @@ ul {
 }
 .pokemonCard img {
   width: 75%;
-  height: 75%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
 }
 .pokemonCard h3 {
   color: white;
