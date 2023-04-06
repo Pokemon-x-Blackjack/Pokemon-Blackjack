@@ -70,10 +70,10 @@ const CharacterSelector = () => {
     // generate enemy evolutions
     // make api call for pokemon info, store in state
     useEffect(() => {
-            // loading page
-            setIsLoading(true);
+        // loading page
+        setIsLoading(true);
 
-            
+
 
         evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
         // empty promise arr
@@ -196,24 +196,32 @@ const CharacterSelector = () => {
     }
 
 
-    
+
     return (
         <>
 
             {formSubmit === true ?
 
+                // game component
                 <Game
                     evolutionArr={evolutionArr}
                     dealerEvolutionArr={dealerEvolutionArr}
                 /> :
+                // character selection
                 < section className="characterSelect" >
+                    {/* wrapper */}
                     <div className="wrapper">
+                        {/* character selection form */}
+
                         <form action="#" onSubmit={handleCharacterSubmit}>
+
                             <h2>Choose your Pokemon</h2>
+                            {/* list of pokemon to choose from */}
                             <ul className="pokeRoster">
                                 {rosterArr.map((pokemon) => {
                                     return (
                                         <li key={pokemon.id}>
+
                                             <div
                                                 tabIndex={0}
                                                 className={userPokemon === pokemon.name ? 'pokemonCard activeCard' : 'pokemonCard'}
@@ -224,20 +232,24 @@ const CharacterSelector = () => {
                                                     src={`${pokemon.frontGifUrl}`}
                                                     alt={`${pokemon.altFront}`}
                                                 />
+
                                                 <h3>{pokemon.name}</h3>
+
                                             </div>
+
                                         </li>
                                     )
                                 })}
+
                             </ul>
                             <button>All Set!</button>
                         </form>
                     </div>
                 </section >
-                }
+            }
 
         </>
-        
+
     )
 
 }
