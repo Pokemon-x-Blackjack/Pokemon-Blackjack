@@ -10,24 +10,30 @@ import cardBack from '../assets/card-back.png';
                 // if value > 21, set dealer bust status = true
 
 const Dealer = (props) => {
+    // const [ flipDealerCard, setFlipDealerCard ] = useState(false);
+
     const dealerCardsProp = props.dealerCards
     const currentEvolution = props.dealerEvolutionArr[props.dealerEvolution]
+
+    // if (playerStandMode && dealerStandMode) {
+    //     setFlipDealerCard(true);
+    // }
 
     return (
         <section className="dealer">
             <ul className='dealerCardList'>Dealer's cards
-            {
-                dealerCardsProp.map((card) => {
-                    return (
-                        <li key={card.code} className="cardContainer">
-                        <div className="innerCard">
-                            <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
-                            <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
-                        </div>
-                    </li>
-                    )
-                })
-            }
+                    {
+                        dealerCardsProp.map((card) => {
+                            return (
+                                <li key={card.code} className="cardContainer">
+                                <div className="innerCard">
+                                    <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
+                                    <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
+                                </div>
+                            </li>
+                            )
+                        })
+                    }
             </ul>
 
             <div>
