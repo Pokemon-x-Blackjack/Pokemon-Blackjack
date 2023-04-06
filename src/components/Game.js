@@ -20,8 +20,9 @@ const Game = (props) => {
 
     const [ playerBustStatus, setPlayerBustStatus ] = useState(false);
     const [ dealerBustStatus, setDealerBustStatus ] = useState(false);
-    const [playerEvolution, setPlayerEvolution] = useState(0);
-    const [dealerEvolution, setDealerEvolution] = useState(0);
+
+    const [ playerEvolution, setPlayerEvolution ] = useState(0);
+    const [ dealerEvolution, setDealerEvolution ] = useState(0);
 
 
 
@@ -84,7 +85,6 @@ const Game = (props) => {
                 return value;
             })
 
-
     // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
         // the callbackFn has two params: accumulator & currentValue
             // accumulator: accumulated value from previous callbackFn
@@ -127,7 +127,9 @@ const Game = (props) => {
             setDealerStandMode(true)
         } else if (dealerCardVal < 17) {
             console.log("dealer continue")
-            drawOne(deckId, dealerCards, setDealerCards);
+            setTimeout(() => {
+                drawOne(deckId, dealerCards, setDealerCards);
+            }, 500); // timer for dealer cards to appear slowly
         }
     }
 
@@ -273,6 +275,8 @@ const Game = (props) => {
             cardValue={dealerCardVal}
             dealerEvolutionArr={dealerEvolutionArr}
             dealerEvolution={dealerEvolution}
+            playerStand={playerStandMode}
+            dealerStand={dealerStandMode}
         />
 
     </div>

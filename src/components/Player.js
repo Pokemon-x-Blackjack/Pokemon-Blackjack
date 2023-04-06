@@ -7,8 +7,6 @@ const Player = (props) => {
     
     const playerCardsProp =  props.playerCards
     const currentEvolution = props.evolutionArr[props.playerEvolution];
-
-
    
     return (
         <section className="playerSection">

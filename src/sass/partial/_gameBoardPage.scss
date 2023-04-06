@@ -1,7 +1,7 @@
 @use './variables' as *;
 
-@mixin flipAnime($animeName) {
-    animation: $animeName 1s forwards;
+@mixin flipAnime($animeName, $duration) {
+    animation: $animeName $duration forwards;
 }
 
 .playerCardList,
@@ -10,7 +10,28 @@
 
     li:nth-child(n+3) {
         .innerCard{
-            @include flipAnime(flipN);
+            @include flipAnime(flipN, 1s);
+        }
+    }
+}
+
+.playerCardList {
+    li:nth-child(1) {
+        .innerCard {
+            @include flipAnime(flip1, 1s);
+        }
+    }
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip2, 1.2s);
+        }
+    }
+}
+
+.dealerCardList {
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip3, 1.4s);
         }
     }
 }
@@ -22,9 +43,7 @@ li.cardContainer {
 
     .innerCard {
         height: 173px;
-        // transition: transform 0.6s;
         transform-style: preserve-3d;
-        // animation: 1s flip1 forwards;
 
         .card {
             position: absolute;
@@ -37,29 +56,6 @@ li.cardContainer {
     }
 }
 
-.playerCardList {
-    li:nth-child(1) {
-        .innerCard {
-            @include flipAnime(flip1);
-        }
-    }
-    li:nth-child(2) {
-        .innerCard {
-            @include flipAnime(flip2);
-        }
-    }
-}
-
-.dealerCardList {
-    // li:nth-child(1) {
-    //     opacity: 0.2;
-    // }
-    li:nth-child(2) {
-        .innerCard {
-            @include flipAnime(flip3);
-        }
-    }
-}
 
 p.bust {
     color: red;
