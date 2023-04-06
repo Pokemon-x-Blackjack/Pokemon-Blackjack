@@ -1,13 +1,13 @@
 @use './partial/setup';
+@use './partial/global';
+@use './partial/typography';
 @use './partial/header';
 @use './partial/footer';
-@use './partial/typography';
-@use './partial/mediaQueries';
 @use './partial/resultPage';
 @use './partial/variables';
 @use './partial/gameBoardPage';
 @use './partial/landingPage';
-@use './partial/global';
 @use './partial/characterSelectorPage';
 @use './partial/loadingScreen';
 @use './partial/howToPlayModal';
+@use './partial/mediaQueries';
