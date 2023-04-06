@@ -11,15 +11,18 @@ const Dealer = (props) => {
     const dealerCardsProp = props.dealerCards
 
     return (
-        <ul className='dealerCardList'>Dealer's cards
-        {
-            dealerCardsProp.map((card) => {
-                return (
-                    <li key={card.code}><img src={card.image} alt={card.value + card.suit} /></li>
-                )
-            })
-        }
-        </ul>
+        <section className="dealer">
+            <ul className='dealerCardList'>Dealer's cards
+            {
+                dealerCardsProp.map((card) => {
+                    return (
+                        <li key={card.code}><img src={card.image} alt={card.value + card.suit} /></li>
+                    )
+                })
+            }
+            </ul>
+            <p>Dealer's cards value: {props.cardValue}</p>
+        </section>
     )
 }
 

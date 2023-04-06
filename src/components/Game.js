@@ -1,5 +1,4 @@
 // Game.js
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,9 +12,15 @@ const Game = () => {
     const [ playerCards, setPlayerCards ] = useState([])
     const [ dealerCards, setDealerCards ] = useState([])
 
+    const [ playerCardVal, setPlayerCardVal ] = useState(0);
+    const [ dealerCardVal, setDealerCardVal ] = useState(0);
+
     const [ playerStandMode, setPlayerStandMode ] = useState(false);
+    const [ dealerStandMode, setDealerStandMode ] = useState(false);
 
     const [ playerBustStatus, setPlayerBustStatus ] = useState(false);
+    const [ dealerBustStatus, setDealerBustStatus ] = useState(false);
+
 
 // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
     const startNewRound = (cardDrawCount) => {
@@ -34,24 +39,27 @@ const Game = () => {
     }
 
 // call API to draw a card
-    const drawOne = (deckId) => {
+    const drawOne = (deckId, state, setState) => {
         axios({
             url: `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`,
         }).then((res) => {
-            setPlayerCards([...playerCards, res.data.cards[0]])
-        })
+            setState([...state, res.data.cards[0]])
+            console.log("draw one")
+        }).catch("error")
     }
 
     const handleStand = () => {
+        console.log("player stand")
         setPlayerStandMode(true)
     }
 
+// handle hit button on click
     const handleHit = () => {
-        drawOne(deckId);
+        drawOne(deckId, playerCards, setPlayerCards);
     }
 
 // function that calculates total card value
-    const calcCardValue = () => {
+    const calcCardValue = (cardListState, setState) => {
     // define value for the special cards
         const cardValues = {
             ACE: 11,
@@ -60,14 +68,12 @@ const Game = () => {
             KING: 10
         };
 
-        if (playerCards) {
+        if (cardListState.length > 0) {
             // create an array that stores card value (ACE = 11)
-            const cardValArray = playerCards.map(card => {
+            const cardValArray = cardListState.map(card => {
                 const value = cardValues[card.value] || Number(card.value);
                 return value;
             })
-
-        console.log (cardValArray)
 
     // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
         // the callbackFn has two params: accumulator & currentValue
@@ -89,37 +95,85 @@ const Game = () => {
             // calculate final sum after changing dynamic ACE value
                 const finalSum = newValArray.reduce((total, num) => total + num, 0)
                 
-                return finalSum
+                setState(finalSum)
                 // console.log("finalSum", finalSum)
 
             } else {
             // ACE is still 11
-                return playerSum
+                setState(playerSum)
             }
 
         } else {
             console.log("no player card")
         }
     }
-    
+
+    const dealerLogic = () => {
+        if (dealerCardVal > 21){
+            console.log("dealer bust")
+            setDealerBustStatus(true)
+        } else if (dealerCardVal <= 21 && dealerCardVal >= 17) {
+            console.log("dealer stand")
+            setDealerStandMode(true)
+        } else if (dealerCardVal < 17) {
+            console.log("dealer continue")
+            drawOne(deckId, dealerCards, setDealerCards);
+        }
+    }
 
 // Start a new round on component load
     useEffect(() => { startNewRound(4) }, [])
 
-// Change player's status according to drawn card
+
+// ************* PLAYER LOGIC ****************
+    // Calc player cards value and set state everytime player cards change
     useEffect(() => {
-        const playerValue = calcCardValue();
-        if (playerValue > 21) {
-            setPlayerBustStatus(true)
-            console.log("bust")
-        } else if (playerValue === 21) {
-            setPlayerStandMode (true)
-            console.log("blackjack")
-        } else if (playerValue < 21) {
-            console.log("continue game")
-        }
+        calcCardValue(playerCards, setPlayerCardVal)
     }, [playerCards]) 
     
+    // after setting player cards val, set player's status 
+    useEffect(() => {
+        if (playerCardVal > 21) {
+            setPlayerBustStatus(true)
+            console.log("player bust")
+        } else if (playerCardVal === 21) {
+            setPlayerStandMode (true)
+            console.log("player blackjack")
+        } else if (playerCardVal < 21) {
+            console.log("player continue game")
+        }
+    }, [playerCardVal])
+// *********** END: PLAYER LOGIC **************
+
+
+// *************** DEALER LOGIC *****************
+    // Start Dealer logic once player's status is set to stand
+    useEffect(() => {
+        console.log("run dealer")
+    // this is running initially on load of game before deckId is created
+        if (playerStandMode === true){
+            if (deckId) {
+                dealerLogic();
+            }
+        }
+    }, [playerStandMode])
+
+    // after drawing one card to dealer, evaluate dealer's card value
+    useEffect(() => {
+        console.log("dealer's cards", dealerCards)
+        calcCardValue(dealerCards, setDealerCardVal)
+    }, [dealerCards])
+
+    // after evaluating dealer's card val, run dealerLogic to determine dealer's next step
+    useEffect(() => {
+        if (playerStandMode){
+            console.log("dealer logic running, card valu:",dealerCardVal)
+            dealerLogic()
+        }
+    }, [dealerCardVal])
+    
+// *********** END: DEALER LOGIC ***************
+
     return (
     <div className="App">
 
@@ -127,13 +181,14 @@ const Game = () => {
             standMode={playerStandMode}
             playerCards={playerCards}
             bustStatus={playerBustStatus}
+            cardValue={playerCardVal}
             handleStand={handleStand}
             handleHit={handleHit}
-            cardValue={calcCardValue()}
         />
 
         <Dealer
             dealerCards={dealerCards}
+            cardValue={dealerCardVal}
         />
 
     </div>
