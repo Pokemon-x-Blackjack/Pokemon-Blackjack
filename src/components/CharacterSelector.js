@@ -1,41 +1,36 @@
-// CharacterSelector.js
-
-// 6 buttons for 6 pokemon options
-// onClick: 
-// store value to "selected pokemon" state
-// dismount characterSelector.js
-// render Player.js and Dealer.js
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Game from "./Game"
 import pikaLoading from '../assets/loadingScreen/pikachu-running.gif'
 
 const CharacterSelector = () => {
-    // all pokemon from roster - populates ul
+    // pokemon data from starting roster
     const [rosterArr, setRosterArr] = useState([])
 
-    // all pokemon evolutions based on user selection
+    // pokemon evolutions needed for game
     const [evolutionArr, setEvolutionArr] = useState([])
-
-    // all pokemon evolutions based on enemy
     const [dealerEvolutionArr, setDealerEvolutionArr] = useState([])
+
+
+    // loading screen
+    const [isLoading, setIsLoading] = useState(false);
+    // Api Error message
+    const [apiError, setApiError] = useState('')
+
+
+    // true when below state conditions are met  
+    const [formSubmit, setFormSubmit] = useState(false)
+
+    // true when evolutionArr is populated
+    const [evolveReady, setEvolveReady] = useState(false)
 
     // onClick, updates to selected pokemon name
     const [userPokemon, setUserPokemon] = useState('')
 
 
-    // set to true when evolution arr === 3
-    const [evolveReady, setEvolveReady] = useState(false)
-
-    // ONLY when user pokemon is selected AND evolutions have loaded, formSubmit === true and unmounts to game page
-    const [formSubmit, setFormSubmit] = useState(false)
 
 
-    // loading screen
-    const [isLoading, setIsLoading] = useState(false);
-
-
-
+    // list of starter pokemon 
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
 
 
@@ -45,28 +40,114 @@ const CharacterSelector = () => {
         const pokeInfoUrl = new URL(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
         // storing axios request in variable
         const pokemonRequest = axios.get(pokeInfoUrl)
-        return pokemonRequest
+            .catch((error) => {
+                if (error.response) {
+                    const errorStatus = error.response.statusText;
+                    setApiError(errorStatus)
+                }
+            });
 
+        return pokemonRequest;
+    }
+
+    // Makes complicated call to evolution chain, saves three evolutions and returns arr
+    const apiCallEvolution = (name) => {
+        // access species data via pokemon name
+        const speciesUrl = new URL(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
+
+        const speciesCall = axios.get(speciesUrl)
+            .then((speciesRes) => {
+                // in species data, access evolution url
+                const evolutionUrl = speciesRes.data.evolution_chain.url
+
+                const evolutionCall = axios.get(evolutionUrl)
+                    .then((evolveRes) => {
+                        const dataPath = evolveRes.data.chain
+                        // call evolution url, access to each evolution
+                        const firstEvol = dataPath.species.name
+                        const secondEvol = dataPath.evolves_to[0].species.name
+                        const thirdEvol = dataPath.evolves_to[0].evolves_to[0].species.name
+
+                        return [firstEvol, secondEvol, thirdEvol]
+                    })
+                return evolutionCall
+            })
+            .catch((error) => {
+                if (error.response) {
+                    const errorStatus = error.response.statusText;
+                    setApiError(`Having trouble finding evolutions for ${name}: ${errorStatus}`)
+                }
+            })
+        return speciesCall
     }
 
     // takes api response: creates direct path to data, makes obj and pushes to temp arr to be set to state
     const createPokeObj = (resObj, arr) => {
-        const pokemonInfo = resObj.data
+        if (resObj !== undefined) {
+            const pokemonInfo = resObj.data
 
-        const infoObj = {
-            name: pokemonInfo.name,
-            id: pokemonInfo.id,
-            frontGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['front_default'],
-            backGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['back_default'],
-            altFront: `${pokemonInfo.name} in an idle stance.`,
-            altBack: `${pokemonInfo.name} facing towards the action in an idle stance.`
+            const infoObj = {
+                name: pokemonInfo.name,
+                id: pokemonInfo.id,
+                frontGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['front_default'],
+                backGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['back_default'],
+                altFront: `${pokemonInfo.name} in an idle stance.`,
+                altBack: `${pokemonInfo.name} facing towards the action in an idle stance.`
+            }
+
+            arr.push(infoObj)
         }
-
-        arr.push(infoObj)
     }
 
+    // takes apiCallEvolution response(arr), makes call on all evolutions, stored in state, evolve ready state updated
+
+    const evolutionChainToObj = (evolutionRes, setState) => {
+        if (evolutionRes !== undefined) {
+            // resolve promise to use apiCallEvolution arr
+            evolutionRes.then((evolutionNames) => {
+
+                // empty promise arr
+                const evolutionPromises = []
+
+                // making api call to each evolution, pushing promise
+                evolutionNames.forEach((pokemonName) => {
+                    evolutionPromises.push(apiCallPokemon(pokemonName))
+                })
+
+                // ALL promises ready? 
+                Promise.all(evolutionPromises)
+                    .then((evolutionData) => {
+                        // empty temp arr
+                        const tempArr = []
+                        evolutionData.forEach((pokemon) => {
+                            // creating obj per pokemon, saving to tempArr
+                            createPokeObj(pokemon, tempArr)
+                        })
+
+                        // storing in Evolution Arr
+                        setState(tempArr);
+                        // API data returns remove loading screen
+                        setIsLoading(false);
+                    })
+            })
+        }
+    }
+
+    // TESTING ONLY: console logs user dealer evolution arr 
+    useEffect(() => {
+        console.log('dealer', dealerEvolutionArr)
+    }, [dealerEvolutionArr])
+    // TESTING ONLY: console logs evolution arr 
+    useEffect(() => {
+        console.log('user', evolutionArr)
+        if (evolutionArr !== '') {
+            setEvolveReady(true)
+        }
+    }, [evolutionArr])
+
+
     // on component render: 
-    // generate enemy evolutions
+    // generate dealer evolutions
     // make api call for pokemon info, store in state
     useEffect(() => {
 
@@ -81,7 +162,6 @@ const CharacterSelector = () => {
         // making api calls for each pokemon -  storing promises in promise arr 
         rosterList.forEach((pokemon) => {
             starterPromises.push(apiCallPokemon(pokemon))
-
         })
 
         // ALL promises resolved? create specific obj per call, push to tempArr and save arr to state 
@@ -100,75 +180,6 @@ const CharacterSelector = () => {
             })
 
     }, [])
-
-    // Makes complicated call to evolution chain, saves three evolutions and returns arr
-    const apiCallEvolution = (name) => {
-        // access species data via pokemon name
-        const speciesUrl = new URL(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
-
-        const speciesCall = axios.get(speciesUrl)
-            .then((speciesRes) => {
-                // in species data, access evolution url
-                const evolutionUrl = speciesRes.data.evolution_chain.url
-                const evolutionCall = axios.get(evolutionUrl)
-                    .then((evolveRes) => {
-                        const dataPath = evolveRes.data.chain
-                        // call evolution url, access to each evolution
-                        const firstEvol = dataPath.species.name
-                        const secondEvol = dataPath.evolves_to[0].species.name
-                        const thirdEvol = dataPath.evolves_to[0].evolves_to[0].species.name
-
-                        return [firstEvol, secondEvol, thirdEvol]
-                    })
-                return evolutionCall
-            })
-        return speciesCall
-    }
-
-    // takes apiCallEvolution response(arr), makes call on all evolutions, stored in state, evolve ready state updated
-
-    const evolutionChainToObj = (evolutionRes, setState) => {
-        // getting access to apiCallEvolution arr
-        evolutionRes.then((evolutionNames) => {
-
-            // empty promise arr
-            const evolutionPromises = []
-
-            // making api call to each evolution, pushing promise
-            evolutionNames.forEach((pokemonName) => {
-                evolutionPromises.push(apiCallPokemon(pokemonName))
-            })
-
-            // ALL promises ready? 
-            Promise.all(evolutionPromises)
-                .then((evolutionData) => {
-                    // empty temp arr
-                    const tempArr = []
-                    evolutionData.forEach((pokemon) => {
-                        // creating obj per pokemon, saving to tempArr
-                        createPokeObj(pokemon, tempArr)
-                    })
-
-                    // storing in Evolution Arr
-                    setState(tempArr);
-                    // API data returns remove loading screen
-                    setIsLoading(false);
-                })
-        })
-    }
-
-    // TESTING ONLY: console logs user dealer evolution arr 
-    useEffect(() => {
-        console.log('dealer', dealerEvolutionArr)
-    }, [dealerEvolutionArr])
-    // TESTING ONLY: console logs evolution arr 
-    useEffect(() => {
-        console.log('user', evolutionArr)
-        if (evolutionArr !== '') {
-            setEvolveReady(true)
-        }
-    }, [evolutionArr])
-
 
     // sets user pokemon on clicked pokemon, finds evolutions in background
     const handleClickSelect = (event) => {
@@ -197,63 +208,66 @@ const CharacterSelector = () => {
         }
     }
 
-
-
     return (
         <>
-        {isLoading ? ( // Show loading page if isLoading is true
-            <div className="loadingPage">
-                <h2>Loading...</h2>
-                <img src={pikaLoading}/>
-                {/* Add  loading page code here */}
-            </div>
-         ) :
-            formSubmit === true ?
+            {
+                apiError !== '' ?
 
-                // game component
-                <Game
-                    evolutionArr={evolutionArr}
-                    dealerEvolutionArr={dealerEvolutionArr}
-                /> :
-                // character selection
-                < section className="characterSelect" >
-                    {/* wrapper */}
-                    <div className="wrapper">
-                        {/* character selection form */}
+                    <p>{apiError}</p> :
 
-                        <form action="#" onSubmit={handleCharacterSubmit}>
+                    isLoading ? ( // Show loading page if isLoading is true
+                        <div className="loadingPage">
+                            <h2>Loading...</h2>
+                            <img src={pikaLoading} />
+                            {/* Add  loading page code here */}
+                        </div>
+                    ) :
+                        formSubmit === true ?
 
-                            <h2>Choose your Pokemon</h2>
-                            {/* list of pokemon to choose from */}
-                            <ul className="pokeRoster">
-                                {rosterArr.map((pokemon) => {
-                                    return (
-                                        <li key={pokemon.id}>
+                            // game component
+                            <Game
+                                evolutionArr={evolutionArr}
+                                dealerEvolutionArr={dealerEvolutionArr}
+                            /> :
+                            // character selection
+                            < section className="characterSelect" >
+                                {/* wrapper */}
+                                <div className="wrapper">
+                                    {/* character selection form */}
 
-                                            <div
-                                                tabIndex={0}
-                                                className={userPokemon === pokemon.name ? 'pokemonCard activeCard' : 'pokemonCard'}
-                                                onClick={handleClickSelect}
-                                                onFocus={handleFocusSelect}>
+                                    <form action="#" onSubmit={handleCharacterSubmit}>
 
-                                                <img
-                                                    src={`${pokemon.frontGifUrl}`}
-                                                    alt={`${pokemon.altFront}`}
-                                                />
+                                        <h2>Choose your Pokemon</h2>
+                                        {/* list of pokemon to choose from */}
+                                        <ul className="pokeRoster">
+                                            {rosterArr.map((pokemon) => {
+                                                return (
+                                                    <li key={pokemon.id}>
 
-                                                <h3>{pokemon.name}</h3>
+                                                        <div
+                                                            tabIndex={0}
+                                                            className={userPokemon === pokemon.name ? 'pokemonCard activeCard' : 'pokemonCard'}
+                                                            onClick={handleClickSelect}
+                                                            onFocus={handleFocusSelect}>
 
-                                            </div>
+                                                            <img
+                                                                src={`${pokemon.frontGifUrl}`}
+                                                                alt={`${pokemon.altFront}`}
+                                                            />
 
-                                        </li>
-                                    )
-                                })}
+                                                            <h3>{pokemon.name}</h3>
 
-                            </ul>
-                            <button>All Set!</button>
-                        </form>
-                    </div>
-                </section >
+                                                        </div>
+
+                                                    </li>
+                                                )
+                                            })}
+
+                                        </ul>
+                                        <button>All Set!</button>
+                                    </form>
+                                </div>
+                            </section >
             }
 
         </>
