@@ -8,6 +8,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Game from "./Game"
+import pikaLoading from '../assets/loadingScreen/pikachu-running.gif'
 
 const CharacterSelector = () => {
     // all pokemon from roster - populates ul
@@ -31,17 +32,25 @@ const CharacterSelector = () => {
     // 1. hard coded starter characters - all have 3 evolutions total
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur']
 
+    // loading screen
+    const [isLoading, setIsLoading] = useState(false);
+    const [data, setData] = useState(null);
+
+
 
 
 
     // 1.b  api call for 1 pokemon base on name, sends to a specified array
     const apiCallPokemon = (idOrName, setArr) => {
+
+
         const pokeUrl = new URL(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
         axios({
             url: pokeUrl
         }).then((response) => {
             // data path
             const pokemonInfo = response.data
+            setIsLoading(false)
 
             // template obj: only retrieving data needed
             const infoObj = {
@@ -63,6 +72,10 @@ const CharacterSelector = () => {
 
     // on component render: make api call for pokemon info, store in state
     useEffect(() => {
+            // loading page
+            setIsLoading(true);
+
+            
 
         // getting data for all starter pokemon
         rosterList.forEach((pokemon) => {
@@ -79,6 +92,7 @@ const CharacterSelector = () => {
         axios({
             url: speciesUrl
         }).then((speciesRes) => {
+
             // in species data, access evolution url
             const evolutionUrl = speciesRes.data.evolution_chain.url
 
@@ -136,13 +150,20 @@ const CharacterSelector = () => {
     }, [evolutionArr])
 
 
+    
     return (
         <>
-            {formSubmit === true ?
+         {isLoading ? ( // Show loading page if isLoading is true
+      <div className="loadingPage">
+        <h2>Loading...</h2>
+        <img src={pikaLoading}/>
+        {/* Add  loading page code here */}
+      </div>
+         ) :
+            formSubmit ? ( 
 
-                <Game
-                    evolutionArr={evolutionArr}
-                /> :
+                <Game evolutionArr={evolutionArr}/> 
+                ):(
                 < section className="characterSelect" >
                     <div className="wrapper">
                         <form action="#" onSubmit={handleCharacterSubmit}>
@@ -171,11 +192,12 @@ const CharacterSelector = () => {
                         </form>
                     </div>
                 </section >
-            }
+                )}
 
         </>
+        
     )
-}
 
+}
 export default CharacterSelector;
 
