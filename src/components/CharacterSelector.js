@@ -34,7 +34,7 @@ const CharacterSelector = () => {
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
 
 
-
+    // API calls a pokemon, returns promise
     const apiCallPokemon = (idOrName) => {
         // dynamic link based on specified id/name
         const pokeInfoUrl = new URL(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
@@ -61,8 +61,6 @@ const CharacterSelector = () => {
 
     // on component render: 
     // generate enemy evolutions
-
-
     // make api call for pokemon info, store in state
     useEffect(() => {
 
@@ -92,7 +90,7 @@ const CharacterSelector = () => {
 
     }, [])
 
-    // makes call via species endpoint, makes nested call to evolution endpoint, returns arr of evolution names
+    // Makes complicated call to evolution chain, saves three evolutions and returns arr
     const apiCallEvolution = (name) => {
         // access species data via pokemon name
         const speciesUrl = new URL(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
@@ -146,10 +144,11 @@ const CharacterSelector = () => {
         })
     }
 
-    // TESTING ONLY: console logs evolution arr 
+    // TESTING ONLY: console logs user dealer evolution arr 
     useEffect(() => {
         console.log('dealer', dealerEvolutionArr)
     }, [dealerEvolutionArr])
+    // TESTING ONLY: console logs evolution arr 
     useEffect(() => {
         console.log('user', evolutionArr)
         if (evolutionArr !== '') {
@@ -157,6 +156,8 @@ const CharacterSelector = () => {
         }
     }, [evolutionArr])
 
+
+    // sets user pokemon on clicked pokemon, finds evolutions in background
     const handleClickSelect = (event) => {
         const clickedPokemon = event.target.textContent
         setUserPokemon(clickedPokemon)
