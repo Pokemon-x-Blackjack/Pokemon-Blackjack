@@ -33,7 +33,6 @@ const CharacterSelector = () => {
 
     // loading screen
     const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState(null);
 
 
 
@@ -70,9 +69,9 @@ const CharacterSelector = () => {
     // generate enemy evolutions
     // make api call for pokemon info, store in state
     useEffect(() => {
-        // loading page
-        setIsLoading(true);
 
+        // loading page on page load
+        setIsLoading(true);
 
 
         evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
@@ -82,6 +81,7 @@ const CharacterSelector = () => {
         // making api calls for each pokemon -  storing promises in promise arr 
         rosterList.forEach((pokemon) => {
             starterPromises.push(apiCallPokemon(pokemon))
+
         })
 
         // ALL promises resolved? create specific obj per call, push to tempArr and save arr to state 
@@ -151,6 +151,8 @@ const CharacterSelector = () => {
 
                     // storing in Evolution Arr
                     setState(tempArr);
+                    // API data returns remove loading screen
+                    setIsLoading(false);
                 })
         })
     }
@@ -199,8 +201,14 @@ const CharacterSelector = () => {
 
     return (
         <>
-
-            {formSubmit === true ?
+        {isLoading ? ( // Show loading page if isLoading is true
+            <div className="loadingPage">
+                <h2>Loading...</h2>
+                <img src={pikaLoading}/>
+                {/* Add  loading page code here */}
+            </div>
+         ) :
+            formSubmit === true ?
 
                 // game component
                 <Game
