@@ -234,7 +234,7 @@ const CharacterSelector = () => {
                         </form>
                     </div>
                 </section >
-                )}
+                }
 
         </>
         
