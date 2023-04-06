@@ -50,6 +50,39 @@ const CharacterSelector = () => {
         return pokemonRequest;
     }
 
+    // on component render: 
+    // generate enemy evolutions
+    // make api call for pokemon info, store in state
+    useEffect(() => {
+            // loading page
+            setIsLoading(true);           
+
+        evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
+        // empty promise arr
+        const starterPromises = []
+
+        // making api calls for each pokemon -  storing promises in promise arr 
+        rosterList.forEach((pokemon) => {
+            starterPromises.push(apiCallPokemon(pokemon))
+        })
+
+        // ALL promises resolved? create specific obj per call, push to tempArr and save arr to state 
+        Promise.all(starterPromises)
+            .then((starterData) => {
+                // EMPTY temp arr, once objs are made, save to 
+                const tempArr = []
+
+                // iterating through all starter pokemon
+                starterData.forEach((starterObj) => {
+                    //creating obj - sending to temp arr
+                    createPokeObj(starterObj, tempArr)
+                })
+                // storing objs in state
+                setRosterArr(tempArr)
+            })
+
+    }, [])
+
     // Makes complicated call to evolution chain, saves three evolutions and returns arr
     const apiCallEvolution = (name) => {
         // access species data via pokemon name
