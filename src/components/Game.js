@@ -272,6 +272,7 @@ const Game = (props) => {
             dealerCards={dealerCards}
             cardValue={dealerCardVal}
             dealerEvolutionArr={dealerEvolutionArr}
+            dealerEvolution={dealerEvolution}
         />
 
     </div>

@@ -11,7 +11,7 @@ import cardBack from '../assets/card-back.png';
 
 const Dealer = (props) => {
     const dealerCardsProp = props.dealerCards
-    const currentEvolution = props.dealerEvolutionArr[0]
+    const currentEvolution = props.dealerEvolutionArr[props.dealerEvolution]
 
     return (
         <section className="dealer">

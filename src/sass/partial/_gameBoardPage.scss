@@ -7,6 +7,12 @@
 .playerCardList,
 .dealerCardList {
     display: flex;
+
+    li:nth-child(n+3) {
+        .innerCard{
+            @include flipAnime(flipN);
+        }
+    }
 }
 
 li.cardContainer {
@@ -44,11 +50,10 @@ li.cardContainer {
     }
 }
 
-
 .dealerCardList {
-    li:nth-child(1) {
-        opacity: 0.2;
-    }
+    // li:nth-child(1) {
+    //     opacity: 0.2;
+    // }
     li:nth-child(2) {
         .innerCard {
             @include flipAnime(flip3);
