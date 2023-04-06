@@ -1,20 +1,28 @@
-import Game from "./components/Game.js"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Landing from './components/Landing';
+import Result from './components/Result';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CharacterSelector from './components/CharacterSelector';
 import './sass/App.scss';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Landing from './components/Landing';
+
 
 
 function App() {
   return (
     <div className="App">
-      
+
+      <Routes>
+        <Route path="/module" element={<Result />} />
+      </Routes>
+
       <Header />
-      <Game />
+      <main>
+        <Landing />
+      </main>
       <Footer />
+     
 
     </div>
   );

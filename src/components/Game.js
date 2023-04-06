@@ -5,12 +5,13 @@ import axios from 'axios';
 import Player from './Player.js';
 import Dealer from './Dealer.js';
 
-const Game = () => {
+const Game = (props) => {
 
     const [deckId, setDeckId] = useState('')
 
-    const [ playerCards, setPlayerCards ] = useState([])
-    const [ dealerCards, setDealerCards ] = useState([])
+    const [playerCards, setPlayerCards] = useState([])
+    const [dealerCards, setDealerCards] = useState([])
+
 
     const [ playerCardVal, setPlayerCardVal ] = useState(0);
     const [ dealerCardVal, setDealerCardVal ] = useState(0);
@@ -22,11 +23,14 @@ const Game = () => {
     const [ dealerBustStatus, setDealerBustStatus ] = useState(false);
 
 
-// call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
+    const evolutionArr  =  props.evolutionArr
+
+
+    // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
     const startNewRound = (cardDrawCount) => {
         axios({
-            url:'https://deckofcardsapi.com/api/deck/new/draw/',
-            params:{
+            url: 'https://deckofcardsapi.com/api/deck/new/draw/',
+            params: {
                 count: cardDrawCount
             }
         }).then((res) => {
@@ -37,6 +41,7 @@ const Game = () => {
             setDealerCards([cardArray[1], cardArray[3]])
         })
     }
+
 
 // call API to draw a card
     const drawOne = (deckId, state, setState) => {
@@ -58,6 +63,7 @@ const Game = () => {
         drawOne(deckId, playerCards, setPlayerCards);
     }
 
+
 // function that calculates total card value
     const calcCardValue = (cardListState, setState) => {
     // define value for the special cards
@@ -75,6 +81,7 @@ const Game = () => {
                 return value;
             })
 
+
     // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
         // the callbackFn has two params: accumulator & currentValue
             // accumulator: accumulated value from previous callbackFn
@@ -82,7 +89,7 @@ const Game = () => {
             const playerSum = cardValArray.reduce((total, num) => total + num, 0) // calculate sum of cards
 
             if (playerSum > 21) {
-            // dynamic ACE value conditional
+                // dynamic ACE value conditional
                 const newValArray = cardValArray.map(card => {
                     if (card === 11) {
                         return 1;
@@ -91,8 +98,8 @@ const Game = () => {
                     }
                 })
                 // console.log("final card array", newValArray)
-                
-            // calculate final sum after changing dynamic ACE value
+
+                // calculate final sum after changing dynamic ACE value
                 const finalSum = newValArray.reduce((total, num) => total + num, 0)
                 
                 setState(finalSum)
@@ -121,7 +128,8 @@ const Game = () => {
         }
     }
 
-// Start a new round on component load
+
+    // Start a new round on component load
     useEffect(() => { startNewRound(4) }, [])
 
 
@@ -199,10 +207,10 @@ export default Game;
 
     // On Load: render CharacterSelector.js
 
-// States: 
+// States:
 // selected pokemon
 
-// Player evolution 
+// Player evolution
 // Dealer evolution
 
 // Player drawn card
@@ -236,4 +244,3 @@ export default Game;
 // after updating evolution state, check if any evolution state = 3 (fully evolved)
 // if evolution state = 3, render Result.js, dismount Player.js and Dealer.js
 // if no fully evolved pokemon, start a new round (rerender Player.js and Dealer.js)
-
