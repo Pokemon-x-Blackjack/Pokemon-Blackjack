@@ -10,4 +10,5 @@
 @use './partial/characterSelectorPage';
 @use './partial/loadingScreen';
 @use './partial/howToPlayModal';
+@use './partial/404Error' as *;
 @use './partial/mediaQueries';

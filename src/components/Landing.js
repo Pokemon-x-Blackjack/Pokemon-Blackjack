@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CharacterSelector from './CharacterSelector';
 import HowToPlay from './HowToPlay';
+import snorlax from '../assets/snorlax-pokemon.gif'
 
 
 const Landing = () => {
@@ -29,10 +30,12 @@ const Landing = () => {
           <div className="wrapper">
             {/* ADD NAV */}
             <div className="text">
-              <h1>POKÉJACK</h1>
-              <h3>Pokemon x Blackjack</h3>
+              
+              <h1>POKÉMON x BLACKJACK</h1>
             </div>
-            <h3>img here</h3>
+            <div className="imgContainer">
+                <img src={snorlax} alt='Gif of Snorlax waving'/>
+            </div>
             <div className="buttonContainer">
               <button onClick={handleButtonClick}>START</button>
               <button onClick={handleHowToPlayClick}>HOW TO PLAY</button> {/* Add a button to show/hide the HowToPlay component */}

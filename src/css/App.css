@@ -219,6 +219,40 @@ html {
   overflow: hidden;
 }
 
+html {
+  font-size: 125%;
+}
+
+.wrapper {
+  max-width: 1440px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -291,45 +325,45 @@ p.bust {
   color: red;
 }
 
-html {
-  height: 100vh;
-}
-
 .landing {
-  height: 70vh;
+  min-height: 80vh;
 }
 .landing .wrapper {
-  height: 100%;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 100px;
+  gap: 15px;
 }
 .landing .wrapper .text {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.landing .wrapper .text h1, .landing .wrapper .text h3 {
-  font-size: clamp(1.5rem, 3vw, 4rem);
+.landing .wrapper .text h1 {
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: bold;
   margin-bottom: 20px;
-  color: #fff;
+  color: #0e0e0e;
   text-shadow: 2px 2px #ff4136;
   letter-spacing: 5px;
   text-align: center;
 }
 .landing .wrapper .buttonContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex-basis: 100%;
   margin-top: 20px;
+  gap: 40px;
 }
 .landing .wrapper button {
+  width: 25%;
+  height: 60px;
   padding: 10px 40px;
-  background-color: #FF0000;
+  background-color: #ff4136;
   border: 4px solid #000000;
   outline: 2px solid #FFFFFF;
   border-radius: 5px;
@@ -341,41 +375,7 @@ html {
 }
 .landing .wrapper button:hover {
   transform: scale(1.06);
-  box-shadow: 0 0 8px #0000FF;
-}
-
-html {
-  font-size: 125%;
-}
-
-.wrapper {
-  max-width: 1440px;
-  width: 85%;
-  margin: 0 auto;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: inline-block;
-}
-
-h1,
-h2,
-h3,
-h4,
-p,
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-button:hover {
-  cursor: pointer;
+  box-shadow: 0 0 8px #ff4136;
 }
 
 ul {
@@ -498,4 +498,44 @@ ul {
 .howToPlayModal button:hover {
   transform: scale(1.06);
   box-shadow: 0 0 8px blue;
+}
+
+.errorContainer {
+  background-color: #ffffff;
+  color: #0f0f0f;
+  text-align: center;
+  padding: 50px;
+  box-shadow: 2px 2px 20px #ff4136;
+  border-radius: 10px;
+  width: 60%;
+  margin: 40px auto;
+}
+
+.errorTitle {
+  font-size: 48px;
+  margin-top: 0;
+}
+
+.errorMessage {
+  font-size: 24px;
+}
+
+.errorImage {
+  margin: 20px 0;
+}
+
+.goHomeBtn {
+  background-color: #ff4136;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.goHomeBtn:hover {
+  background-color: #85144b;
 }
