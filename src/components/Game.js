@@ -24,6 +24,7 @@ const Game = (props) => {
     const [ playerEvolution, setPlayerEvolution ] = useState(0);
     const [ dealerEvolution, setDealerEvolution ] = useState(0);
 
+    const [apiError, setApiError] = useState('')
 
 
     const evolutionArr  =  props.evolutionArr
@@ -43,7 +44,12 @@ const Game = (props) => {
 
             setPlayerCards([cardArray[0], cardArray[2]])
             setDealerCards([cardArray[1], cardArray[3]])
-        })
+        }).catch((error) => {
+            if (error.response) {
+                const errorStatus = error.response.statusText;
+                setApiError(errorStatus)
+            }
+        });
     }
 
 
@@ -54,7 +60,12 @@ const Game = (props) => {
         }).then((res) => {
             setState([...state, res.data.cards[0]])
             console.log("draw one")
-        }).catch("error")
+        }).catch((error) => {
+            if (error.response) {
+                const errorStatus = error.response.statusText;
+                setApiError(errorStatus)
+            }
+        });
     }
 
     const handleStand = () => {
@@ -133,10 +144,9 @@ const Game = (props) => {
         }
     }
 
-
-    // Start a new round on component load
-    useEffect(() => { startNewRound(4) }, [])
-
+    useEffect(()=> {
+        startNewRound(4)
+    }, [])
 
 // ************* PLAYER LOGIC ****************
     // Calc player cards value and set state everytime player cards change
@@ -197,12 +207,10 @@ const Game = (props) => {
         if (playerEvolution === 2) {
             playerFullyEvolved = true;
         }
-    
 
         if (dealerEvolution === 2) {
             dealerFullyEvolved = true;
         }
-        
 
         console.log (playerEvolution, dealerEvolution)
 
@@ -252,7 +260,7 @@ const Game = (props) => {
             // startNewRound(4);
         }
     }, [playerStandMode, dealerStandMode, playerBustStatus, dealerBustStatus, playerCards]); 
-  // *********** END: GAME LOGIC ***************
+// *********** END: GAME LOGIC ***************
 
 
     return ( 
@@ -267,7 +275,6 @@ const Game = (props) => {
             handleStand={handleStand}
             handleHit={handleHit}
             playerEvolution={playerEvolution}
-
         />
 
         <Dealer
