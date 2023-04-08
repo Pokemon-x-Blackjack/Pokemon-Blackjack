@@ -12,7 +12,6 @@ const Game = (props) => {
     const [playerCards, setPlayerCards] = useState([])
     const [dealerCards, setDealerCards] = useState([])
 
-
     const [ playerCardVal, setPlayerCardVal ] = useState(0);
     const [ dealerCardVal, setDealerCardVal ] = useState(0);
 
@@ -22,8 +21,13 @@ const Game = (props) => {
     const [ playerBustStatus, setPlayerBustStatus ] = useState(false);
     const [ dealerBustStatus, setDealerBustStatus ] = useState(false);
 
+    const [ playerEvolution, setPlayerEvolution ] = useState(0);
+    const [ dealerEvolution, setDealerEvolution ] = useState(0);
+
+
 
     const evolutionArr  =  props.evolutionArr
+    const dealerEvolutionArr = props.dealerEvolutionArr
 
 
     // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
@@ -81,7 +85,6 @@ const Game = (props) => {
                 return value;
             })
 
-
     // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
         // the callbackFn has two params: accumulator & currentValue
             // accumulator: accumulated value from previous callbackFn
@@ -124,7 +127,9 @@ const Game = (props) => {
             setDealerStandMode(true)
         } else if (dealerCardVal < 17) {
             console.log("dealer continue")
-            drawOne(deckId, dealerCards, setDealerCards);
+            setTimeout(() => {
+                drawOne(deckId, dealerCards, setDealerCards);
+            }, 500); // timer for dealer cards to appear slowly
         }
     }
 
@@ -182,7 +187,75 @@ const Game = (props) => {
     
 // *********** END: DEALER LOGIC ***************
 
-    return (
+// *********** START: GAME LOGIC ***************
+    useEffect(() => {
+
+        let playerFullyEvolved = false;
+        let dealerFullyEvolved = false;
+
+        // Check if evolution state is 3 (fully evolved) 
+        if (playerEvolution === 2) {
+            playerFullyEvolved = true;
+        }
+    
+
+        if (dealerEvolution === 2) {
+            dealerFullyEvolved = true;
+        }
+        
+
+        console.log (playerEvolution, dealerEvolution)
+
+        // If any side has bust, win side evolution state +1
+        if (playerBustStatus) {
+            setDealerEvolution(prevCount => prevCount + 1);
+            console.log('Dealer wins');
+        } else if (dealerBustStatus) {
+            setPlayerEvolution(prevCount => prevCount + 1);
+            console.log('Player wins');
+        } else {
+            // If both sides stand, compare card value
+            if (playerStandMode && dealerStandMode) {
+
+                // If card value = 21, evolution state +1
+                if (playerCardVal === 21 && dealerCardVal === 21) {
+                    setPlayerEvolution(prevCount => prevCount + 1);
+                    setDealerEvolution(prevCount => prevCount + 1);
+                    console.log('Both sides win');
+                } else if (playerCardVal === 21) {
+                    setPlayerEvolution(prevCount => prevCount + 1);
+                    console.log('Player wins');
+                } else if (dealerCardVal === 21) {
+                    setDealerEvolution(prevCount => prevCount + 1);
+                    console.log('Dealer wins');
+                } else if (playerCardVal < 21 && dealerCardVal < 21) {
+                    if (playerCardVal > dealerCardVal){
+                        setPlayerEvolution(prevCount => prevCount + 1);
+                    } else if (playerCardVal < dealerCardVal) {
+                        setDealerEvolution(prevCount => prevCount + 1);
+                    } else if (playerCardVal === dealerCardVal) {
+                        console.log('start new round')
+                    }
+                }
+            }
+        }
+
+        // Check if any evolution state is 3 (fully evolved) and trigger end of round
+        if (playerFullyEvolved || dealerFullyEvolved) {
+            console.log('End of game');
+            // render Result.js, dismount Player.js and Dealer.js
+            // Implement this logic to show the results and end the game.
+        } else {
+            console.log('Start new round');
+            // Button needs to rendered on to the page 
+            // If no fully evolved pokemon, start a new round (rerender Player.js and Dealer.js)
+            // startNewRound(4);
+        }
+    }, [playerStandMode, dealerStandMode, playerBustStatus, dealerBustStatus, playerCards]); 
+  // *********** END: GAME LOGIC ***************
+
+
+    return ( 
     <div className="App">
 
         <Player 
@@ -193,11 +266,17 @@ const Game = (props) => {
             evolutionArr={evolutionArr}
             handleStand={handleStand}
             handleHit={handleHit}
+            playerEvolution={playerEvolution}
+
         />
 
         <Dealer
             dealerCards={dealerCards}
             cardValue={dealerCardVal}
+            dealerEvolutionArr={dealerEvolutionArr}
+            dealerEvolution={dealerEvolution}
+            playerStand={playerStandMode}
+            dealerStand={dealerStandMode}
         />
 
     </div>
@@ -208,40 +287,5 @@ export default Game;
 
     // On Load: render CharacterSelector.js
 
-// States:
-// selected pokemon
-
-// Player evolution
-// Dealer evolution
-
-// Player drawn card
-// Dealer drawn card
-
-// might not need card value ?
-
-// player card value
-// dealer card value
-
-// Player bust status
-// Dealer bust status
-
-// Player stand mode (true = stand, false = keep going)
-// Dealer stand mode
-
-// dealer's turn (true/false)
-// if true, rerender Dealer.js
 
 
-
-
-
-
-// End of round trigger:
-// Conditions: when one side busts or both stand
-// if bust, win side evolution state +1
-// if both stand, compare card value:
-// if card value = 21, evolution state +1
-// if card value < 21, higher card value side has evolution state +1
-// after updating evolution state, check if any evolution state = 3 (fully evolved)
-// if evolution state = 3, render Result.js, dismount Player.js and Dealer.js
-// if no fully evolved pokemon, start a new round (rerender Player.js and Dealer.js)
