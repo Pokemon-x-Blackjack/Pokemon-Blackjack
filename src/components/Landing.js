@@ -24,17 +24,19 @@ const Landing = () => {
     <>
       {showHowToPlay && <HowToPlay closeHowToPlay={handleCloseHowToPlay} />}
       {buttonSelected ? (
-        <CharacterSelector />
+        <CharacterSelector
+          setButtonSelected={setButtonSelected}
+        />
       ) : (
         <section className="landing">
           <div className="wrapper">
             {/* ADD NAV */}
             <div className="text">
-              
+
               <h1>POKÉMON x BLACKJACK</h1>
             </div>
             <div className="imgContainer">
-                <img src={snorlax} alt='Gif of Snorlax waving'/>
+              <img src={snorlax} alt='Gif of Snorlax waving' />
             </div>
             <div className="buttonContainer">
               <button onClick={handleButtonClick}>START</button>

@@ -253,6 +253,10 @@ button:hover {
   cursor: pointer;
 }
 
+figure {
+  margin: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -316,9 +320,37 @@ button:hover {
 .dealerCardList {
   display: flex;
 }
+.playerCardList li:nth-child(n+3) .innerCard,
+.dealerCardList li:nth-child(n+3) .innerCard {
+  animation: flipN 1s forwards;
+}
 
-.dealerCardList li:nth-child(1) {
-  opacity: 0.2;
+.playerCardList li:nth-child(1) .innerCard {
+  animation: flip1 1s forwards;
+}
+.playerCardList li:nth-child(2) .innerCard {
+  animation: flip2 1.2s forwards;
+}
+
+.dealerCardList li:nth-child(2) .innerCard {
+  animation: flip3 1.4s forwards;
+}
+
+li.cardContainer {
+  position: relative;
+  width: 10%;
+  perspective: 800px;
+}
+li.cardContainer .innerCard {
+  height: 173px;
+  transform-style: preserve-3d;
+}
+li.cardContainer .innerCard .card {
+  position: absolute;
+  backface-visibility: hidden;
+}
+li.cardContainer .innerCard .cardFront {
+  transform: rotateY(180deg);
 }
 
 p.bust {
@@ -327,6 +359,10 @@ p.bust {
 
 .landing {
   min-height: 80vh;
+  background-image: url("../../assets/8bitBg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .landing .wrapper {
   height: 80vh;
@@ -336,13 +372,17 @@ p.bust {
   flex-wrap: wrap;
   gap: 15px;
 }
+.landing .wrapper img {
+  border-radius: 20px;
+  box-shadow: 2px 2px 20px red;
+}
 .landing .wrapper .text {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 .landing .wrapper .text h1 {
-  font-size: clamp(2rem, 3vw, 4rem);
+  font-size: clamp(2.77rem, 3vw, 4rem);
   font-weight: bold;
   margin-bottom: 20px;
   color: #0e0e0e;
@@ -368,7 +408,7 @@ p.bust {
   outline: 2px solid #FFFFFF;
   border-radius: 5px;
   font-family: "Press Start 2P", cursive;
-  font-size: 16px;
+  font-size: clamp(0.8rem, 2vw, 2.5rem);
   color: #FFFFFF;
   text-shadow: 1px 1px #000000;
   transition: all 0.4s ease-in-out;
@@ -378,11 +418,30 @@ p.bust {
   box-shadow: 0 0 8px #ff4136;
 }
 
-ul {
-  list-style-type: none;
+.characterSelect {
+  height: 100%;
+}
+
+.characterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.characterForm button {
+  padding: 10px 40px;
+  background-color: red;
+  border: 4px solid black;
+  border-radius: 10px;
+}
+
+.pokeRoster {
+  height: 100%;
+  max-height: 65vh;
+  overflow-y: scroll;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
@@ -423,6 +482,7 @@ ul {
 }
 .activeCard:hover, .activeCard:focus {
   background-color: rgb(74, 164, 74);
+  outline: none;
 }
 
 .loadingPage {
@@ -520,6 +580,11 @@ ul {
   font-size: 24px;
 }
 
+.statusText {
+  font-size: 1rem;
+  display: block;
+}
+
 .errorImage {
   margin: 20px 0;
 }
@@ -538,4 +603,49 @@ ul {
 
 .goHomeBtn:hover {
   background-color: #85144b;
+}
+
+@keyframes flip1 {
+  0% {
+    transform: rotateY(0);
+  }
+  20% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flip2 {
+  0% {
+    transform: rotateY(0);
+  }
+  33.33% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flip3 {
+  0% {
+    transform: rotateY(0);
+  }
+  42.86% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flipN {
+  0% {
+    transform: rotateY(0);
+  }
+  10% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
 }
