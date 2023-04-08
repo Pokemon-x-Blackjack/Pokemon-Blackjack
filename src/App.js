@@ -4,6 +4,8 @@ import Result from './components/Result';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CharacterSelector from './components/CharacterSelector';
+import ErrorPage from './components/Error404';
+
 import './sass/App.scss';
 
 
@@ -13,11 +15,15 @@ function App() {
   return (
     <div className="App">
 
-      <Routes>
-        <Route path="/module" element={<Result />} />
-      </Routes>
+
 
       <Header />
+      <Routes>
+        <Route path="/module" element={<Result />} />
+        <Route path="/404" element={<ErrorPage />} />
+    
+      </Routes>
+
       <main>
         <Landing />
       </main>
