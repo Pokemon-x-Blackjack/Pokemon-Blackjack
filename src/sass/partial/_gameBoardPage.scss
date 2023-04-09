@@ -10,7 +10,7 @@
 
     li:nth-child(n+3) {
         .innerCard{
-            @include flipAnime(flipN, 1s);
+            @include flipAnime(flipN, 0.8s);
         }
     }
 }

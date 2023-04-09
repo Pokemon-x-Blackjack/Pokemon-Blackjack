@@ -37,8 +37,6 @@ const Game = (props) => {
 
     const [gameOver, setGameOver] = useState(false); // 15
 
-    const [ gameOver, setGameOver ] = useState(false); // 15
-
     const [ isLoading, setIsLoading ] = useState(false);
 
     const evolutionArr = props.evolutionArr
