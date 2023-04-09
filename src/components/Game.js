@@ -400,10 +400,6 @@ const Game = (props) => {
                 
             ) : (
                 <>
-                    <Evolvebar 
-                        evolutionArray={{ evolutionArr, dealerEvolutionArr}}
-                        evolutionPoint={{ playerEvolution,dealerEvolution}}
-                    />
                     <Player 
                         standMode={playerStandMode}
                         playerCards={playerCards}
@@ -415,14 +411,14 @@ const Game = (props) => {
                         playerEvolution={playerEvolution}
                     />
             
-                    <Dealer 
-                    dealerCards={dealerCards}
-                    cardValue={dealerCardVal}
-                    dealerEvolutionArr={dealerEvolutionArr}
-                    dealerEvolution={dealerEvolution}
-                    playerStand={playerStandMode}
-                    dealerStand={dealerStandMode}
-                    bustStatus={dealerBustStatus}
+                    <Dealer
+                        dealerCards={dealerCards}
+                        cardValue={dealerCardVal}
+                        dealerEvolutionArr={dealerEvolutionArr}
+                        dealerEvolution={dealerEvolution}
+                        playerStand={playerStandMode}
+                        dealerStand={dealerStandMode}
+                        bustStatus={dealerBustStatus}
                     />
 
                     {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
