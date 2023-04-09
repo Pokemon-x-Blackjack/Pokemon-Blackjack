@@ -63,7 +63,7 @@ const Game = (props) => {
             setDealerCards([cardArray[1], cardArray[3]])
         }).catch((error) => {
             if (error.response) {
-                const errorStatus = error.response.statusText;
+                const errorStatus = `Having trouble fetching new cards: ${error.response.statusText}`;
                 setApiError(errorStatus)
             }
         });
@@ -79,7 +79,7 @@ const Game = (props) => {
             console.log("draw one")
         }).catch((error) => {
             if (error.response) {
-                const errorStatus = error.response.statusText;
+                const errorStatus = `Having trouble fetching a new card: ${error.response.statusText}`;
                 setApiError(errorStatus)
             }
         });
