@@ -74,3 +74,22 @@
         // after updating evolution state, check if any evolution state = 3 (fully evolved)
             // if evolution state = 3, render Result.js, dismount Player.js and Dealer.js
             // if no fully evolved pokemon, start a new round (rerender Player.js and Dealer.js)
+
+
+// To start a new round:
+    // setPlayerStandMode to false
+    // setDealerStandMode to false
+    // setplayerBustStatus to false
+    // setDealerBustStatus to false
+    // clear states: player&dealerCards, player&dealerCardsVal
+        // write a draw 4 function with existing deckId 
+    // const drawFour = (deckId) => {
+    //     axios({
+    //         url: `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`,
+    //     }).then((res) => {
+    //         setPlayerCards([cardArray[0], cardArray[2]])
+    //         setDealerCards([cardArray[1], cardArray[3]])
+    //     })
+    // }
+
+

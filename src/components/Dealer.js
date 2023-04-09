@@ -1,23 +1,36 @@
 // Dealer.js
 import cardBack from '../assets/card-back.png';
+import { useState, useEffect } from 'react'
 
-        // Contains: dealer pokemon, current cards
-        // Once player status is stand:
-            // 1. run draw card function
-            // 2. evaluate dealer's card value
-                // if value <17, run draw card function again
-                // if (21 >= value >= 17), set dealer stand mode = true
-                // if value > 21, set dealer bust status = true
 
 const Dealer = (props) => {
-    // const [ flipDealerCard, setFlipDealerCard ] = useState(false);
+    const [ pokemonUrl, setPokemonUrl ] = useState(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl);
 
     const dealerCardsProp = props.dealerCards
+
     const currentEvolution = props.dealerEvolutionArr[props.dealerEvolution]
 
-    // if (playerStandMode && dealerStandMode) {
-    //     setFlipDealerCard(true);
-    // }
+// evolution animation 
+    useEffect(() => {
+        if (props.dealerEvolutionArr[props.dealerEvolution - 1]?.frontGifUrl !== undefined){
+            setTimeout(() => {
+                let intervalId = setInterval(() => {
+                    setPokemonUrl((pokemon) => 
+                    pokemon === props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
+                    ? props.dealerEvolutionArr[props.dealerEvolution - 1].frontGifUrl
+                    : props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
+                    )
+                }, 50) // how fast the image toggles
+                
+                setTimeout(() => {
+                    clearInterval(intervalId);
+                    setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
+                }, 1300); // evoluting time
+
+                setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
+            }, 400) // delay start of evolution
+        }
+    }, [props.dealerEvolution])
 
     return (
         <section className="dealer">
@@ -37,7 +50,7 @@ const Dealer = (props) => {
             </ul>
 
             <div>
-                <img src={currentEvolution.frontGifUrl} alt={currentEvolution.altFront} />
+                <img src={pokemonUrl} alt={currentEvolution.altFront} />
                 <h3>{currentEvolution.name}</h3>
             </div>
 

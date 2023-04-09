@@ -29,6 +29,8 @@ const Game = (props) => {
     const [ playerEvolution, setPlayerEvolution ] = useState(0);
     const [ dealerEvolution, setDealerEvolution ] = useState(0);
 
+    const [apiError, setApiError] = useState('')
+    
     const [ showButton, setShowButton ] = useState(false);
 
     const [ gameOver, setGameOver ] = useState(false);
@@ -60,7 +62,12 @@ const Game = (props) => {
 
             setPlayerCards([cardArray[0], cardArray[2]])
             setDealerCards([cardArray[1], cardArray[3]])
-        })
+        }).catch((error) => {
+            if (error.response) {
+                const errorStatus = error.response.statusText;
+                setApiError(errorStatus)
+            }
+        });
     }
 
 
@@ -71,7 +78,12 @@ const Game = (props) => {
         }).then((res) => {
             setState([...state, res.data.cards[0]])
             console.log("draw one")
-        }).catch("error")
+        }).catch((error) => {
+            if (error.response) {
+                const errorStatus = error.response.statusText;
+                setApiError(errorStatus)
+            }
+        });
     }
 
     const handleStand = () => {
@@ -149,10 +161,9 @@ const Game = (props) => {
         }
     }
 
-
-    // Start a new round on component load
-    useEffect(() => { startNewRound(4) }, [])
-
+    useEffect(()=> {
+        startNewRound(4)
+    }, [])
 
 // ************* PLAYER LOGIC ****************
     // Calc player cards value and set state everytime player cards change
@@ -203,7 +214,6 @@ const Game = (props) => {
     
 // *********** END: DEALER LOGIC ***************
 
-// 
 
 // *********** START: GAME LOGIC ***************
 // Check for bust or blackjack
@@ -275,7 +285,6 @@ useEffect(() => {
 
 
   return ( 
-
     <div className="App">
         {gameOver ? (
             <Result

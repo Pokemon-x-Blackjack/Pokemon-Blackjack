@@ -331,6 +331,7 @@ figure {
 }
 .playerCardList li:nth-child(2) .innerCard {
   animation: flip2 1.2s forwards;
+
 }
 
 .dealerCardList li:nth-child(2) .innerCard {
@@ -352,6 +353,56 @@ li.cardContainer .innerCard .card {
 }
 li.cardContainer .innerCard .cardFront {
   transform: rotateY(180deg);
+
+}
+
+.dealerCardList li:nth-child(2) .innerCard {
+  animation: flip3 1.4s forwards;
+}
+
+li.cardContainer {
+  position: relative;
+  width: 10%;
+  perspective: 800px;
+
+.landing {
+  min-height: 80vh;
+  background-image: url("../../assets/8bitBg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+}
+li.cardContainer .innerCard {
+  height: 173px;
+  transform-style: preserve-3d;
+}
+
+li.cardContainer .innerCard .card {
+  position: absolute;
+  backface-visibility: hidden;
+}
+li.cardContainer .innerCard .cardFront {
+  transform: rotateY(180deg);
+
+.landing .wrapper img {
+  border-radius: 20px;
+  box-shadow: 2px 2px 20px red;
+}
+.landing .wrapper .text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.landing .wrapper .text h1 {
+  font-size: clamp(2.77rem, 3vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #0e0e0e;
+  text-shadow: 2px 2px #ff4136;
+  letter-spacing: 5px;
+  text-align: center;
+
 }
 
 p.bust {
@@ -369,10 +420,44 @@ p.bust {
 }
 .characterForm button {
   padding: 10px 40px;
+
   background-color: red;
   border: 4px solid black;
   border-radius: 10px;
 }
+
+
+  background-color: #ff4136;
+  border: 4px solid #000000;
+  outline: 2px solid #FFFFFF;
+  border-radius: 5px;
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(0.8rem, 2vw, 2.5rem);
+  color: #FFFFFF;
+  text-shadow: 1px 1px #000000;
+  transition: all 0.4s ease-in-out;
+}
+.landing .wrapper button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 8px #ff4136;
+}
+
+.characterSelect {
+  height: 100%;
+}
+
+.characterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.characterForm button {
+  padding: 10px 40px;
+  background-color: red;
+  border: 4px solid black;
+  border-radius: 10px;
+}
+
 
 .pokeRoster {
   height: 100%;
@@ -520,6 +605,11 @@ p.bust {
   font-size: 24px;
 }
 
+.statusText {
+  font-size: 1rem;
+  display: block;
+}
+
 .errorImage {
   margin: 20px 0;
 }
@@ -584,6 +674,7 @@ p.bust {
     transform: rotateY(180deg);
   }
 }
+
 .landing {
   min-height: 80vh;
   background-color: white;
@@ -642,3 +733,4 @@ p.bust {
   transform: scale(1.06);
   box-shadow: 0 0 8px #ff4136;
 }
+

@@ -1,9 +1,13 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Game from "./Game"
-import pikaLoading from '../assets/loadingScreen/pikachu-running.gif'
+import ErrorPage from "./Error404"
 
-const CharacterSelector = () => {
+import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
+
+
+
+const CharacterSelector = (props) => {
     // pokemon data from starting roster
     const [rosterArr, setRosterArr] = useState([])
 
@@ -28,8 +32,6 @@ const CharacterSelector = () => {
     const [userPokemon, setUserPokemon] = useState('')
 
 
-
-
     // list of starter pokemon 
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
 
@@ -42,7 +44,7 @@ const CharacterSelector = () => {
         const pokemonRequest = axios.get(pokeInfoUrl)
             .catch((error) => {
                 if (error.response) {
-                    const errorStatus = error.response.statusText;
+                    const errorStatus = `Having trouble finding pokemon: ${error.response.statusText}`;
                     setApiError(errorStatus)
                 }
             });
@@ -50,40 +52,7 @@ const CharacterSelector = () => {
         return pokemonRequest;
     }
 
-    // on component render: 
-    // generate enemy evolutions
-    // make api call for pokemon info, store in state
-    useEffect(() => {
-            // loading page
-            setIsLoading(true);           
-
-        evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
-        // empty promise arr
-        const starterPromises = []
-
-        // making api calls for each pokemon -  storing promises in promise arr 
-        rosterList.forEach((pokemon) => {
-            starterPromises.push(apiCallPokemon(pokemon))
-        })
-
-        // ALL promises resolved? create specific obj per call, push to tempArr and save arr to state 
-        Promise.all(starterPromises)
-            .then((starterData) => {
-                // EMPTY temp arr, once objs are made, save to 
-                const tempArr = []
-
-                // iterating through all starter pokemon
-                starterData.forEach((starterObj) => {
-                    //creating obj - sending to temp arr
-                    createPokeObj(starterObj, tempArr)
-                })
-                // storing objs in state
-                setRosterArr(tempArr)
-            })
-
-    }, [])
-
-    // Makes complicated call to evolution chain, saves three evolutions and returns arr
+    // Makes call to evolution chain via species endpoint, saves three evolutions and returns arr
     const apiCallEvolution = (name) => {
         // access species data via pokemon name
         const speciesUrl = new URL(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
@@ -244,31 +213,39 @@ const CharacterSelector = () => {
     return (
         <>
             {
-                apiError !== '' ?
+                // checking for Api Error
+                apiError !== '' ? (
 
-                    <p>{apiError}</p> :
+                    <ErrorPage
+                        apiError={apiError}
+                        setButtonSelected={props.setButtonSelected}
+                    />) :
 
-                    isLoading ? ( // Show loading page if isLoading is true
+                    // loading state for apiCallPokemon
+
+                    isLoading ? (
                         <div className="loadingPage">
                             <h2>Loading...</h2>
                             <img src={pikaLoading} />
-                            {/* Add  loading page code here */}
                         </div>
                     ) :
-                        formSubmit === true ?
+                        // game component render on 
 
-                            // game component
+                        formSubmit === true ? (
+
                             <Game
                                 evolutionArr={evolutionArr}
                                 dealerEvolutionArr={dealerEvolutionArr}
-                            /> :
+                            />) :
+
+
                             // character selection
                             < section className="characterSelect" >
                                 {/* wrapper */}
                                 <div className="wrapper">
                                     {/* character selection form */}
 
-                                    <form action="#" onSubmit={handleCharacterSubmit}>
+                                    <form action="#" onSubmit={handleCharacterSubmit} className="characterForm">
 
                                         <h2>Choose your Pokemon</h2>
                                         {/* list of pokemon to choose from */}
@@ -276,7 +253,6 @@ const CharacterSelector = () => {
                                             {rosterArr.map((pokemon) => {
                                                 return (
                                                     <li key={pokemon.id}>
-
                                                         <div
                                                             tabIndex={0}
                                                             className={userPokemon === pokemon.name ? 'pokemonCard activeCard' : 'pokemonCard'}
@@ -289,9 +265,7 @@ const CharacterSelector = () => {
                                                             />
 
                                                             <h3>{pokemon.name}</h3>
-
                                                         </div>
-
                                                     </li>
                                                 )
                                             })}
@@ -302,7 +276,6 @@ const CharacterSelector = () => {
                                 </div>
                             </section >
             }
-
         </>
 
     )
