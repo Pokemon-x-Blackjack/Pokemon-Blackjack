@@ -1,4 +1,5 @@
 // Dealer.js
+// import revealCard from '../RevealCard.module.css'
 import cardBack from '../assets/card-back.png';
 import { useState, useEffect } from 'react'
 
@@ -32,9 +33,11 @@ const Dealer = (props) => {
         }
     }, [props.dealerEvolution])
 
+    const dealerCardClass = props.playerStand && props.dealerStand ? `reveal dealerCardList` : "dealerCardList";
+
     return (
         <section className="dealer">
-            <ul className='dealerCardList'>Dealer's cards
+            <ul className={dealerCardClass}>Dealer's cards
                     {
                         dealerCardsProp.map((card) => {
                             return (

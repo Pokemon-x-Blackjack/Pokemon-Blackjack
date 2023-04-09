@@ -337,6 +337,10 @@ figure {
   animation: flip3 1.4s forwards;
 }
 
+.dealerCardList.reveal li:nth-child(1) .innerCard {
+  animation: flipN 1s forwards;
+}
+
 li.cardContainer {
   position: relative;
   width: 10%;
