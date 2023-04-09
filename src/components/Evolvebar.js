@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import pokeballOverlay from '../assets/pokeballOverlay.png'
 const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
   // progress bar
@@ -53,7 +53,10 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
           {/* final evolution */}
           <li className={"thumbContainer " + (evolutionPoint < 2 ? "pokeballAnimate" : "revealPokemon")}>
 
-            <div className="pokeOverlay"></div>
+            {/* pokeball overlay */}
+            <div className="pokeOverlay"
+              style={{ backgroundImage: `url(${pokeballOverlay})` }}
+            ></div>
 
             <img src={`${evolutionArray[2].evolutionThumb}`} alt={`${evolutionArray[2].altFront}`} />
           </li>
@@ -63,7 +66,9 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
           <li className={"thumbContainer " + (evolutionPoint < 1 ? "pokeballAnimate" : "revealPokemon")}>
 
             {/* pokeball overlay */}
-            <div className="pokeOverlay"></div>
+            <div className="pokeOverlay"
+              style={{ backgroundImage: `url(${pokeballOverlay})` }}
+            ></div>
 
             {/* pokemon img */}
             <img src={`${evolutionArray[1].evolutionThumb}`} alt={`${evolutionArray[1].altFront}`} />
@@ -72,7 +77,9 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
           <li className={"thumbContainer " + (evolutionPoint < 0 ? "pokeballAnimate " : "revealPokemon")}>
 
             {/* pokeball overlay */}
-            <div className="pokeOverlay"></div>
+            <div className="pokeOverlay"
+              style={{ backgroundImage: `url(${pokeballOverlay})` }}
+            ></div>
 
             {/* pokemon img */}
             <img src={`${evolutionArray[0].evolutionThumb}`} alt={`${evolutionArray[0].altFront}`} />

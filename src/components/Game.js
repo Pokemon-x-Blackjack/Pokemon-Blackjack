@@ -12,25 +12,25 @@ const Game = (props) => {
     const [playerCards, setPlayerCards] = useState([]) // 2
     const [dealerCards, setDealerCards] = useState([]) // 3
 
-    const [ playerCardVal, setPlayerCardVal ] = useState(0); // 4
-    const [ dealerCardVal, setDealerCardVal ] = useState(0); // 5
+    const [playerCardVal, setPlayerCardVal] = useState(0); // 4
+    const [dealerCardVal, setDealerCardVal] = useState(0); // 5
 
-    const [ playerStandMode, setPlayerStandMode ] = useState(false); // 6
-    const [ dealerStandMode, setDealerStandMode ] = useState(false); // 7
+    const [playerStandMode, setPlayerStandMode] = useState(false); // 6
+    const [dealerStandMode, setDealerStandMode] = useState(false); // 7
 
-    const [ playerBustStatus, setPlayerBustStatus ] = useState(false); // 8
-    const [ dealerBustStatus, setDealerBustStatus ] = useState(false); // 9
+    const [playerBustStatus, setPlayerBustStatus] = useState(false); // 8
+    const [dealerBustStatus, setDealerBustStatus] = useState(false); // 9
 
-    const [ winner,setWinner] = useState(""); // 10
+    const [winner, setWinner] = useState(""); // 10
 
-    const [ playerEvolution, setPlayerEvolution ] = useState(0); // 11
-    const [ dealerEvolution, setDealerEvolution ] = useState(0); // 12 
+    const [playerEvolution, setPlayerEvolution] = useState(0); // 11
+    const [dealerEvolution, setDealerEvolution] = useState(0); // 12 
 
-    const [ apiError, setApiError ] = useState('') // 13
-    
-    const [ showButton, setShowButton ] = useState(false); // 14
+    const [apiError, setApiError] = useState('') // 13
 
-    const [ gameOver, setGameOver ] = useState(false); // 15
+    const [showButton, setShowButton] = useState(false); // 14
+
+    const [gameOver, setGameOver] = useState(false); // 15
 
 
     const evolutionArr = props.evolutionArr
@@ -113,8 +113,8 @@ const Game = (props) => {
             })
 
 
-    // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
-        // the callbackFn has two params: accumulator & currentValue
+            // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
+            // the callbackFn has two params: accumulator & currentValue
 
             // accumulator: accumulated value from previous callbackFn
             // currentValue: the value of the array number being accessed
@@ -139,14 +139,14 @@ const Game = (props) => {
                 const newSum = newValArray.reduce((total, num) => total + num, 0)
 
                 let finalSum
-            
-            // if newSum is still > 21, check if there is another ace
+
+                // if newSum is still > 21, check if there is another ace
                 if (cardListState === playerCards && newSum > 21) {
                     const finalValArray = newValArray.map(card => {
                         if (card === 11) {
                             return 1
                         } else {
-                        return card
+                            return card
                         }
                     })
                     finalSum = finalValArray.reduce((total, num) => total + num, 0)
@@ -174,16 +174,16 @@ const Game = (props) => {
             QUEEN: 10,
             KING: 10
         };
-    
+
         if (dealerCards.length === 2) {
             const cardValArray = dealerCards.map(card => {
                 const value = cardValues[card.value] || Number(card.value);
-    
+
                 return value;
             })
-    
-            const playerSum = cardValArray.reduce((total, num) => total + num, 0) 
-    
+
+            const playerSum = cardValArray.reduce((total, num) => total + num, 0)
+
             if (playerSum > 21) {
                 let aceOccured = false // to only set the first ACE to 1
                 const newValArray = dealerCards.map(card => {
@@ -198,17 +198,17 @@ const Game = (props) => {
                         return card
                     }
                 })
-    
-                const finalSum = newValArray.reduce((total, num) => total + num, 0) 
-    
+
+                const finalSum = newValArray.reduce((total, num) => total + num, 0)
+
                 setDealerCardVal(finalSum)
                 console.log("initial Dealer", finalSum)
-    
+
             } else {
                 setDealerCardVal(playerSum)
                 console.log("initial Dealer", playerSum)
             }
-    
+
         } else if (dealerCards.length > 2) {
             const lastCard = dealerCards[dealerCards.length - 1].value
             const lastCardVal = cardValues[lastCard] || Number(lastCard)
@@ -216,7 +216,7 @@ const Game = (props) => {
             const firstSum = dealerCardVal + lastCardVal
             console.log(firstSum)
 
-            let finalVal 
+            let finalVal
             if (firstSum > 21) {
                 if (lastCardVal === 11) {
                     finalVal = 1
@@ -250,8 +250,8 @@ const Game = (props) => {
         }
     }
 
-    useEffect(()=> {
-        startNewRound(4) 
+    useEffect(() => {
+        startNewRound(4)
     }, [])
 
     // ************* PLAYER LOGIC ****************
@@ -302,43 +302,34 @@ const Game = (props) => {
         }
     }, [dealerCardVal])
 
-    
-// *********** END: DEALER LOGIC ***************
+
+    // *********** END: DEALER LOGIC ***************
 
 
-// *********** START: GAME LOGIC ***************
-// Check for bust or blackjack
-useEffect(() => {
+    // *********** START: GAME LOGIC ***************
+    // Check for bust or blackjack
+    useEffect(() => {
 
-    if (playerBustStatus) {
-        setDealerEvolution(prevCount => prevCount + 1);
-        console.log(playerEvolution, dealerEvolution);
-        console.log('Dealer wins');
-    } else if (dealerBustStatus) {
-        setPlayerEvolution(prevCount => prevCount + 1);
-        console.log(playerEvolution, dealerEvolution);
-        console.log('Player wins');
-    } else {
-        // If both sides stand, compare card value
-        if (playerStandMode && dealerStandMode) {
+        if (playerBustStatus) {
+            setDealerEvolution(prevCount => prevCount + 1);
+            console.log(playerEvolution, dealerEvolution);
+            console.log('Dealer wins');
+        } else if (dealerBustStatus) {
+            setPlayerEvolution(prevCount => prevCount + 1);
+            console.log(playerEvolution, dealerEvolution);
+            console.log('Player wins');
+        } else {
+            // If both sides stand, compare card value
+            if (playerStandMode && dealerStandMode) {
 
-            // If card value = 21, evolution state +1
-            if (playerCardVal === 21 && dealerCardVal === 21) {
-                setPlayerEvolution( playerEvolution + 1 );
-                setDealerEvolution( dealerEvolution + 1 );
-                console.log(playerEvolution, dealerEvolution);
-                console.log('Both sides win');
-            } else if (playerCardVal === 21) {
-                setPlayerEvolution( playerEvolution + 1 );
-                console.log(playerEvolution, dealerEvolution);
-                console.log('Player wins');
-            } else if (dealerCardVal === 21) {
-                setDealerEvolution( dealerEvolution + 1 );
-                console.log(playerEvolution, dealerEvolution);
-                console.log('Dealer wins');
-            } else if (playerCardVal < 21 && dealerCardVal < 21) {
-                if (playerCardVal > dealerCardVal){
-                    setPlayerEvolution( playerEvolution + 1);
+                // If card value = 21, evolution state +1
+                if (playerCardVal === 21 && dealerCardVal === 21) {
+                    setPlayerEvolution(playerEvolution + 1);
+                    setDealerEvolution(dealerEvolution + 1);
+                    console.log(playerEvolution, dealerEvolution);
+                    console.log('Both sides win');
+                } else if (playerCardVal === 21) {
+                    setPlayerEvolution(playerEvolution + 1);
                     console.log(playerEvolution, dealerEvolution);
                     console.log('Player wins');
                 } else if (dealerCardVal === 21) {
@@ -350,94 +341,98 @@ useEffect(() => {
                         setPlayerEvolution(playerEvolution + 1);
                         console.log(playerEvolution, dealerEvolution);
                         console.log('Player wins');
-                    } else if (playerCardVal < dealerCardVal) {
+                    } else if (dealerCardVal === 21) {
                         setDealerEvolution(dealerEvolution + 1);
                         console.log(playerEvolution, dealerEvolution);
                         console.log('Dealer wins');
+                    } else if (playerCardVal < 21 && dealerCardVal < 21) {
+                        if (playerCardVal > dealerCardVal) {
+                            setPlayerEvolution(playerEvolution + 1);
+                            console.log(playerEvolution, dealerEvolution);
+                            console.log('Player wins');
+                        } else if (playerCardVal < dealerCardVal) {
+                            setDealerEvolution(dealerEvolution + 1);
+                            console.log(playerEvolution, dealerEvolution);
+                            console.log('Dealer wins');
+                        }
                     }
                 }
             }
+
         }
 
-    }
-    
-  }, [playerCardVal, dealerCardVal,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
-  
-  
-  // Check for end of game
-  useEffect(() => {
-    if (playerEvolution === 2 || dealerEvolution === 2) {
-      console.log('End of game');
-      setTimeout(() => {
-        setGameOver(true);
-    }, 1700)
-        
-      if (playerEvolution === 2 && dealerEvolution === 2) {
-        setWinner('ties')
-      } else if (playerEvolution === 2) {
-        setWinner('player')
-      } else if (dealerEvolution === 2) {
-        setWinner('dealer')
-      }
-      
-    } else if (playerBustStatus || dealerBustStatus || playerStandMode && dealerStandMode) {
-        setTimeout(() => {
-            setShowButton(true);
-        }, 1700)
-    }
-  }, [playerEvolution, dealerEvolution,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+    }, [playerCardVal, dealerCardVal, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+
+
+    // Check for end of game
+    useEffect(() => {
+        if (playerEvolution === 2 || dealerEvolution === 2) {
+            console.log('End of game');
+            setTimeout(() => {
+                setGameOver(true);
+            }, 1700)
+
+            if (playerEvolution === 2 && dealerEvolution === 2) {
+                setWinner('ties')
+            } else if (playerEvolution === 2) {
+                setWinner('player')
+            } else if (dealerEvolution === 2) {
+                setWinner('dealer')
+            }
+
+        } else if (playerBustStatus || dealerBustStatus || playerStandMode && dealerStandMode) {
+            setTimeout(() => {
+                setShowButton(true);
+            }, 1700)
+        }
+    }, [playerEvolution, dealerEvolution, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
 
     // *********** END: GAME LOGIC ***************
 
-  return ( 
-    <div className="App">
-        {gameOver ? (
-            <Result
-                winner={winner}
-                playerEvoArray = {evolutionArr}
-                dealerEvoArray = {dealerEvolutionArr}
-             />
-             
-        ) : (
-        <>
+    return (
+        <div className="App">
+            {gameOver ? (
+                <Result
+                    winner={winner}
+                    playerEvoArray={evolutionArr}
+                    dealerEvoArray={dealerEvolutionArr}
+                />
 
-            <Evolvebar 
-                evolutionArray={{ evolutionArr, dealerEvolutionArr}}
-                evolutionPoint={{ playerEvolution,dealerEvolution}}
-            />
-            <Player 
-                standMode={playerStandMode}
-                playerCards={playerCards}
-                bustStatus={playerBustStatus}
-                cardValue={playerCardVal}
-                evolutionArr={evolutionArr}
-                handleStand={handleStand}
-                handleHit={handleHit}
-                playerEvolution={playerEvolution}
-            />
-    
-            <Dealer 
-            dealerCards={dealerCards}
-            cardValue={dealerCardVal}
-            dealerEvolutionArr={dealerEvolutionArr}
-            dealerEvolution={dealerEvolution}
-            playerStand={playerStandMode}
-            dealerStand={dealerStandMode}
-            bustStatus={dealerBustStatus}
-            />
-        </>
-        )}
+            ) : (
+                <>
+                    <Player
+                        standMode={playerStandMode}
+                        playerCards={playerCards}
+                        bustStatus={playerBustStatus}
+                        cardValue={playerCardVal}
+                        evolutionArr={evolutionArr}
+                        handleStand={handleStand}
+                        handleHit={handleHit}
+                        playerEvolution={playerEvolution}
+                    />
 
-        {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
-            <button onClick={() => { startNewRound(4); setShowButton(false); }}>
-                New Round
-            </button>
-        )}
+                    <Dealer
+                        dealerCards={dealerCards}
+                        cardValue={dealerCardVal}
+                        dealerEvolutionArr={dealerEvolutionArr}
+                        dealerEvolution={dealerEvolution}
+                        playerStand={playerStandMode}
+                        dealerStand={dealerStandMode}
+                        bustStatus={dealerBustStatus}
+                    />
+                </>
+            )}
+
+            {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
+                <button onClick={() => { startNewRound(4); setShowButton(false); }}>
+                    New Round
+                </button>
+            )}
 
 
-            
-    </div>
+
+        </div>
 
     );
 }

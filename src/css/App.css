@@ -386,30 +386,146 @@ figure {
   margin: 20px 0;
 }
 
-
-li.cardContainer {
-  position: relative;
-  width: 10%;
-  perspective: 800px;
-}
-li.cardContainer .innerCard {
-  display: flex;
-  align-items: center;
-  height: 175px;
-  transform-style: preserve-3d;
-}
-li.cardContainer .innerCard .card {
-  position: absolute;
-  backface-visibility: hidden;
-}
-li.cardContainer .innerCard .cardFront {
-  transform: rotateY(180deg);
+.goHomeBtn {
+  background-color: #ff4136;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .goHomeBtn:hover {
   background-color: #85144b;
 }
 
+.landing {
+  min-height: 80vh;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.landing .wrapper {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.landing .wrapper img {
+  border-radius: 20px;
+  box-shadow: 2px 2px 20px red;
+}
+.landing .wrapper .text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.landing .wrapper .text h1 {
+  font-size: clamp(2.77rem, 3vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: red;
+  letter-spacing: 5px;
+  text-align: center;
+}
+.landing .wrapper .buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  margin-top: 20px;
+  gap: 40px;
+}
+.landing .wrapper button {
+  width: 25%;
+  height: 60px;
+  padding: 10px 40px;
+  border: 4px solid #000000;
+  outline: 2px solid #FFFFFF;
+  border-radius: 5px;
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(0.8rem, 2vw, 2.5rem);
+  color: #FFFFFF;
+  text-shadow: 1px 1px #000000;
+  transition: all 0.4s ease-in-out;
+}
+.landing .wrapper button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 8px #ff4136;
+}
+
+.howToPlayOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.howToPlayModal {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 20px;
+  max-height: 70%;
+  overflow-y: auto;
+  position: relative;
+  background-color: #000;
+  width: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.howToPlayModal ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 0.1rem;
+  margin: 20px 0;
+  gap: 10px;
+  text-align: left;
+}
+.howToPlayModal li {
+  font-size: clamp(0.6rem, 2vw, 1rem);
+  line-height: 1rem;
+}
+.howToPlayModal h2, .howToPlayModal h3 {
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 2px 2px #ff4136;
+  letter-spacing: 5px;
+  text-align: center;
+}
+.howToPlayModal button {
+  width: 50%;
+  margin-top: 20px;
+  padding: 10px 40px;
+  background-color: red;
+  border: 4px solid #000000; /*black*/
+  outline: 2px solid #ffffff;
+  border-radius: 5px;
+  transition: all 0.4s ease-in-out;
+}
+.howToPlayModal button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 8px blue;
+}
 
 .characterSelect {
   height: 100%;
@@ -513,7 +629,9 @@ li.cardContainer {
   perspective: 800px;
 }
 li.cardContainer .innerCard {
-  height: 173px;
+  display: flex;
+  align-items: center;
+  height: 175px;
   transform-style: preserve-3d;
 }
 li.cardContainer .innerCard .card {
@@ -584,7 +702,6 @@ p.bust {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-image: url(../../assets/pokeballOverlay.png);
   background-size: contain;
   background-position: top;
   z-index: 10;
@@ -654,62 +771,4 @@ p.bust {
   cursor: pointer;
   margin-top: 40px;
   text-shadow: 2px 2px #000;
-}
-.landing {
-  min-height: 80vh;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-.landing .wrapper {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-.landing .wrapper img {
-  border-radius: 20px;
-  box-shadow: 2px 2px 20px red;
-}
-.landing .wrapper .text {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.landing .wrapper .text h1 {
-  font-size: clamp(2.77rem, 3vw, 4rem);
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: red;
-  letter-spacing: 5px;
-  text-align: center;
-}
-.landing .wrapper .buttonContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  flex-basis: 100%;
-  margin-top: 20px;
-  gap: 40px;
-}
-.landing .wrapper button {
-  width: 25%;
-  height: 60px;
-  padding: 10px 40px;
-  border: 4px solid #000000;
-  outline: 2px solid #FFFFFF;
-  border-radius: 5px;
-  font-family: "Press Start 2P", cursive;
-  font-size: clamp(0.8rem, 2vw, 2.5rem);
-  color: #FFFFFF;
-  text-shadow: 1px 1px #000000;
-  transition: all 0.4s ease-in-out;
-}
-.landing .wrapper button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 8px #ff4136;
 }
