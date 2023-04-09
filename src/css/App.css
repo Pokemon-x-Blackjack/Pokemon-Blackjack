@@ -609,7 +609,7 @@ figure {
 }
 .playerCardList li:nth-child(n+3) .innerCard,
 .dealerCardList li:nth-child(n+3) .innerCard {
-  animation: flipN 1s forwards;
+  animation: flipN 0.8s forwards;
 }
 
 .playerCardList li:nth-child(1) .innerCard {
@@ -621,6 +621,10 @@ figure {
 
 .dealerCardList li:nth-child(2) .innerCard {
   animation: flip3 1.4s forwards;
+}
+
+.dealerCardList.reveal li:nth-child(1) .innerCard {
+  animation: flipN 1s forwards;
 }
 
 li.cardContainer {

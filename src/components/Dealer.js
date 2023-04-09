@@ -1,4 +1,5 @@
 // Dealer.js
+// import revealCard from '../RevealCard.module.css'
 import cardBack from '../assets/card-back.png';
 import Evolvebar from './Evolvebar';
 import { useState, useEffect } from 'react'
@@ -43,13 +44,15 @@ const Dealer = (props) => {
         }
     }, [props.dealerEvolution])
 
+    const dealerCardClass = props.playerStand && props.dealerStand ? `reveal dealerCardList` : "dealerCardList";
+
     return (
         <section className="dealer">
-            <ul className='dealerCardList'>Dealer's cards
-                {
-                    dealerCardsProp.map((card) => {
-                        return (
-                            <li key={card.code} className="cardContainer">
+            <ul className={dealerCardClass}>Dealer's cards
+                    {
+                        dealerCardsProp.map((card) => {
+                            return (
+                                <li key={card.code} className="cardContainer">
                                 <div className="innerCard">
                                     <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
                                     <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>

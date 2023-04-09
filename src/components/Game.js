@@ -5,6 +5,11 @@ import axios from 'axios';
 import Player from './Player.js';
 import Dealer from './Dealer.js';
 import Result from './Result.js';
+import Evolvebar from './Evolvebar.js';
+import ErrorPage from "./Error404";
+
+import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
+
 const Game = (props) => {
 
     const [deckId, setDeckId] = useState('') // 1
@@ -32,6 +37,7 @@ const Game = (props) => {
 
     const [gameOver, setGameOver] = useState(false); // 15
 
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const evolutionArr = props.evolutionArr
     const dealerEvolutionArr = props.dealerEvolutionArr
@@ -57,9 +63,10 @@ const Game = (props) => {
         }).then((res) => {
             const cardArray = res.data.cards
             setDeckId(res.data.deck_id)
-
             setPlayerCards([cardArray[0], cardArray[2]])
             setDealerCards([cardArray[1], cardArray[3]])
+
+            setIsLoading(false);
         }).catch((error) => {
             if (error.response) {
                 const errorStatus = `Having trouble fetching new cards: ${error.response.statusText}`;
@@ -75,6 +82,8 @@ const Game = (props) => {
             url: `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`,
         }).then((res) => {
             setState([...state, res.data.cards[0]])
+
+            setIsLoading(false);
             console.log("draw one")
         }).catch((error) => {
             if (error.response) {
@@ -202,11 +211,9 @@ const Game = (props) => {
                 const finalSum = newValArray.reduce((total, num) => total + num, 0)
 
                 setDealerCardVal(finalSum)
-                console.log("initial Dealer", finalSum)
-
+    
             } else {
                 setDealerCardVal(playerSum)
-                console.log("initial Dealer", playerSum)
             }
 
         } else if (dealerCards.length > 2) {
@@ -246,12 +253,14 @@ const Game = (props) => {
             console.log("dealer continue")
             setTimeout(() => {
                 drawOne(deckId, dealerCards, setDealerCards);
+                drawOne(deckId, dealerCards, setDealerCards);
             }, 500); // timer for dealer cards to appear slowly
         }
     }
 
-    useEffect(() => {
-        startNewRound(4)
+    useEffect(()=> {
+        setIsLoading(true);
+        startNewRound(4) 
     }, [])
 
     // ************* PLAYER LOGIC ****************
@@ -290,7 +299,6 @@ const Game = (props) => {
     // after drawing one card to dealer, evaluate dealer's card value
     useEffect(() => {
         console.log("dealer's cards", dealerCards)
-        // calcCardValue(dealerCards, setDealerCardVal)
         calcDealerVal()
     }, [dealerCards])
 
@@ -310,98 +318,89 @@ const Game = (props) => {
     // Check for bust or blackjack
     useEffect(() => {
 
-        if (playerBustStatus) {
-            setDealerEvolution(prevCount => prevCount + 1);
-            console.log(playerEvolution, dealerEvolution);
-            console.log('Dealer wins');
-        } else if (dealerBustStatus) {
-            setPlayerEvolution(prevCount => prevCount + 1);
-            console.log(playerEvolution, dealerEvolution);
-            console.log('Player wins');
-        } else {
-            // If both sides stand, compare card value
-            if (playerStandMode && dealerStandMode) {
+    if (playerBustStatus) {
+        setDealerEvolution(prevCount => prevCount + 1);
+    } else if (dealerBustStatus) {
+        setPlayerEvolution(prevCount => prevCount + 1);
+    } else {
+        // If both sides stand, compare card value
+        if (playerStandMode && dealerStandMode) {
 
-                // If card value = 21, evolution state +1
-                if (playerCardVal === 21 && dealerCardVal === 21) {
-                    setPlayerEvolution(playerEvolution + 1);
-                    setDealerEvolution(dealerEvolution + 1);
-                    console.log(playerEvolution, dealerEvolution);
-                    console.log('Both sides win');
-                } else if (playerCardVal === 21) {
-                    setPlayerEvolution(playerEvolution + 1);
-                    console.log(playerEvolution, dealerEvolution);
-                    console.log('Player wins');
-                } else if (dealerCardVal === 21) {
-                    setDealerEvolution(dealerEvolution + 1);
-                    console.log(playerEvolution, dealerEvolution);
-                    console.log('Dealer wins');
-                } else if (playerCardVal < 21 && dealerCardVal < 21) {
-                    if (playerCardVal > dealerCardVal) {
-                        setPlayerEvolution(playerEvolution + 1);
-                        console.log(playerEvolution, dealerEvolution);
-                        console.log('Player wins');
-                    } else if (dealerCardVal === 21) {
-                        setDealerEvolution(dealerEvolution + 1);
-                        console.log(playerEvolution, dealerEvolution);
-                        console.log('Dealer wins');
-                    } else if (playerCardVal < 21 && dealerCardVal < 21) {
-                        if (playerCardVal > dealerCardVal) {
-                            setPlayerEvolution(playerEvolution + 1);
-                            console.log(playerEvolution, dealerEvolution);
-                            console.log('Player wins');
-                        } else if (playerCardVal < dealerCardVal) {
-                            setDealerEvolution(dealerEvolution + 1);
-                            console.log(playerEvolution, dealerEvolution);
-                            console.log('Dealer wins');
-                        }
-                    }
+            // If card value = 21, evolution state +1
+            if (playerCardVal === 21 && dealerCardVal === 21) {
+                setPlayerEvolution( playerEvolution + 1 );
+                setDealerEvolution( dealerEvolution + 1 );
+            } else if (playerCardVal === 21) {
+                setPlayerEvolution( playerEvolution + 1 );
+            } else if (dealerCardVal === 21) {
+                setDealerEvolution( dealerEvolution + 1 );
+            } else if (playerCardVal < 21 && dealerCardVal < 21) {
+                if (playerCardVal > dealerCardVal){
+                    setPlayerEvolution( playerEvolution + 1);
+                } else if (playerCardVal < dealerCardVal) {
+                    setDealerEvolution( dealerEvolution + 1);
                 }
-            }
-
+            } 
         }
-
-    }, [playerCardVal, dealerCardVal, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
-
-
-    // Check for end of game
-    useEffect(() => {
-        if (playerEvolution === 2 || dealerEvolution === 2) {
-            console.log('End of game');
-            setTimeout(() => {
-                setGameOver(true);
-            }, 1700)
-
-            if (playerEvolution === 2 && dealerEvolution === 2) {
-                setWinner('ties')
-            } else if (playerEvolution === 2) {
-                setWinner('player')
-            } else if (dealerEvolution === 2) {
-                setWinner('dealer')
-            }
-
-        } else if (playerBustStatus || dealerBustStatus || playerStandMode && dealerStandMode) {
-            setTimeout(() => {
-                setShowButton(true);
-            }, 1700)
-        }
-    }, [playerEvolution, dealerEvolution, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
-
+    }
+    
+  }, [playerCardVal, dealerCardVal,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+  
+  
+  // Check for end of game
+  useEffect(() => {
+    if (playerEvolution === 2 || dealerEvolution === 2) {
+      console.log('End of game');
+      setTimeout(() => {
+        setGameOver(true);
+    }, 1700)
+        
+      if (playerEvolution === 2 && dealerEvolution === 2) {
+        setWinner('ties')
+      } else if (playerEvolution === 2) {
+        setWinner('player')
+      } else if (dealerEvolution === 2) {
+        setWinner('dealer')
+      }
+      
+    } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
+        setTimeout(() => {
+            setShowButton(true);
+        }, 1700)
+    }
+  }, [playerEvolution, dealerEvolution,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
     // *********** END: GAME LOGIC ***************
 
-    return (
-        <div className="App">
-            {gameOver ? (
+
+  return ( 
+    <div className="App">
+        {
+            
+            apiError !== '' ? (
+
+            <ErrorPage
+                apiError={apiError}
+                setButtonSelected={props.setButtonSelected}
+            />) :
+
+            isLoading ? (
+                <div className="loadingPage">
+                    <h2>Loading...</h2>
+                    <img src={pikaLoading} />
+                </div>
+            ) :
+            
+            gameOver ? (
                 <Result
                     winner={winner}
-                    playerEvoArray={evolutionArr}
-                    dealerEvoArray={dealerEvolutionArr}
+                    playerEvoArray = {evolutionArr}
+                    dealerEvoArray = {dealerEvolutionArr}
                 />
-
+                
             ) : (
                 <>
-                    <Player
+                    <Player 
                         standMode={playerStandMode}
                         playerCards={playerCards}
                         bustStatus={playerBustStatus}
@@ -411,7 +410,7 @@ const Game = (props) => {
                         handleHit={handleHit}
                         playerEvolution={playerEvolution}
                     />
-
+            
                     <Dealer
                         dealerCards={dealerCards}
                         cardValue={dealerCardVal}
@@ -421,19 +420,16 @@ const Game = (props) => {
                         dealerStand={dealerStandMode}
                         bustStatus={dealerBustStatus}
                     />
+
+                    {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
+                        <button onClick={() => { startNewRound(4); setShowButton(false); }}>
+                            New Round
+                        </button>
+                    )}
                 </>
-            )}
-
-            {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
-                <button onClick={() => { startNewRound(4); setShowButton(false); }}>
-                    New Round
-                </button>
-            )}
-
-
-
+            )
+        }
         </div>
-
     );
 }
 

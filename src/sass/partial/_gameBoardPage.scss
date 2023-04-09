@@ -10,7 +10,7 @@
 
     li:nth-child(n+3) {
         .innerCard{
-            @include flipAnime(flipN, 1s);
+            @include flipAnime(flipN, 0.8s);
         }
     }
 }
@@ -34,6 +34,14 @@
             @include flipAnime(flip3, 1.4s);
         }
     }
+}
+
+.dealerCardList.reveal {
+        li:nth-child(1) {
+            .innerCard {
+                animation: flipN 1s forwards;
+            }
+        }
 }
 
 li.cardContainer {
