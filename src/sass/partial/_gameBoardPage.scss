@@ -42,7 +42,9 @@ li.cardContainer {
     perspective: 800px;
 
     .innerCard {
-        height: 173px;
+        display: flex;
+        align-items: center;
+        height: 175px;
         transform-style: preserve-3d;
 
         .card {

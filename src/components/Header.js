@@ -30,37 +30,39 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="wrapper">
-        <div className="logo">
-          <img src={logo} alt="pokejack with pokeball as the o" />
-        </div>
-
-        <i
-          className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
-          onClick={togglePlay}
-        ></i>
 
 
-        {isPlaying && (
-          <div id="audioSlider">
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume}
-              className="slider"
-              id="volumeSlider"
-              onChange={handleVolumeChange}
-            />
-          </div>
-        )}
-
-        <audio src={audio} ref={audioElementRef} />
+<div className="wrapper">
+ 
+  <header className="header">
+   
+    <div className="logo">
+      <img src={logo} alt="pokejack with pokeball as the o" />
+    </div>
+    
+    <i
+      className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
+      onClick={togglePlay}
+    />
+   
+    {isPlaying && (
+      <div id="audioSlider">
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={volume}
+          className="slider"
+          id="volumeSlider"
+          onChange={handleVolumeChange}
+        />
       </div>
+    )}
 
-
-    </header>
+    <audio src={audio} ref={audioElementRef} />
+  </header>
+</div>
+    
   );
 };
 
