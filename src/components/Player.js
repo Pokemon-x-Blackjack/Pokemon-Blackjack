@@ -56,7 +56,7 @@ const Player = (props) => {
 
                 {/* avatar and name */}
                 <div className="playStats">
-                    <img src={currentEvolution.frontGifUrl} alt={currentEvolution.altFront} />
+                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
                     <h3>{currentEvolution.name}</h3>
                 </div>
 
