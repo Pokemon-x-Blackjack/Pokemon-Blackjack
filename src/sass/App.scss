@@ -1,19 +1,30 @@
+// set up
 @use './partial/setup';
-@use './partial/global';
-@use './partial/typography';
-@use './partial/header';
-@use './partial/footer';
-@use './partial/resultPage';
 @use './partial/variables';
-@use './partial/gameBoardPage';
-@use './partial/characterSelectorPage';
-@use './partial/evolveBar';
-@use './partial/loadingScreen';
-@use './partial/howToPlayModal';
-@use './partial/404Error' as *;
+@use './partial/typography';
+@use './partial/global';
 @use './partial/keyFrames';
 
-@use './partial/landingpage';
+// components
 
+// misc
+@use './partial/header';
+@use './partial/footer';
+@use './partial/404Error' as *;
 
+// landing
+@use './partial/landingPage';
+@use './partial/howToPlayModal';
+
+// character select
+@use './partial/characterSelectorPage';
+@use './partial/loadingScreen';
+
+// game
+@use './partial/gameBoardPage';
+@use './partial/playerAndDealer';
+@use './partial/evolveBar';
+@use './partial/resultPage';
+
+// media queries
 @use './partial/mediaQueries';
