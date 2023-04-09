@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import CharacterSelector from './components/CharacterSelector';
 import ErrorPage from './components/Error404';
 
-import './sass/App.scss';
+import './css/App.css';
 
 
 
