@@ -26,7 +26,6 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
   }, [evolutionPoint])
 
   // evolution thumbs
-  console.log(evolutionArray)
   return (
     <>
       <div

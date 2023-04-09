@@ -44,7 +44,7 @@ const Dealer = (props) => {
         }
     }, [props.dealerEvolution])
 
-    const dealerCardClass = props.playerStand && props.dealerStand ? `reveal dealerCardList` : "dealerCardList";
+    const dealerCardClass = (props.playerStand && props.dealerStand) || props.bustStatus ? `reveal dealerCardList` : "dealerCardList";
 
     return (
         <section className="dealer">

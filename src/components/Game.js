@@ -253,7 +253,6 @@ const Game = (props) => {
             console.log("dealer continue")
             setTimeout(() => {
                 drawOne(deckId, dealerCards, setDealerCards);
-                drawOne(deckId, dealerCards, setDealerCards);
             }, 500); // timer for dealer cards to appear slowly
         }
     }
@@ -289,7 +288,7 @@ const Game = (props) => {
     useEffect(() => {
         console.log("run dealer")
         // this is running initially on load of game before deckId is created
-        if (playerStandMode === true) {
+        if (playerStandMode === true && dealerBustStatus === false) {
             if (deckId) {
                 dealerLogic();
             }
@@ -344,7 +343,7 @@ const Game = (props) => {
         }
     }
     
-  }, [playerCardVal, dealerCardVal,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+  }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
   
   
   // Check for end of game
