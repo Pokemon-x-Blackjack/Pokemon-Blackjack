@@ -25,7 +25,7 @@ const Dealer = (props) => {
                 setTimeout(() => {
                     clearInterval(intervalId);
                     setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
-                }, 1300); // evoluting time
+                }, 1100); // evoluting time (evolution animation)
 
                 setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
             }, 400) // delay start of evolution
@@ -56,6 +56,13 @@ const Dealer = (props) => {
 
 
             <p>Dealer's cards value: {props.cardValue}</p>
+
+            {
+                props.bustStatus
+                ? <p className="bust">BUST</p>
+                : null
+            }
+            
         </section>
     )
 }
