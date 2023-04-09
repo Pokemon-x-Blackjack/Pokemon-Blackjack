@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import cardBack from '../assets/card-back.png';
+import Evolvebar from './Evolvebar';
 
 // TO DO: destructing props
 const Player = (props) => {
+
     const [ pokemonUrl, setPokemonUrl ] = useState(props.evolutionArr[props.playerEvolution].frontGifUrl);
     
     const playerCardsProp =  props.playerCards    
@@ -49,30 +51,42 @@ const Player = (props) => {
                     })
                 }
             </ul>
-            
-            <div>
-                <img src={pokemonUrl} alt={currentEvolution.altFront} />
-                <h3>{currentEvolution.name}</h3>
+
+            <div className='pokemonStats'>
+
+                {/* avatar and name */}
+                <div className="playStats">
+                    <img src={currentEvolution.frontGifUrl} alt={currentEvolution.altFront} />
+                    <h3>{currentEvolution.name}</h3>
+                </div>
+
+                {/* Evolve Bar Component */}
+                <Evolvebar
+                    evolutionArray={props.evolutionArr}
+                    evolutionPoint={props.playerEvolution}
+                    barType='player'
+                />
+
             </div>
 
             <p>player's card value: {props.cardValue}</p>
 
             {
                 props.standMode || props.bustStatus
-                ? null
-                : ( <>
+                    ? null
+                    : (<>
                         <button onClick={props.handleStand}>STAND</button>
                         <button onClick={props.handleHit}>HIT</button>
                     </>
-                )
+                    )
             }
 
             {
                 props.bustStatus
-                ? <p className="bust">BUST</p>
-                : null
+                    ? <p className="bust">BUST</p>
+                    : null
             }
-            
+
         </section>
     )
 }

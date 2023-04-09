@@ -93,6 +93,7 @@ const CharacterSelector = (props) => {
                 id: pokemonInfo.id,
                 frontGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['front_default'],
                 backGifUrl: pokemonInfo.sprites.versions["generation-v"]['black-white'].animated['back_default'],
+                evolutionThumb: pokemonInfo.sprites.versions["generation-v"]['black-white'].front_default,
                 altFront: `${pokemonInfo.name} in an idle stance.`,
                 altBack: `${pokemonInfo.name} facing towards the action in an idle stance.`
             }
@@ -226,7 +227,7 @@ const CharacterSelector = (props) => {
                     isLoading ? (
                         <div className="loadingPage">
                             <h2>Loading...</h2>
-                            <img src={pikaLoading} />
+                            <img src={pikaLoading} alt="Pikachu running as the game loads" />
                         </div>
                     ) :
                         // game component render on 

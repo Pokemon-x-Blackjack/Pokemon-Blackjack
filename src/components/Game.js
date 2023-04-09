@@ -5,8 +5,6 @@ import axios from 'axios';
 import Player from './Player.js';
 import Dealer from './Dealer.js';
 import Result from './Result.js';
-import Evolvebar from './Evolvebar.js';
-
 const Game = (props) => {
 
     const [deckId, setDeckId] = useState('') // 1
@@ -34,7 +32,8 @@ const Game = (props) => {
 
     const [ gameOver, setGameOver ] = useState(false); // 15
 
-    const evolutionArr  =  props.evolutionArr
+
+    const evolutionArr = props.evolutionArr
     const dealerEvolutionArr = props.dealerEvolutionArr
 
 
@@ -47,7 +46,7 @@ const Game = (props) => {
         setDealerBustStatus(false);
         setPlayerCards([]);
         setDealerCards([]);
-        setPlayerCardVal(0); 
+        setPlayerCardVal(0);
         setDealerCardVal(0);
 
         axios({
@@ -70,7 +69,7 @@ const Game = (props) => {
     }
 
 
-// call API to draw a card
+    // call API to draw a card
     const drawOne = (deckId, state, setState) => {
         axios({
             url: `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`,
@@ -90,15 +89,15 @@ const Game = (props) => {
         setPlayerStandMode(true)
     }
 
-// handle hit button on click
+    // handle hit button on click
     const handleHit = () => {
         drawOne(deckId, playerCards, setPlayerCards);
     }
 
 
-// function that calculates total card value
+    // function that calculates total card value
     const calcCardValue = (cardListState, setState) => {
-    // define value for the special cards
+        // define value for the special cards
         const cardValues = {
             ACE: 11,
             JACK: 10,
@@ -113,8 +112,10 @@ const Game = (props) => {
                 return value;
             })
 
+
     // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
         // the callbackFn has two params: accumulator & currentValue
+
             // accumulator: accumulated value from previous callbackFn
             // currentValue: the value of the array number being accessed
             const playerSum = cardValArray.reduce((total, num) => total + num, 0) // calculate sum of cards
@@ -153,11 +154,11 @@ const Game = (props) => {
                     finalSum = newSum
                 }
                 // calculate final sum after changing dynamic ACE value
-                
+
                 setState(finalSum)
 
             } else {
-            // ACE is still 11
+                // ACE is still 11
                 setState(playerSum)
             }
 
@@ -235,7 +236,7 @@ const Game = (props) => {
     }
 
     const dealerLogic = () => {
-        if (dealerCardVal > 21){
+        if (dealerCardVal > 21) {
             console.log("dealer bust")
             setDealerBustStatus(true)
         } else if (dealerCardVal <= 21 && dealerCardVal >= 17) {
@@ -244,7 +245,7 @@ const Game = (props) => {
         } else if (dealerCardVal < 17) {
             console.log("dealer continue")
             setTimeout(() => {
-            drawOne(deckId, dealerCards, setDealerCards);
+                drawOne(deckId, dealerCards, setDealerCards);
             }, 500); // timer for dealer cards to appear slowly
         }
     }
@@ -253,33 +254,33 @@ const Game = (props) => {
         startNewRound(4) 
     }, [])
 
-// ************* PLAYER LOGIC ****************
+    // ************* PLAYER LOGIC ****************
     // Calc player cards value and set state everytime player cards change
     useEffect(() => {
         calcCardValue(playerCards, setPlayerCardVal)
-    }, [playerCards]) 
-    
+    }, [playerCards])
+
     // after setting player cards val, set player's status 
     useEffect(() => {
         if (playerCardVal > 21) {
             setPlayerBustStatus(true)
             console.log("player bust")
         } else if (playerCardVal === 21) {
-            setPlayerStandMode (true)
+            setPlayerStandMode(true)
             console.log("player blackjack")
         } else if (playerCardVal < 21) {
             console.log("player continue game")
         }
     }, [playerCardVal])
-// *********** END: PLAYER LOGIC **************
+    // *********** END: PLAYER LOGIC **************
 
 
-// *************** DEALER LOGIC *****************
+    // *************** DEALER LOGIC *****************
     // Start Dealer logic once player's status is set to stand
     useEffect(() => {
         console.log("run dealer")
-    // this is running initially on load of game before deckId is created
-        if (playerStandMode === true){
+        // this is running initially on load of game before deckId is created
+        if (playerStandMode === true) {
             if (deckId) {
                 dealerLogic();
             }
@@ -295,11 +296,12 @@ const Game = (props) => {
 
     // after evaluating dealer's card val, run dealerLogic to determine dealer's next step
     useEffect(() => {
-        if (playerStandMode){
-            console.log("dealer logic running, card valu:",dealerCardVal)
+        if (playerStandMode) {
+            console.log("dealer logic running, card valu:", dealerCardVal)
             dealerLogic()
         }
     }, [dealerCardVal])
+
     
 // *********** END: DEALER LOGIC ***************
 
@@ -339,13 +341,24 @@ useEffect(() => {
                     setPlayerEvolution( playerEvolution + 1);
                     console.log(playerEvolution, dealerEvolution);
                     console.log('Player wins');
-                } else if (playerCardVal < dealerCardVal) {
-                    setDealerEvolution( dealerEvolution + 1);
+                } else if (dealerCardVal === 21) {
+                    setDealerEvolution(dealerEvolution + 1);
                     console.log(playerEvolution, dealerEvolution);
                     console.log('Dealer wins');
+                } else if (playerCardVal < 21 && dealerCardVal < 21) {
+                    if (playerCardVal > dealerCardVal) {
+                        setPlayerEvolution(playerEvolution + 1);
+                        console.log(playerEvolution, dealerEvolution);
+                        console.log('Player wins');
+                    } else if (playerCardVal < dealerCardVal) {
+                        setDealerEvolution(dealerEvolution + 1);
+                        console.log(playerEvolution, dealerEvolution);
+                        console.log('Dealer wins');
+                    }
                 }
-            } 
+            }
         }
+
     }
     
   }, [playerCardVal, dealerCardVal,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
@@ -374,8 +387,8 @@ useEffect(() => {
     }
   }, [playerEvolution, dealerEvolution,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
-    // *********** END: GAME LOGIC ***************
 
+    // *********** END: GAME LOGIC ***************
 
   return ( 
     <div className="App">
@@ -425,7 +438,8 @@ useEffect(() => {
 
             
     </div>
+
     );
-    }
+}
 
 export default Game;
