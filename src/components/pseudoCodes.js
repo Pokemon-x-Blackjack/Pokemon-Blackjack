@@ -93,3 +93,109 @@
     // }
 
 
+//     const calcDCardValue = (cardListState, setState) => {
+//         const cardValues = {
+//             ACE: 11,
+//             JACK: 10,
+//             QUEEN: 10,
+//             KING: 10
+//         };
+
+//         if (cardListState.length > 0) {
+//             // create an array that stores card value (ACE = 11)
+//             const cardValArray = cardListState.map(card => {
+//                 const value = cardValues[card.value] || Number(card.value);
+//                 return value;
+//             })
+//         }
+
+//         const playerSum = cardValArray.reduce((total, num) => total + num, 0) // calculate sum of cards
+
+//     }
+
+// let aceOccured = false
+//     if (card === "ACE" && aceOccured === false) {
+//         aceOccured = true
+//         return 11
+//     } else {
+//         return cardValues[card.value] // ... 
+//     }
+
+//     // calc playerSum.
+    
+//     if (playerSum > 21) {
+
+//     }
+
+// const initialDealerVal = () => {
+//     const cardValues = {
+//         ACE: 11,
+//         JACK: 10,
+//         QUEEN: 10,
+//         KING: 10
+//     };
+
+//     if (dealerCards.length > 0) {
+//         const cardValArray = cardListState.map(card => {
+//             const value = cardValues[card.value] || Number(card.value);
+
+//             return value;
+//         })
+
+//         const playerSum = cardValArray.reduce((total, num) => total + num, 0) 
+
+//         if (playerSum > 21) {
+//             let aceOccured = false // to only set the first ACE to 1
+//             const newValArray = cardValArray.map(card => {
+//                 if (card === 11) {
+//                     if (aceOccured === false) {
+//                         aceOccured = true
+//                         return 1;
+//                     } else {
+//                         return 11
+//                     }
+//                 } else {
+//                     return card
+//                 }
+//             })
+
+//             const finalSum = newValArray.reduce((total, num) => total + num, 0) 
+
+//             // setDealerCardVal(finalSum)
+//             console.log(finalSum)
+
+//         } else {
+//             // setDealerCardVal(playerSum)
+//             console.log(playerSum)
+//         }
+
+//     } else {
+//         console.log('no dealer card')
+//     }
+// }
+
+// const finalDealerVal = () => {
+//     const cardValues = {
+//         ACE: 11,
+//         JACK: 10,
+//         QUEEN: 10,
+//         KING: 10
+//     };
+
+//     const lastCard = dealerCards[-1]
+
+//     const newCard = cardValues[lastCard] || Number(lastCard)
+
+//     let playerSum = dealerCardVal + newCard
+
+//     let finalCardVal
+
+//     if (playerSum > 21 ) {
+//         const newC = dealerCards[-1]
+
+//         if (newC === "ACE") {
+//             finalCardVal = 1
+//         }
+//     }
+
+// }

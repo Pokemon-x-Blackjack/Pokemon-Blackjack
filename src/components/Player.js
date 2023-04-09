@@ -25,7 +25,7 @@ const Player = (props) => {
                 setTimeout(() => {
                     clearInterval(intervalId);
                     setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
-                }, 1300); // evoluting time
+                }, 1100); // evoluting time
                 
                 setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
             }, 400) // delay start of evolution
