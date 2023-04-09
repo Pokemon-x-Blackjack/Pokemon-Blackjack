@@ -46,7 +46,7 @@ const Landing = () => {
             {/* ADD FOOTER */}
           </div>
         </section>
-      )};
+      )}
     </>
   );
 };

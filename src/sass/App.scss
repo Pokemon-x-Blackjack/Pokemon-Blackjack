@@ -6,11 +6,14 @@
 @use './partial/resultPage';
 @use './partial/variables';
 @use './partial/gameBoardPage';
-@use './partial/landingPage';
 @use './partial/characterSelectorPage';
 @use './partial/evolveBar';
 @use './partial/loadingScreen';
 @use './partial/howToPlayModal';
 @use './partial/404Error' as *;
 @use './partial/keyFrames';
+
+@use './partial/landingpage';
+
+
 @use './partial/mediaQueries';
