@@ -29,7 +29,7 @@ const Dealer = (props) => {
                 }, 1100); // evoluting time (evolution animation)
 
                 setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
-            }, 400) // delay start of evolution
+            }, 1000) // delay start of evolution
         }
     }, [props.dealerEvolution])
 

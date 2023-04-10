@@ -21,7 +21,9 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
     const progressColor = checkColor()
 
-    setProgress({ height: progressHeight, color: progressColor })
+    setTimeout(() => {
+      setProgress({ height: progressHeight, color: progressColor })
+    }, 2000)
 
   }, [evolutionPoint])
 
