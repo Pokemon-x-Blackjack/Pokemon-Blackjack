@@ -695,11 +695,15 @@ button {
   max-width: 1440px;
   width: 85%;
   margin: 0 auto;
+
   text-transform: uppercase;
 }
 .gameBoard button {
   width: 100%;
   margin: 10px;
+}
+.gameBoard button {
+  width: 100%;
 }
 
 .playerDealerContainer {
@@ -717,6 +721,7 @@ button {
 
 .dealerSection {
   width: 50%;
+
 }
 
 .dealerCardList {

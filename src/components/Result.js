@@ -58,7 +58,7 @@ const Result = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       ) : selectedButton === "home" ? (
         <Landing />
       ) : selectedButton === "character" ? (
