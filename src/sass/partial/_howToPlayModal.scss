@@ -17,7 +17,7 @@
     z-index: 1;
 }
       
-.howToPlayModal {
+.modal {
     background-color: #F5F5F7;;
     border: 6px solid #333;
     border-radius: 10px 10px 40px 40px;
@@ -45,15 +45,6 @@
         font-weight: 400;
     }
 
-    button{
-        transition: all .4s ease-in-out;
-        padding: 40px;
-        &:hover{
-            transform: scale(1.06);
-            box-shadow: 0 0 8px white;
-        }
-
-    }
     ul {
         list-style: circle;
     }
@@ -104,10 +95,14 @@
     li {
         text-align: center;
         list-style: none;
+        button {
+            cursor: default;
+        }
 
         p {
             margin-top: 10px;
         }
+
     }
 }
 

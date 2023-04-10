@@ -276,25 +276,24 @@ ul {
   list-style: none;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
 figure {
   margin: 0;
 }
 
 button {
-  width: 25%;
-  height: 60px;
-  padding: 10px 40px;
+  color: white;
   background: #0c0c0c;
+  border: none;
   border-radius: 7px;
-  border: 1px solid #252525;
+  padding: 15px 30px;
   backdrop-filter: blur(17.8px);
   -webkit-backdrop-filter: blur(17.8px);
-  color: white;
   transition: all 0.4s ease-in-out;
+}
+button:hover, button:focus-visible {
+  transform: scale(1.06);
+  background-color: #ff4136;
+  cursor: pointer;
 }
 
 @keyframes flip1 {
@@ -530,7 +529,7 @@ button {
   z-index: 1;
 }
 
-.howToPlayModal {
+.modal {
   background-color: #F5F5F7;
   border: 6px solid #333;
   border-radius: 10px 10px 40px 40px;
@@ -542,35 +541,27 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   gap: 20px;
 }
-.howToPlayModal li {
+.modal li {
   font-family: "ff-nuvo-mono-web-pro", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 19px;
 }
-.howToPlayModal h3 {
+.modal h3 {
   font-weight: bold;
   margin-bottom: 20px;
   font-family: rixvideogame-pro, sans-serif;
   font-style: normal;
   font-weight: 400;
 }
-.howToPlayModal button {
-  transition: all 0.4s ease-in-out;
-  padding: 40px;
-}
-.howToPlayModal button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 8px white;
-}
-.howToPlayModal ul {
+.modal ul {
   list-style: circle;
 }
-.howToPlayModal ul {
+.modal ul {
   margin: 35px;
   margin-right: 0px;
 }
-.howToPlayModal ul li {
+.modal ul li {
   margin-bottom: 15px;
   margin-left: 25px;
   letter-spacing: 0.4px;
@@ -608,6 +599,9 @@ button {
 .buttonGuide li {
   text-align: center;
   list-style: none;
+}
+.buttonGuide li button {
+  cursor: default;
 }
 .buttonGuide li p {
   margin-top: 10px;
@@ -909,39 +903,20 @@ p.bust {
   z-index: 1;
 }
 
-.modalContent {
-  position: relative;
-  background-color: #000;
-  min-width: 60%;
-  min-height: 50%;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
 .modalTitle {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 48px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #fff;
-  text-shadow: 2px 2px #ff4136;
-  letter-spacing: 5px;
   gap: 15px;
 }
 .modalTitle p {
-  font-size: clamp(2rem, 3vw, 4rem);
   text-align: center;
 }
 .modalTitle .imgContain {
-  width: 50%;
+  width: 30%;
 }
 .modalTitle img {
   width: 100%;
@@ -955,16 +930,4 @@ p.bust {
   width: 60%;
   gap: 40px;
   flex-wrap: wrap;
-}
-
-.modalButton {
-  padding: 15px 30px;
-  border: none;
-  background-color: #ff4136;
-  color: #fff;
-  font-size: clamp(0.8rem, 3vw, 1rem);
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  text-shadow: 2px 2px #000;
 }
