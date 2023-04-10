@@ -1,34 +1,92 @@
 @use './variables' as *;
+@use './keyFrames' as *;
 
-// .evolveBar {
-//     height: 200px;
-//     width: 40px;
-//     background-color: black;
-//     border-radius: 10px;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 30%;
-// }
+.evolveStats {
+    display: flex;
+    gap: 10px;
+}
 
-// .evolvePnt {
-//     width: 15px;
-//     height: 15px;
-//     border-radius: 50%;
-//     background-color: blue;
+.evolveContainer {
+    height: 200px;
+    width: 40px;
+    background-color: rgb(121, 121, 121);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 30%;
+    padding: 8px;
+}
 
-//     position: relative;
-//     transition: 0.2s ease;
-// }
+.evolveProgress {
+    transition: 0.2s ease;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: greenyellow;
+}
 
-// .evolutionContainer {
-//     height: 50px;
-//     width: 50px;
-//     border-radius: 10px;
-//     background-color: green;
-//     position: absolute;
-//     left: 40px;
-//     top: -18px;
 
-// }
+.evolutionThumbs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+
+.thumbContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(242, 242, 242);
+    background: radial-gradient(circle, rgba(242, 242, 242, 1) 29%, rgba(110, 192, 226, 1) 71%);
+
+    position: relative;
+
+    // img hidden by default
+    img {
+        border-radius: 50%;
+        object-fit: cover;
+        filter: brightness(0) blur(2px);
+    }
+}
+
+
+.pokeOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    // background-image: url(../assets/pokeballOverlay.png);
+    background-size: contain;
+    background-position: top;
+
+    z-index: 10;
+    opacity: 1;
+
+    transition: 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 0;
+    }
+}
+
+// idle animation class when hidden
+.pokeballAnimate {
+    animation: wiggle 1.25s cubic-bezier(.36, .07, .19, .97) infinite;
+}
+
+.revealPokemon {
+
+    .pokeOverlay {
+        animation: pokeballGone 1s forwards;
+    }
+
+    img {
+        animation: evolutionReveal .70s .5s forwards ease;
+    }
+}

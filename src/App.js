@@ -6,7 +6,8 @@ import Footer from './components/Footer';
 import CharacterSelector from './components/CharacterSelector';
 import ErrorPage from './components/Error404';
 
-import './sass/App.scss';
+import './css/App.css';
+// import './sass/App.scss';
 
 
 
@@ -15,6 +16,8 @@ function App() {
   return (
     <div className="App">
 
+
+      <Header />
       <Routes>
         <Route path="/module" element={<Result />} />
         <Route path="/404" element={<ErrorPage />} />
