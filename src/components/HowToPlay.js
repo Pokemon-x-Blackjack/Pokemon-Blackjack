@@ -5,7 +5,7 @@ import cardBack from '../assets/card-back.png';
 const HowToPlay = ({ closeHowToPlay }) => {
   return (
     <div className="howToPlayOverlay">
-      <div className="howToPlayModal modalFlex">
+      <div className="modal modalFlex">
 
         <section className="gameRules">
           <h3>GAME RULES</h3>
