@@ -531,7 +531,6 @@ button {
 }
 
 .howToPlayModal {
-  display: flex;
   background-color: #F5F5F7;
   border: 6px solid #333;
   border-radius: 10px 10px 40px 40px;
@@ -558,6 +557,7 @@ button {
 }
 .howToPlayModal button {
   transition: all 0.4s ease-in-out;
+  padding: 40px;
 }
 .howToPlayModal button:hover {
   transform: scale(1.06);
@@ -576,22 +576,76 @@ button {
   letter-spacing: 0.4px;
 }
 
-.gameRules {
-  width: 75%;
-}
-
-.cardGamesText {
-  padding-left: 20px;
-}
-
-.cardGames {
+.modalFlex {
   display: flex;
-  width: 100%;
 }
-.cardGames .img {
-  width: 50%;
+.modalFlex .gameRules {
+  width: 40%;
+}
+.modalFlex .rightSideFlex {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
+.cardKeyFlex {
+  display: flex;
+}
+.cardKeyFlex .cardGamesText {
+  padding-left: 20px;
+  flex-shrink: 1;
+  width: 70%;
+}
+.cardKeyFlex .img {
+  width: 30%;
+  flex-shrink: 5;
+  margin-top: 60px;
+}
+
+.buttonGuide {
+  display: flex;
+}
+.buttonGuide li {
+  text-align: center;
+  list-style: none;
+}
+.buttonGuide li p {
+  margin-top: 10px;
+}
+
+@media (max-width: 1175px) {
+  .modalFlex .gameRules {
+    width: 50%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 50%;
+  }
+  .img {
+    display: none;
+  }
+  .cardKeyFlex .cardGamesText {
+    width: 100%;
+  }
+}
+@media (max-width: 935px) {
+  .modalFlex {
+    flex-direction: column;
+  }
+  .modalFlex .gameRules {
+    width: 100%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .howToPlayModal ul {
+    justify-content: space-evenly;
+    margin-top: 0;
+  }
+  .howToPlayModal ul li {
+    margin-left: 0;
+  }
+}
 .characterSelect {
   height: 100%;
 }
@@ -838,7 +892,7 @@ p.bust {
   animation: pokeballGone 1s forwards;
 }
 .revealPokemon img {
-  animation: evolutionReveal 0.7s 0.5s forwards ease;
+  animation: evolutionReveal 0.7s 2s forwards ease;
 }
 
 .modalContainer {

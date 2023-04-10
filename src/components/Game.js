@@ -352,7 +352,7 @@ const Game = (props) => {
       console.log('End of game');
       setTimeout(() => {
         setGameOver(true);
-    }, 1700)
+    }, 3000)
         
       if (playerEvolution === 2 && dealerEvolution === 2) {
         setWinner('ties')
@@ -365,7 +365,7 @@ const Game = (props) => {
     } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
         setTimeout(() => {
             setShowButton(true);
-        }, 1700)
+        }, 3000)
     }
   }, [playerEvolution, dealerEvolution,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
