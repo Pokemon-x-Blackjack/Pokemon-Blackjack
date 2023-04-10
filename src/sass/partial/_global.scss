@@ -2,6 +2,8 @@
 
 html {
     font-size: 125%;
+    background-color: #F5F5F7;
+    color: #333;
 }
 
 .wrapper {
@@ -39,4 +41,17 @@ button {
 
 figure {
     margin: 0;
+}
+
+button {
+    width: 25%;
+    height: 60px;
+    padding: 10px 40px;
+    background: #0c0c0c;
+    border-radius: 7px; 
+    border: 1px solid #252525;
+    backdrop-filter: blur(17.8px);
+    -webkit-backdrop-filter: blur(17.8px);
+    color: white;
+    transition: all .4s ease-in-out;
 }

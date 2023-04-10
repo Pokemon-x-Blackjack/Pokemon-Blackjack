@@ -398,34 +398,45 @@ const Game = (props) => {
                 />
                 
             ) : (
-                <>
-                    <Player 
-                        standMode={playerStandMode}
-                        playerCards={playerCards}
-                        bustStatus={playerBustStatus}
-                        cardValue={playerCardVal}
-                        evolutionArr={evolutionArr}
-                        handleStand={handleStand}
-                        handleHit={handleHit}
-                        playerEvolution={playerEvolution}
-                    />
-            
-                    <Dealer
-                        dealerCards={dealerCards}
-                        cardValue={dealerCardVal}
-                        dealerEvolutionArr={dealerEvolutionArr}
-                        dealerEvolution={dealerEvolution}
-                        playerStand={playerStandMode}
-                        dealerStand={dealerStandMode}
-                        bustStatus={dealerBustStatus}
-                    />
 
-                    {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
+            <div className="gameBoard">
+                <div className="playerDealerContainer">
+                                 
+                    <div className="playerSection">
+                        <Player 
+                            standMode={playerStandMode}
+                            playerCards={playerCards}
+                            bustStatus={playerBustStatus}
+                            cardValue={playerCardVal}
+                            evolutionArr={evolutionArr}
+                            handleStand={handleStand}
+                            handleHit={handleHit}
+                            playerEvolution={playerEvolution}
+                        />
+                    </div>
+
+                    <div className="dealerSection">
+                        <Dealer
+                            dealerCards={dealerCards}
+                            cardValue={dealerCardVal}
+                            dealerEvolutionArr={dealerEvolutionArr}
+                            dealerEvolution={dealerEvolution}
+                            playerStand={playerStandMode}
+                            dealerStand={dealerStandMode}
+                            bustStatus={dealerBustStatus}
+                        />
+                    </div>
+
+                    
+                </div>
+                {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
                         <button onClick={() => { startNewRound(4); setShowButton(false); }}>
                             New Round
                         </button>
                     )}
-                </>
+
+            </div>
+
             )
         }
         </div>

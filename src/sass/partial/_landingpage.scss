@@ -3,7 +3,7 @@
 
     .landing {
     min-height: 80vh;
-    background-color: white;
+    // background-image: url('../assets/screenshot.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;  
@@ -17,9 +17,8 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 15px;
-
+      
       img{
-       
         border-radius: 20px;
         box-shadow: 2px 2px 20px red;
       }
@@ -30,10 +29,10 @@
         flex-direction: column;
         gap: 20px;
         h1{
-            font-size: clamp(2rem, 3vw, 5rem);
+
+            // font-size: clamp(2.77rem, 3vw, 4rem);
             font-weight: bold;
             margin-bottom: 20px;
-            color: red;
             letter-spacing: 5px;
             text-align: center;
           }
@@ -51,20 +50,20 @@
   
       button {
         height: 60px;
-        padding: 10px 40px;
-        border: 4px solid #000000; 
-        outline: 2px solid #FFFFFF; 
-        border-radius: 5px;
-        font-family: 'Press Start 2P', cursive;
-        font-size: clamp(.7rem, 2vw, 2rem);
-        color: #FFFFFF; 
-        text-shadow: 1px 1px #000000; 
+        padding: 10px 40px;    
+        background: #0c0c0c;
+        border-radius: 7px; 
+        border: 1px solid #252525;
+        backdrop-filter: blur(17.8px);
+        -webkit-backdrop-filter: blur(17.8px);
+        color: white;
+
         transition: all .4s ease-in-out;
+ 
         &:hover {
           transform: scale(1.06);
-          box-shadow: 0 0 8px #ff4136; 
+          box-shadow: 0 0 8px white; 
         }
       }
     }
   }
-  

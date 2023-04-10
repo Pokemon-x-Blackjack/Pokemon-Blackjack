@@ -37,7 +37,7 @@ const Header = () => {
   <header className="header">
    
     <div className="logo">
-      <img src={logo} alt="pokejack with pokeball as the o" />
+      {/* <img src={logo} alt="pokejack with pokeball as the o" /> */}
     </div>
     
     <i
