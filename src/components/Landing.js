@@ -30,7 +30,6 @@ const Landing = () => {
       ) : (
         <section className="landing">
           <div className="wrapper">
-            {/* ADD NAV */}
             <div className="text">
 
               <h1>POKÉMON x BLACKJACK</h1>
@@ -42,8 +41,7 @@ const Landing = () => {
               <button onClick={handleButtonClick}>START</button>
               <button onClick={handleHowToPlayClick}>HOW TO PLAY</button> {/* Add a button to show/hide the HowToPlay component */}
             </div>
-            {/* Add Link to characterSelect once component is created */}
-            {/* ADD FOOTER */}
+           
           </div>
         </section>
       )}

@@ -9,10 +9,10 @@ const HowToPlay = ({ closeHowToPlay }) => {
         <ul>
           
           <li>- The objective of the game is to get as close to 21 as possible without going over.</li>
-          <li>- You will start with two cards, you can choose to hit for more cards or stand if you're satisfied with your hand.</li>
+          <li>- You will start with two cards, click the 'hit' button for more cards or the 'stand' button if you're satisfied with your hand.</li>
           <li>- The dealer will also be dealt two cards, but only one of them will be visible to you.</li>
           <li>- If your hand is closer to 21 than the dealer's, you win & your Pokemon evolves a level!</li>
-          <li>- First Pokemon to evol TWICE WINS!</li>
+          <li>- First Pokemon to evolve to their final form (twice) wins!</li>
         </ul>
         <h3>Controls</h3>
         <ul>
@@ -20,7 +20,6 @@ const HowToPlay = ({ closeHowToPlay }) => {
           <li>- Choose your Pokemon and enter the game.</li>
           <li>Hit: Press the Hit button to request an additional card.</li>
           <li>Stand: Press the Stand button to end your turn.</li>
-          <li>New Game: Press the New Game button to start a new game.</li>
         </ul>
         <h3>Card Value</h3>
         <ul>
