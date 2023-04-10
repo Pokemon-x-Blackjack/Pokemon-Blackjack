@@ -11,7 +11,7 @@
  
   
     .wrapper {
-      height: 80vh;
+      min-height: 80vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,6 +29,7 @@
         flex-direction: column;
         gap: 20px;
         h1{
+
             // font-size: clamp(2.77rem, 3vw, 4rem);
             font-weight: bold;
             margin-bottom: 20px;
@@ -48,16 +49,15 @@
       }
   
       button {
-        width: 25%;
         height: 60px;
-        padding: 10px 40px;
-      
+        padding: 10px 40px;    
         background: #0c0c0c;
         border-radius: 7px; 
         border: 1px solid #252525;
         backdrop-filter: blur(17.8px);
         -webkit-backdrop-filter: blur(17.8px);
         color: white;
+
         transition: all .4s ease-in-out;
  
         &:hover {

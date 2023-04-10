@@ -17,8 +17,8 @@
   .modalContent {
     position: relative;
     background-color: #000;
-    width: 50%;
-    height: 40%;
+    min-width: 60%;
+    min-height: 50%;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -29,24 +29,47 @@
   }
   
   .modalTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #fff;
     text-shadow: 2px 2px #ff4136;
     letter-spacing: 5px;
+    gap: 15px;
+    p{
+      font-size: clamp(2rem,3vw, 4rem);
+      text-align: center;
+    }
+    .imgContain{
+      width: 50%;
+    }
+
+      img{
+        width: 100%;
+      }
   }
-  
+  .btnContain{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
   .modalButton {
     padding: 15px 30px;
     border: none;
     background-color: #ff4136;
     color: #fff;
-    font-size: 24px;
+    font-size: clamp(.8rem,3vw, 1rem);
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 40px;
     text-shadow: 2px 2px #000;
   }
   

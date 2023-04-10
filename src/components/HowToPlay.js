@@ -19,6 +19,7 @@ const HowToPlay = ({ closeHowToPlay }) => {
       
         <div className="cardGames">
           
+
           <div className="img">
             <img src={cardBack} alt="" />
           </div>
@@ -33,6 +34,7 @@ const HowToPlay = ({ closeHowToPlay }) => {
           </div>
         </div>
         
+
       </div>
       <button onClick={closeHowToPlay}>OK</button>
     </div>
