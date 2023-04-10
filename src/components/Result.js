@@ -15,11 +15,11 @@ const Result = (props) => {
     <>
       {!buttonSelected ? (
         <div className="modalContainer">
-          <div className="modalContent">
+          <div className="modal">
             <div className="modalTitle">
-              {props.winner === "player" && <p>You win!</p>}
-              {props.winner === "dealer" && <p>Dealer wins!</p>}
-              {props.winner === "ties" && <p>It's a tie!</p>}
+              {props.winner === "player" && <h3>You win!</h3>}
+              {props.winner === "dealer" && <h3>Dealer wins!</h3>}
+              {props.winner === "ties" && <h3>It's a tie!</h3>}
 
               {props.winner === "player" && (
                 <>
