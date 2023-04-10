@@ -29,8 +29,8 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
   return (
     <>
       <div
-        className="evolveStats"
-        style={barType === 'dealer' ? { flexDirection: 'row-reverse' } : { flexDirection: 'row' }}
+        // className="pokemonStats"
+        // style={barType === 'dealer' ? { justifyContent: 'fe' } : { justifyContent: 'flex-end' }}
       >
 
         {/* Evolve Bar */}
@@ -38,7 +38,7 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
           <div
             className="evolveProgress"
             style={{
-              height: `${progress.height}%`,
+              width: `${progress.height}%`,
               backgroundColor: `${progress.color}`
             }}
           >

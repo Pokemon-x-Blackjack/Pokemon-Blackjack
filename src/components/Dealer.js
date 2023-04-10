@@ -47,28 +47,9 @@ const Dealer = (props) => {
     const dealerCardClass = (props.playerStand && props.dealerStand) || props.bustStatus ? `reveal dealerCardList` : "dealerCardList";
 
     return (
-        <section className="dealer">
-            <ul className={dealerCardClass}>Dealer's cards
-                    {
-                        dealerCardsProp.map((card) => {
-                            return (
-                                <li key={card.code} className="cardContainer">
-                                <div className="innerCard">
-                                    <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
-                                    <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
-                                </div>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+        <div className="dealerSection">
 
-            <div className='pokemonStats'>
-                <div className="playStats">
-                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
-                    <h3>{currentEvolution.name}</h3>
-                </div>
-
+            <div className='pokemonStat'>
                 <Evolvebar
                     // dealer specific
                     evolutionArray={props.dealerEvolutionArr}
@@ -77,8 +58,34 @@ const Dealer = (props) => {
                 />
             </div>
 
+            <div className="pokemonMain">
 
-            <p>Dealer's cards value: {props.cardValue}</p>
+                <div className="playStats">
+                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
+                    <h3>{currentEvolution.name}</h3>
+                </div>
+
+                <ul className={dealerCardClass}>
+                        {
+                            dealerCardsProp.map((card) => {
+                                return (
+                                    <li key={card.code} className="cardContainer">
+                                        <div className="innerCard">
+                                            <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
+                                            <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                </ul>
+
+
+            </div>
+            <p style={{textAlign: "end"}}>CARD VALUE: {props.cardValue}</p>        
+
+
+            
 
             {
                 props.bustStatus
@@ -86,7 +93,7 @@ const Dealer = (props) => {
                 : null
             }
             
-        </section>
+        </div>
     )
 }
 
