@@ -416,80 +416,6 @@ button {
   color: #494a4d;
 }
 
-
-.modalContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 1;
-}
-
-.modalContent {
-  position: relative;
-  background-color: #000;
-  min-width: 60%;
-  min-height: 50%;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.modalTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #fff;
-  text-shadow: 2px 2px #ff4136;
-  letter-spacing: 5px;
-  gap: 15px;
-}
-.modalTitle p {
-  font-size: clamp(2rem, 3vw, 4rem);
-  text-align: center;
-}
-.modalTitle .imgContain {
-  width: 50%;
-}
-.modalTitle img {
-  width: 100%;
-}
-
-.btnContain {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60%;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.modalButton {
-  padding: 15px 30px;
-  border: none;
-  background-color: #ff4136;
-  color: #fff;
-  font-size: clamp(0.8rem, 3vw, 1rem);
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  text-shadow: 2px 2px #000;
-}
 .errorContainer {
   background-color: #ffffff;
   color: #0f0f0f;
@@ -508,7 +434,6 @@ button {
 
 .errorMessage {
   font-size: 24px;
-
 }
 
 .statusText {
@@ -543,7 +468,7 @@ button {
   background-position: center center;
 }
 .landing .wrapper {
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -575,7 +500,6 @@ button {
   gap: 40px;
 }
 .landing .wrapper button {
-  width: 25%;
   height: 60px;
   padding: 10px 40px;
   background: #0c0c0c;
@@ -584,7 +508,6 @@ button {
   backdrop-filter: blur(17.8px);
   -webkit-backdrop-filter: blur(17.8px);
   color: white;
-
   transition: all 0.4s ease-in-out;
 }
 .landing .wrapper button:hover {
@@ -769,21 +692,29 @@ button {
 .gameBoard {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100vh;
+  max-width: 1440px;
+  width: 85%;
+  margin: 0 auto;
+}
+.gameBoard button {
+  width: 100%;
 }
 
 .playerDealerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 50%;
+  flex-wrap: wrap;
   width: 100%;
 }
 
-button {
-  width: 100%;
-  margin-top: 20px;
+.playerSection {
+  width: 50%;
+}
+
+.dealerSection {
+  width: 50%;
 }
 
 .playerCardList,
@@ -927,8 +858,8 @@ p.bust {
 .modalContent {
   position: relative;
   background-color: #000;
-  width: 50%;
-  height: 40%;
+  min-width: 60%;
+  min-height: 50%;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -939,12 +870,37 @@ p.bust {
 }
 
 .modalTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #fff;
   text-shadow: 2px 2px #ff4136;
   letter-spacing: 5px;
+  gap: 15px;
+}
+.modalTitle p {
+  font-size: clamp(2rem, 3vw, 4rem);
+  text-align: center;
+}
+.modalTitle .imgContain {
+  width: 50%;
+}
+.modalTitle img {
+  width: 100%;
+}
+
+.btnContain {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 .modalButton {
@@ -952,10 +908,9 @@ p.bust {
   border: none;
   background-color: #ff4136;
   color: #fff;
-  font-size: 24px;
+  font-size: clamp(0.8rem, 3vw, 1rem);
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 40px;
   text-shadow: 2px 2px #000;
 }
