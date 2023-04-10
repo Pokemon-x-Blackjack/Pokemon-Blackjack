@@ -11,7 +11,7 @@
  
   
     .wrapper {
-      height: 80vh;
+      min-height: 80vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -30,7 +30,7 @@
         flex-direction: column;
         gap: 20px;
         h1{
-            font-size: clamp(2.77rem, 3vw, 4rem);
+            font-size: clamp(2rem, 3vw, 5rem);
             font-weight: bold;
             margin-bottom: 20px;
             color: #0e0e0e;
@@ -51,7 +51,6 @@
       }
   
       button {
-        width: 25%;
         height: 60px;
         padding: 10px 40px;
         background-color: #ff4136;
@@ -59,7 +58,7 @@
         outline: 2px solid #FFFFFF; 
         border-radius: 5px;
         font-family: 'Press Start 2P', cursive;
-        font-size: clamp(.8rem, 2vw, 2.5rem);
+        font-size: clamp(.7rem, 2vw, 2rem);
         color: #FFFFFF; 
         text-shadow: 1px 1px #000000; 
         transition: all .4s ease-in-out;
