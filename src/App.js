@@ -16,8 +16,6 @@ function App() {
   return (
     <div className="App">
 
-
-      <Header />
       <Routes>
         <Route path="/module" element={<Result />} />
         <Route path="/404" element={<ErrorPage />} />
@@ -28,7 +26,7 @@ function App() {
         <Landing />
       </main>
       <Footer />
-     
+
 
     </div>
   );
