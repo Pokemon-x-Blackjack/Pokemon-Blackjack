@@ -1,6 +1,35 @@
 @use './variables' as *;
-.header{
+
+header .wrapper {
    display: flex;
    justify-content: space-between;
    color: black;
+
+   padding-top: 20px;
+}
+
+
+.logo {
+   width: 50px;
+}
+
+
+.audioContainer {
+   display: flex;
+   flex-direction: row-reverse;
+   gap: 20px;
+
+
+
+   input,
+   .musicToggleBtn {
+      transform: scaleX(-1);
+      cursor: pointer;
+   }
+}
+
+.musicToggleBtn {
+   height: 50px;
+   width: 50px;
+   padding: 0px;
 }

@@ -1,17 +1,19 @@
 @use './variables' as *;
 
-.characterSelect {
+.characterSelect,
+.characterSelect .wrapper {
     height: 100%;
 }
 
 
 
 .characterForm {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    h2{
+
+    h2 {
         font-family: rixvideogame-pro, sans-serif;
         font-size: 59px;
         letter-spacing: 7.847px;
@@ -19,44 +21,48 @@
 
     button {
         background: #0c0c0c;
-        border-radius: 7px; 
+        border-radius: 7px;
         border: 1px solid #252525;
         backdrop-filter: blur(17.8px);
         -webkit-backdrop-filter: blur(17.8px);
         color: white;
+
+        margin: 15px 0 0 0;
     }
 }
 
 .pokeRoster {
     height: 100%;
-    max-height: 65vh;
-    padding: 50px 0;
+    max-height: 57vh;
+    width: 85%;
+
+    padding: 120px 0 0 0;
+
     display: flex;
     justify-content: center;
-    gap: 40px;
     flex-wrap: wrap;
-    margin: 100px;
+    gap: 50px;
 
+    overflow-y: scroll;
 }
 
 .pokemonCard {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 50px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     background-color: #CED0D2;
-    border: none;
+    border: 6px solid #333;
     border-radius: 0% 0% 52% 52% / 25% 25% 25% 25%;
-    height: 200px;
-    width: 200px;
+
     transition: 0.2s ease;
     position: relative;
-    background: #D52E26(255,255,255,0.5);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 6px solid #333;
-    margin-bottom: 50px;
-  
+
     img,
     h3 {
         pointer-events: none;
@@ -68,7 +74,8 @@
         object-fit: contain;
         position: absolute;
         bottom: 40px;
-        bottom: 150px; /* adjust this value to move the image up or down */
+        bottom: 150px;
+        /* adjust this value to move the image up or down */
     }
 
     h3 {
@@ -81,12 +88,11 @@
         font-weight: bold;
     }
 
-   
+
 
     &:hover,
     &:focus {
-    background-color: #D52E26;
-        
+        background-color: #D52E26;
         cursor: pointer;
     }
 }
@@ -98,7 +104,7 @@
 
     &:hover,
     &:focus {
-        background-color:#D52E26;
+        background-color: #D52E26;
         outline: none;
     }
 }

@@ -136,29 +136,15 @@ const CharacterSelector = (props) => {
         }
     }
 
-    // TESTING ONLY: console logs user dealer evolution arr 
-    useEffect(() => {
-        console.log('dealer', dealerEvolutionArr)
-    }, [dealerEvolutionArr])
-    // TESTING ONLY: console logs evolution arr 
-    useEffect(() => {
-        console.log('user', evolutionArr)
-        if (evolutionArr !== '') {
-            setEvolveReady(true)
-        }
-    }, [evolutionArr])
 
 
     // on component render: 
-    // generate dealer evolutions
     // make api call for pokemon info, store in state
     useEffect(() => {
 
         // loading page on page load
         setIsLoading(true);
 
-
-        evolutionChainToObj(apiCallEvolution('abra'), setDealerEvolutionArr)
         // empty promise arr
         const starterPromises = []
 
@@ -184,6 +170,23 @@ const CharacterSelector = (props) => {
 
     }, [])
 
+    // when user chooses pokemon
+    // filter rosterlist, excluding user pokemon randomize a pokemon
+    // fetch evolution arr. player can proceed
+    useEffect(() => {
+        const dealerRoster = rosterList.filter((pokemon) => { return pokemon !== userPokemon })
+        const randomPokemon = (arr) => {
+            return Math.floor(Math.random() * arr.length)
+        }
+
+        const randomDealer = dealerRoster[randomPokemon(dealerRoster)]
+
+        evolutionChainToObj(apiCallEvolution(randomDealer), setDealerEvolutionArr)
+
+        setEvolveReady(true)
+
+    }, [userPokemon])
+
     // sets user pokemon on clicked pokemon, finds evolutions in background
     const handleClickSelect = (event) => {
         const clickedPokemon = event.target.textContent
@@ -201,13 +204,14 @@ const CharacterSelector = (props) => {
     }
 
 
+    // character select form submit: 
     const handleCharacterSubmit = (event) => {
         event.preventDefault()
 
-        if (userPokemon !== '' && evolveReady === true) {
+        // checks if pokemon is chosen
+        // renders game.js
+        if (evolveReady === true) {
             setFormSubmit(true)
-            console.log('lets go to game')
-            console.log('user pokemon', userPokemon)
         }
     }
 

@@ -1,6 +1,7 @@
-import logo from '../assets/logo.png';
+
 import { useState, useRef } from 'react';
-import audio from '../assets/audio/kung-fu-fighting.mp3';
+import audio from '../assets/audio/poke-chill.mp3';
+import pokeOverlay from '../assets/pokeballOverlay.png'
 
 
 const Header = () => {
@@ -30,39 +31,48 @@ const Header = () => {
   };
 
   return (
+    <header className="header">
+      {/* wrapper */}
+      <div className="wrapper">
+
+        {/* logo */}
+        <div className="logo">
+          <img src={pokeOverlay} alt="Main logo image for Pokemon Blackjack" />
+        </div>
+
+        {/* audio section */}
+        <div className="audioContainer">
+
+          {/* audio btn */}
+          <button
+            className="musicToggleBtn"
+            onClick={togglePlay}
+          >
+            <i
+              className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
+            />
+            <span className='sr-only'>music button toggle</span>
 
 
-<div className="wrapper">
- 
-  <header className="header">
-   
-    <div className="logo">
-      {/* <img src={logo} alt="pokejack with pokeball as the o" /> */}
-    </div>
-    
-    <i
-      className={isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'}
-      onClick={togglePlay}
-    />
-   
-    {isPlaying && (
-      <div id="audioSlider">
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={volume}
-          className="slider"
-          id="volumeSlider"
-          onChange={handleVolumeChange}
-        />
+          </button>
+
+          {isPlaying && (
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              className="slider"
+              id="volumeSlider"
+              onChange={handleVolumeChange}
+            />
+          )}
+
+          <audio src={audio} ref={audioElementRef} />
+        </div>
       </div>
-    )}
+    </header>
 
-    <audio src={audio} ref={audioElementRef} />
-  </header>
-</div>
-    
   );
 };
 
