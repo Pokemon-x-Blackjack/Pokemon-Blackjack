@@ -4,6 +4,38 @@
     animation: $animeName $duration forwards;
 }
 
+.gameBoard {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    width: 85%;
+    margin: 0 auto;
+
+    button {
+        width: 100%;
+        
+    }
+}
+  
+.playerDealerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+.playerSection{
+    width: 50%;
+}
+
+.dealerSection{
+    width: 50%;
+}
+  
+
+  
 .playerCardList,
 .dealerCardList {
     display: flex;
