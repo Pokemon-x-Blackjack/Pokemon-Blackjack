@@ -527,11 +527,24 @@ footer a:hover {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 55px;
+}
+.landing .wrapper .pokeBallContain {
+  background: #333 top left no-repeat;
+  width: 275px;
+  height: 250px;
+  border-top-left-radius: 15px;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
 }
 .landing .wrapper img {
-  border-radius: 20px;
-  box-shadow: 2px 2px 20px red;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 80%;
+  position: relative;
 }
 .landing .wrapper .text {
   display: flex;
@@ -539,10 +552,14 @@ footer a:hover {
   gap: 20px;
 }
 .landing .wrapper .text h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
   font-weight: bold;
   margin-bottom: 20px;
   letter-spacing: 5px;
   text-align: center;
+}
+.landing .wrapper .text h3 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
 }
 .landing .wrapper .buttonContainer {
   display: flex;
