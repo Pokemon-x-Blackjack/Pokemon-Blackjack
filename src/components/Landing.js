@@ -58,7 +58,7 @@ const Landing = ({ setCurrentPage }) => {
       {buttonSelected ? (
         <CharacterSelector
           setButtonSelected={setButtonSelected}
-        // setCurrentPage={setCurrentPage}
+          setCurrentPage={setCurrentPage}
         />
       ) : (
         // landing page
