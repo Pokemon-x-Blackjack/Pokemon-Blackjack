@@ -13,7 +13,7 @@ const Footer = ({ currentPage }) => {
                 {/* copyright */}
                 <p>Copyright © {getYear()}</p>
                 {/* credit */}
-                <p>Made by
+                <p className="socialLinks">By
                     <a href="https://katiemak.dev/" target="_blank" rel="noopener noreferrer"> Katie</a>,
                     <a href="https://hadiyahussein.com/" target="_blank" rel="noopener noreferrer"> Hadiya</a>,
                     <a href="http://solivanlau.com/" target="_blank" rel="noopener noreferrer"> Solivan</a>,
