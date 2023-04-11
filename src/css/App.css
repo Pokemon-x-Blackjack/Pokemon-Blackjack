@@ -302,7 +302,6 @@ button:hover, button:focus-visible {
   cursor: pointer;
 }
 
-
 .chooseCharacter {
   background-color: #333;
 }
@@ -738,7 +737,6 @@ footer a:hover {
   align-items: center;
 }
 .characterForm h2 {
-
   font-family: "rixvideogame-pro", sans-serif;
   font-size: 55px;
   letter-spacing: 7.847px;

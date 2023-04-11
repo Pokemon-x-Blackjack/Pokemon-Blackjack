@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CharacterSelector from './CharacterSelector';
 import HowToPlay from './HowToPlay';
 import pokeball from '../assets/pokeBallClosed.png'
@@ -8,6 +8,10 @@ import pokeballOpen from "../assets/pokeBallOpen.png";
 const Landing = ({ setCurrentPage }) => {
   const [buttonSelected, setButtonSelected] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
+
+  useEffect(() => {
+    setCurrentPage('');
+  }, [])
 
   const handleButtonClick = () => {
     setButtonSelected(true);

@@ -291,4 +291,3 @@ const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
 
 }
 export default CharacterSelector;
-

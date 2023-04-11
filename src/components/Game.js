@@ -320,7 +320,7 @@ const Game = (props) => {
     }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
 
-    // Check for end of game
+// Check for end of game
     useEffect(() => {
         if (playerEvolution === 2 || dealerEvolution === 2) {
             console.log('End of game');
@@ -334,7 +334,9 @@ const Game = (props) => {
                 setWinner('player')
             } else if (dealerEvolution === 2) {
                 setWinner('dealer')
-            } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
+            }
+
+        } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
             setTimeout(() => {
                 setShowButton(true);
             }, 3000)
