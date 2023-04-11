@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -301,6 +302,11 @@ button:hover, button:focus-visible {
   cursor: pointer;
 }
 
+
+.chooseCharacter {
+  background-color: #333;
+}
+
 @keyframes flip1 {
   0% {
     transform: rotateY(0);
@@ -394,8 +400,8 @@ button:hover, button:focus-visible {
 header .wrapper {
   display: flex;
   justify-content: space-between;
-  color: black;
   padding-top: 20px;
+  transition: 0.2s ease;
 }
 
 .logo {
@@ -406,11 +412,19 @@ header .wrapper {
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
+  position: relative;
 }
-.audioContainer input,
+.audioContainer input[type=range],
 .audioContainer .musicToggleBtn {
   transform: scaleX(-1);
+}
+.audioContainer input[type=range] {
   cursor: pointer;
+  position: absolute;
+  right: 60px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .musicToggleBtn {
@@ -419,28 +433,56 @@ header .wrapper {
   padding: 0px;
 }
 
+@media (max-width: 470px) {
+  .audioContainer input[type=range] {
+    transform: rotate(-90deg);
+    bottom: -230px;
+    right: -50px;
+    width: 150px;
+  }
+}
 /* FOOTER */
 footer {
   font-size: 0.8rem;
   text-align: right;
-  border-top: #494a4d 1px solid;
-  color: #494a4d;
+  border-top: #333 1px solid;
+  color: #333;
   padding: 10px 0px;
   font-weight: 500;
 }
 footer p {
   line-height: 22px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: “ff-nuvo-mono-web-pro”, sans-serif;
 }
 footer a {
   text-decoration: none;
-  color: #494a4d;
   transition: 0.25s ease;
+  color: #333;
 }
 footer a:hover {
-  color: red;
+  color: #D52E26;
 }
 
+.chooseCharacter {
+  border-color: #F5F5F7;
+  color: #F5F5F7;
+}
+.chooseCharacter a {
+  color: #F5F5F7;
+}
+
+@media (max-width: 470px) {
+  footer {
+    padding: 0;
+  }
+  footer .wrapper {
+    width: 90%;
+  }
+  .socialLinks,
+  p {
+    text-align: center;
+  }
+}
 .errorContainer {
   background-color: #ffffff;
   color: #0f0f0f;
@@ -498,11 +540,24 @@ footer a:hover {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 55px;
+}
+.landing .wrapper .pokeBallContain {
+  background: #333 top left no-repeat;
+  width: 275px;
+  height: 250px;
+  border-top-left-radius: 15px;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
 }
 .landing .wrapper img {
-  border-radius: 20px;
-  box-shadow: 2px 2px 20px red;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 80%;
+  position: relative;
 }
 .landing .wrapper .text {
   display: flex;
@@ -510,10 +565,14 @@ footer a:hover {
   gap: 20px;
 }
 .landing .wrapper .text h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
   font-weight: bold;
   margin-bottom: 20px;
   letter-spacing: 5px;
   text-align: center;
+}
+.landing .wrapper .text h3 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
 }
 .landing .wrapper .buttonContainer {
   display: flex;
@@ -669,6 +728,7 @@ footer a:hover {
 .characterSelect,
 .characterSelect .wrapper {
   height: 100%;
+  background-color: #333;
 }
 
 .characterForm {
@@ -678,18 +738,15 @@ footer a:hover {
   align-items: center;
 }
 .characterForm h2 {
-  font-family: rixvideogame-pro, sans-serif;
+
+  font-family: "rixvideogame-pro", sans-serif;
   font-size: 55px;
   letter-spacing: 7.847px;
+  color: #F5F5F7;
+  text-align: center;
 }
 .characterForm button {
-  background: #0c0c0c;
-  border-radius: 7px;
-  border: 1px solid #252525;
-  backdrop-filter: blur(17.8px);
-  -webkit-backdrop-filter: blur(17.8px);
-  color: white;
-  margin: 15px 0 0 0;
+  margin: 15px 0;
 }
 
 .pokeRoster {
@@ -712,7 +769,7 @@ footer a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #CED0D2;
+  background-color: #F5F5F7;
   border: 6px solid #333;
   border-radius: 0% 0% 52% 52%/25% 25% 25% 25%;
   transition: 0.2s ease;
@@ -732,12 +789,11 @@ footer a:hover {
   /* adjust this value to move the image up or down */
 }
 .pokemonCard h3 {
-  color: white;
   text-transform: capitalize;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: “ff-nuvo-mono-web-pro”, sans-serif;
   font-size: 25px;
   text-transform: uppercase;
-  color: #252525;
+  color: #333;
   font-weight: bold;
 }
 .pokemonCard:hover, .pokemonCard:focus {

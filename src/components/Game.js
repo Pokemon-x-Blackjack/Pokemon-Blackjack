@@ -5,7 +5,6 @@ import axios from 'axios';
 import Player from './Player.js';
 import Dealer from './Dealer.js';
 import Result from './Result.js';
-import Evolvebar from './Evolvebar.js';
 import ErrorPage from "./Error404";
 
 import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
@@ -37,7 +36,7 @@ const Game = (props) => {
 
     const [gameOver, setGameOver] = useState(false); // 15
 
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const evolutionArr = props.evolutionArr
     const dealerEvolutionArr = props.dealerEvolutionArr
@@ -204,7 +203,7 @@ const Game = (props) => {
                 const finalSum = newValArray.reduce((total, num) => total + num, 0)
 
                 setDealerCardVal(finalSum)
-    
+
             } else {
                 setDealerCardVal(playerSum)
             }
@@ -241,9 +240,10 @@ const Game = (props) => {
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         setIsLoading(true);
-        startNewRound(4) 
+        startNewRound(4)
+        props.setCurrentPage('')
     }, [])
 
     // ************* PLAYER LOGIC ****************
@@ -292,59 +292,55 @@ const Game = (props) => {
     // Check for bust or blackjack
     useEffect(() => {
 
-    if (playerBustStatus) {
-        setDealerEvolution(prevCount => prevCount + 1);
-    } else if (dealerBustStatus) {
-        setPlayerEvolution(prevCount => prevCount + 1);
-    } else {
-        // If both sides stand, compare card value
-        if (playerStandMode && dealerStandMode) {
+        if (playerBustStatus) {
+            setDealerEvolution(prevCount => prevCount + 1);
+        } else if (dealerBustStatus) {
+            setPlayerEvolution(prevCount => prevCount + 1);
+        } else {
+            // If both sides stand, compare card value
+            if (playerStandMode && dealerStandMode) {
 
-            // If card value = 21, evolution state +1
-            if (playerCardVal === 21 && dealerCardVal === 21) {
-                setPlayerEvolution( playerEvolution + 1 );
-                setDealerEvolution( dealerEvolution + 1 );
-            } else if (playerCardVal === 21) {
-                setPlayerEvolution( playerEvolution + 1 );
-            } else if (dealerCardVal === 21) {
-                setDealerEvolution( dealerEvolution + 1 );
-            } else if (playerCardVal < 21 && dealerCardVal < 21) {
-                if (playerCardVal > dealerCardVal){
-                    setPlayerEvolution( playerEvolution + 1);
-                } else if (playerCardVal < dealerCardVal) {
-                    setDealerEvolution( dealerEvolution + 1);
+                // If card value = 21, evolution state +1
+                if (playerCardVal === 21 && dealerCardVal === 21) {
+                    setPlayerEvolution(playerEvolution + 1);
+                    setDealerEvolution(dealerEvolution + 1);
+                } else if (playerCardVal === 21) {
+                    setPlayerEvolution(playerEvolution + 1);
+                } else if (dealerCardVal === 21) {
+                    setDealerEvolution(dealerEvolution + 1);
+                } else if (playerCardVal < 21 && dealerCardVal < 21) {
+                    if (playerCardVal > dealerCardVal) {
+                        setPlayerEvolution(playerEvolution + 1);
+                    } else if (playerCardVal < dealerCardVal) {
+                        setDealerEvolution(dealerEvolution + 1);
+                    }
                 }
-            } 
+            }
         }
-    }
-    
-  }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
-  
-  
-  // Check for end of game
-  useEffect(() => {
-    if (playerEvolution === 2 || dealerEvolution === 2) {
-      setTimeout(() => {
-        setGameOver(true);
-    }, 3000)
-        
-      if (playerEvolution === 2 && dealerEvolution === 2) {
-        setWinner('ties')
-      } else if (playerEvolution === 2) {
-        setWinner('player')
-      } else if (dealerEvolution === 2) {
-        setWinner('dealer')
-      }
-      
-    } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
-        setTimeout(() => {
-            setShowButton(true);
-        }, 3000)
-    }
-  }, [playerEvolution, dealerEvolution,playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+    }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
-    // *********** END: GAME LOGIC ***************
 
+    // Check for end of game
+    useEffect(() => {
+        if (playerEvolution === 2 || dealerEvolution === 2) {
+            console.log('End of game');
+            setTimeout(() => {
+                setGameOver(true);
+            }, 3000)
+
+            if (playerEvolution === 2 && dealerEvolution === 2) {
+                setWinner('ties')
+            } else if (playerEvolution === 2) {
+                setWinner('player')
+            } else if (dealerEvolution === 2) {
+                setWinner('dealer')
+            } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
+            setTimeout(() => {
+                setShowButton(true);
+            }, 3000)
+        }
+    }, [playerEvolution, dealerEvolution, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+ // *********** END: GAME LOGIC ***************
 
   return ( 
     <div className="App">
@@ -418,7 +414,7 @@ const Game = (props) => {
             </div>
 
             )
-        }
+           }
         </div>
     );
 }
