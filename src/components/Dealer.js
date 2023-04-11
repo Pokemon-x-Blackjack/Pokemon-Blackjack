@@ -36,28 +36,9 @@ const Dealer = (props) => {
     const dealerCardClass = props.playerStand || props.bustStatus ? `reveal dealerCardList` : "dealerCardList";
 
     return (
-        <section className="dealer">
-            <ul className={dealerCardClass}>Dealer's cards
-                    {
-                        dealerCardsProp.map((card) => {
-                            return (
-                                <li key={card.code} className="cardContainer">
-                                <div className="innerCard">
-                                    <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
-                                    <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
-                                </div>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+        <div className="dealerSection">
 
-            <div className='pokemonStats'>
-                <div className="playStats">
-                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
-                    <h3>{currentEvolution.name}</h3>
-                </div>
-
+            <div className='pokemonEvolve'>
                 <Evolvebar
                     // dealer specific
                     evolutionArray={props.dealerEvolutionArr}
@@ -66,15 +47,39 @@ const Dealer = (props) => {
                 />
             </div>
 
-            <p>Dealer's cards value: {props.cardValue}</p>
+            <div className="pokemonMain">
+
+                <ul className={dealerCardClass}>
+                    {
+                        dealerCardsProp.map((card) => {
+                            return (
+                                <li key={card.code} className="cardContainer">
+                                    <div className="innerCard">
+                                        <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
+                                        <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+
+
+                <div className="playStats dealStats">
+                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
+                    <h3 style={{textAlign: "end"}}>{currentEvolution.name}</h3>
+                </div>
+
+
+            </div>
+            <p style={{textAlign: "end"}}>DEALER'S CARD VALUE: {props.cardValue}</p>        
 
             {
                 props.bustStatus
                 ? <p className="bust">BUST</p>
                 : null
-            }
-            
-        </section>
+            }  
+        </div>
     )
 }
 

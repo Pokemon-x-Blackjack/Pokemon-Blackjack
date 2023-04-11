@@ -9,11 +9,11 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
     const checkColor = () => {
       if (evolutionPoint === 0) {
-        return '#43465E'
+        return 'red'
       } else if (evolutionPoint === 1) {
-        return '#131834'
+        return 'yellow'
       } else {
-        return '#C1071E'
+        return 'green'
       }
     }
 
@@ -31,16 +31,18 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
   return (
     <>
       <div
-        className="evolveStats"
-        style={barType === 'dealer' ? { flexDirection: 'row-reverse' } : { flexDirection: 'row' }}
+         className="evolutionContainer"
+        style={barType === 'player' ? { alignItems: 'flex-start' } : null }
       >
 
         {/* Evolve Bar */}
-        <div className="evolveContainer">
+        <div className="evolveContainer"
+          style={barType === 'dealer' ? { alignItems: 'flex-end' } : null }
+        >
           <div
             className="evolveProgress"
             style={{
-              height: `${progress.height}%`,
+              width: `${progress.height}%`,
               backgroundColor: `${progress.color}`
             }}
           >
@@ -49,7 +51,9 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
 
         {/* Unlocked Evolutions */}
-        <ul className="evolutionThumbs">
+        <ul className="evolutionThumbs"
+            style={barType === 'player' ? { flexDirection: 'row-reverse' } : null }
+        >
 
           {/* final evolution */}
           <li className={"thumbContainer " + (evolutionPoint < 2 ? "pokeballAnimate" : "revealPokemon")}>

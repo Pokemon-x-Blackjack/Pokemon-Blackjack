@@ -10,35 +10,32 @@
     max-width: 1440px;
     width: 85%;
     margin: 0 auto;
+    text-transform: uppercase;
 
     button {
-        width: 100%;
-        
+        width: 50%;
+        margin: 10px;
+        margin: 0 auto; 
     }
 }
+
+
   
 .playerDealerContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 50%;
-    flex-wrap: wrap;
-    width: 100%;
+    justify-content: space-evenly;
 
 }
-.playerSection{
-    width: 50%;
-}
 
-.dealerSection{
-    width: 50%;
+.dealerCardList{
+    position: relative;
 }
-  
-
   
 .playerCardList,
 .dealerCardList {
     display: flex;
+    margin: 50px;
 
     li:nth-child(n+3) {
         .innerCard{
@@ -78,8 +75,9 @@
 
 li.cardContainer {
     position: relative;
-    width: 10%;
+    width: 100px;
     perspective: 800px;
+
 
     .innerCard {
         display: flex;
@@ -100,7 +98,47 @@ li.cardContainer {
 
 
 p.bust {
-    color: red;
+    color: $secondaryAccentColor;
+}
+.playerSection{
+    width: 50%;
+
+}
+
+.dealerSection{
+    width: 50%;
+    height: 100%;
 }
 
 
+
+.pokemonMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+
+    .playerCardList{
+        align-self: flex-end;
+    }
+    .dealerCardList{
+        align-items: flex-start;
+    }
+
+    
+
+    .playStats{
+        align-self: flex-start;
+        img{
+            width: 300px;
+            object-fit: contain;
+            aspect-ratio: 1 / 1;
+        }
+    }
+    .dealStats{
+        align-self: flex-end;
+
+    }
+
+
+}

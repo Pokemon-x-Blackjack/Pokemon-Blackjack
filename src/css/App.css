@@ -770,31 +770,28 @@ footer a:hover {
   max-width: 1440px;
   width: 85%;
   margin: 0 auto;
+  text-transform: uppercase;
 }
 .gameBoard button {
-  width: 100%;
+  width: 50%;
+  margin: 10px;
+  margin: 0 auto;
 }
 
 .playerDealerContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 50%;
-  flex-wrap: wrap;
-  width: 100%;
+  justify-content: space-evenly;
 }
 
-.playerSection {
-  width: 50%;
-}
-
-.dealerSection {
-  width: 50%;
+.dealerCardList {
+  position: relative;
 }
 
 .playerCardList,
 .dealerCardList {
   display: flex;
+  margin: 50px;
 }
 .playerCardList li:nth-child(n+3) .innerCard,
 .dealerCardList li:nth-child(n+3) .innerCard {
@@ -818,7 +815,7 @@ footer a:hover {
 
 li.cardContainer {
   position: relative;
-  width: 10%;
+  width: 100px;
   perspective: 800px;
 }
 li.cardContainer .innerCard {
@@ -836,44 +833,77 @@ li.cardContainer .innerCard .cardFront {
 }
 
 p.bust {
-  color: red;
+  color: #D52E26;
+}
+
+.playerSection {
+  width: 50%;
+}
+
+.dealerSection {
+  width: 50%;
+  height: 100%;
+}
+
+.pokemonMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+.pokemonMain .playerCardList {
+  align-self: flex-end;
+}
+.pokemonMain .dealerCardList {
+  align-items: flex-start;
+}
+.pokemonMain .playStats {
+  align-self: flex-start;
+}
+.pokemonMain .playStats img {
+  width: 300px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
+.pokemonMain .dealStats {
+  align-self: flex-end;
 }
 
 .pokemonStats {
   display: flex;
 }
 
-.evolveStats {
+.evolutionContainer {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 10px;
 }
 
 .evolveContainer {
-  height: 200px;
-  width: 40px;
+  height: 40px;
+  width: 200px;
   background-color: rgb(121, 121, 121);
   border-radius: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  align-items: center;
+  align-items: flex-start;
   gap: 30%;
   padding: 8px;
 }
 
 .evolveProgress {
   transition: 0.2s ease;
-  width: 100%;
   height: 100%;
   border-radius: 10px;
-  background-color: greenyellow;
+  display: flex;
 }
 
 .evolutionThumbs {
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .thumbContainer {
