@@ -13,13 +13,10 @@
     text-transform: uppercase;
 
     button {
-        width: 50%;
-        margin: 10px;
-        margin: 0 auto; 
+        width: 300px;
+        margin: 10px auto; 
     }
 }
-
-
   
 .playerDealerContainer {
     display: flex;
@@ -139,6 +136,13 @@ p.bust {
         align-self: flex-end;
 
     }
+}
 
-
+.actionButtons {
+    display: flex;
+    justify-content: center;
+    button {
+        width: 150px;
+        margin: 20px;
+    }
 }
