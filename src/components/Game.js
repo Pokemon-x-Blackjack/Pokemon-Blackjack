@@ -166,7 +166,7 @@ const Game = (props) => {
                 // ACE is still 11
                 setState(playerSum)
             }
-        } 
+        }
     }
 
     // function that calculates dealer's total card value
@@ -227,7 +227,7 @@ const Game = (props) => {
             } else {
                 setDealerCardVal(firstSum)
             }
-        } 
+        }
     }
 
     const dealerLogic = () => {
@@ -245,7 +245,6 @@ const Game = (props) => {
     useEffect(() => {
         setIsLoading(true);
         startNewRound(4)
-        // props.setCurrentPage('')
     }, [])
 
     // ************* PLAYER LOGIC ****************
@@ -260,7 +259,7 @@ const Game = (props) => {
             setPlayerBustStatus(true)
         } else if (playerCardVal === 21) {
             setPlayerStandMode(true)
-        } 
+        }
     }, [playerCardVal])
     // *********** END: PLAYER LOGIC **************
 
@@ -322,7 +321,7 @@ const Game = (props) => {
     }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
 
-// Check for end of game
+    // Check for end of game
     useEffect(() => {
         if (playerEvolution === 2 || dealerEvolution === 2) {
             console.log('End of game');
@@ -344,6 +343,7 @@ const Game = (props) => {
             }, 3000)
         }
     }, [playerEvolution, dealerEvolution, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+
  // *********** END: GAME LOGIC ***************
 
   return ( 
@@ -414,11 +414,9 @@ const Game = (props) => {
                             New Round
                         </button>
                     )}
-
-            </div>
-
-            )
-           }
+              </div>
+             )
+            }
         </div>
     );
 }

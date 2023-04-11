@@ -7,18 +7,20 @@ import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
 
 
 
-const CharacterSelector = ({ setButtonSelected}) => {
+const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
+
+    // *********** USESTATES ***************
 
     // pokemon data from starting roster
-    const [rosterArr, setRosterArr] = useState([])
+    const [rosterArr, setRosterArr] = useState([]);
 
-    // pokemon evolutions needed for game
-    const [evolutionArr, setEvolutionArr] = useState([])
-    const [dealerEvolutionArr, setDealerEvolutionArr] = useState([])
+    //  evolution data for selected pokemon
+    const [evolutionArr, setEvolutionArr] = useState([]);
+    const [dealerEvolutionArr, setDealerEvolutionArr] = useState([]);
 
 
     // loading screen
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     // Api Error message
     const [apiError, setApiError] = useState('')
 
@@ -33,14 +35,18 @@ const CharacterSelector = ({ setButtonSelected}) => {
     const [userPokemon, setUserPokemon] = useState('')
 
 
-    // list of starter pokemon 
+    // starter pokemon 
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
 
 
+    // *********** FUNCTIONS: API CALLS ***************
+
     // API calls a pokemon, returns promise
     const apiCallPokemon = (idOrName) => {
-        // dynamic link based on specified id/name
+
+        // dynamic link
         const pokeInfoUrl = new URL(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
+
         // storing axios request in variable
         const pokemonRequest = axios.get(pokeInfoUrl)
             .catch((error) => {
@@ -53,7 +59,7 @@ const CharacterSelector = ({ setButtonSelected}) => {
         return pokemonRequest;
     }
 
-    // Makes call to evolution chain via species endpoint, saves three evolutions and returns arr
+    // call to evolution chain via species endpoint, returns evolution arr via promise 
     const apiCallEvolution = (name) => {
         // access species data via pokemon name
         const speciesUrl = new URL(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
@@ -84,11 +90,18 @@ const CharacterSelector = ({ setButtonSelected}) => {
         return speciesCall
     }
 
-    // takes api response: creates direct path to data, makes obj and pushes to temp arr to be set to state
+
+    // *********** FUNCTIONS: CREATE OBJS FROM RESPONSE ***************
+
+
+    // creates direct path to data, makes obj, push to specified arr
+
     const createPokeObj = (resObj, arr) => {
         if (resObj !== undefined) {
+            // datapath 
             const pokemonInfo = resObj.data
 
+            // creating obj 
             const infoObj = {
                 name: pokemonInfo.name,
                 id: pokemonInfo.id,
@@ -99,12 +112,12 @@ const CharacterSelector = ({ setButtonSelected}) => {
                 altBack: `${pokemonInfo.name} facing towards the action in an idle stance.`
             }
 
+            // push to specified arr
             arr.push(infoObj)
         }
     }
 
-    // takes apiCallEvolution response(arr), makes call on all evolutions, stored in state, evolve ready state updated
-
+    // takes apiCallEvolution response (arr), makes apicall/evolution, createPokeObj/evolution, stored in evolution state
     const evolutionChainToObj = (evolutionRes, setState) => {
         if (evolutionRes !== undefined) {
             // resolve promise to use apiCallEvolution arr
@@ -115,7 +128,7 @@ const CharacterSelector = ({ setButtonSelected}) => {
 
                 // making api call to each evolution, pushing promise
                 evolutionNames.forEach((pokemonName) => {
-                    evolutionPromises.push(apiCallPokemon(pokemonName))
+                    evolutionPromises.push(apiCallPokemon(pokemonName));
                 })
 
                 // ALL promises ready? 
@@ -125,7 +138,7 @@ const CharacterSelector = ({ setButtonSelected}) => {
                         const tempArr = []
                         evolutionData.forEach((pokemon) => {
                             // creating obj per pokemon, saving to tempArr
-                            createPokeObj(pokemon, tempArr)
+                            createPokeObj(pokemon, tempArr);
                         })
 
                         // storing in Evolution Arr
@@ -137,23 +150,21 @@ const CharacterSelector = ({ setButtonSelected}) => {
         }
     }
 
+    // *********** USE EFFECTS ***************
 
 
-    // on component render: 
-    // make api call for pokemon info, store in state
+    // on component render: make api call for rosterList info, store in state
     useEffect(() => {
 
         // loading page on page load
         setIsLoading(true);
 
-        // update current page
-        // setCurrentPage('chooseCharacter')
         // empty promise arr
         const starterPromises = []
 
         // making api calls for each pokemon -  storing promises in promise arr 
         rosterList.forEach((pokemon) => {
-            starterPromises.push(apiCallPokemon(pokemon))
+            starterPromises.push(apiCallPokemon(pokemon));
         })
 
         // ALL promises resolved? create specific obj per call, push to tempArr and save arr to state 
@@ -165,34 +176,43 @@ const CharacterSelector = ({ setButtonSelected}) => {
                 // iterating through all starter pokemon
                 starterData.forEach((starterObj) => {
                     //creating obj - sending to temp arr
-                    createPokeObj(starterObj, tempArr)
+                    createPokeObj(starterObj, tempArr);
                 })
                 // storing objs in state
-                setRosterArr(tempArr)
+                setRosterArr(tempArr);
             })
 
     }, [])
 
-    // when user chooses pokemon
-    // filter rosterlist, excluding user pokemon randomize a pokemon
-    // fetch evolution arr. player can proceed
+    // generate dealerArr when userPokemon changes
     useEffect(() => {
-        const dealerRoster = rosterList.filter((pokemon) => { return pokemon !== userPokemon })
+
         const randomPokemon = (arr) => {
             return Math.floor(Math.random() * arr.length)
         }
 
+        // filter rosterlist, excluding user pokemon 
+        const dealerRoster = rosterList.filter((pokemon) => { return pokemon !== userPokemon })
+
+        // randomize a pokemon
         const randomDealer = dealerRoster[randomPokemon(dealerRoster)]
 
+        // fetch evolution arr
         evolutionChainToObj(apiCallEvolution(randomDealer), setDealerEvolutionArr)
 
+        // player can proceed
         setEvolveReady(true)
 
     }, [userPokemon])
 
+
+    // *********** FUNCTIONS: EVENT HANDLERS ***************
+
+
     // sets user pokemon on clicked pokemon, finds evolutions in background
     const handleClickSelect = (event) => {
-        const clickedPokemon = event.target.textContent
+        const clickedPokemon = event.target.textContent;
+
         setUserPokemon(clickedPokemon)
         evolutionChainToObj(apiCallEvolution(clickedPokemon), setEvolutionArr)
     }
@@ -209,19 +229,19 @@ const CharacterSelector = ({ setButtonSelected}) => {
 
     // character select form submit: 
     const handleCharacterSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         // checks if pokemon is chosen
         // renders game.js
         if (userPokemon !== '' && evolveReady === true) {
-            setFormSubmit(true)
+            setFormSubmit(true);
         }
     }
 
     return (
         <>
             {
-                // checking for Api Error
+                // checking for Api Errors
                 apiError !== '' ? (
 
                     <ErrorPage
@@ -237,30 +257,37 @@ const CharacterSelector = ({ setButtonSelected}) => {
                             <img src={pikaLoading} alt="Pikachu running as the game loads" />
                         </div>
                     ) :
-                        // game component render on 
+                        // game component renders on 
 
                         formSubmit === true ? (
 
                             <Game
                                 evolutionArr={evolutionArr}
                                 dealerEvolutionArr={dealerEvolutionArr}
-                                // setCurrentPage={setCurrentPage}
                             />) :
 
 
-                            // character selection
+                            // character selection component
+
                             < section className="characterSelect" >
                                 {/* wrapper */}
                                 <div className="wrapper">
-                                    {/* character selection form */}
 
-                                    <form action="#" onSubmit={handleCharacterSubmit} className="characterForm">
+
+                                    {/* character selection form */}
+                                    <form
+                                        action="#"
+                                        onSubmit={handleCharacterSubmit}
+                                        className="characterForm">
 
                                         <h2>Choose your Pokemon</h2>
+
                                         {/* list of pokemon to choose from */}
                                         <ul className="pokeRoster">
+
                                             {rosterArr.map((pokemon) => {
                                                 return (
+
                                                     <li key={pokemon.id}>
                                                         <div
                                                             tabIndex={0}
@@ -280,6 +307,7 @@ const CharacterSelector = ({ setButtonSelected}) => {
                                             })}
 
                                         </ul>
+                                        {/* submit form */}
                                         <button>All Set!</button>
                                     </form>
                                 </div>

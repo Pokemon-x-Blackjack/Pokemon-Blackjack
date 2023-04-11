@@ -13,7 +13,6 @@ import './css/App.css';
 
 
 function App() {
-  // const [currentPage, setCurrentPage] = useState('')
 
   return (
     <div className="App">
@@ -23,17 +22,11 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
       </Routes>
 
-      <Header
-        // currentPage={currentPage}
-      />
+      <Header />
       <main>
-        <Landing
-          // setCurrentPage={setCurrentPage}
-        />
+        <Landing />
       </main>
-      <Footer
-        // currentPage={currentPage}
-      />
+      <Footer />
 
 
     </div>
