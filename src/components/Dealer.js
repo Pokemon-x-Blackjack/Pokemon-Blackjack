@@ -33,7 +33,7 @@ const Dealer = (props) => {
         }
     }, [props.dealerEvolution])
 
-    const dealerCardClass = (props.playerStand && props.dealerStand) || props.bustStatus ? `reveal dealerCardList` : "dealerCardList";
+    const dealerCardClass = props.playerStand || props.bustStatus ? `reveal dealerCardList` : "dealerCardList";
 
     return (
         <section className="dealer">
@@ -65,7 +65,6 @@ const Dealer = (props) => {
                     barType='dealer'
                 />
             </div>
-
 
             <p>Dealer's cards value: {props.cardValue}</p>
 

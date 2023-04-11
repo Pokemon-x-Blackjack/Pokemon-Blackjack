@@ -280,9 +280,14 @@ figure {
   margin: 0;
 }
 
+main {
+  height: calc(100vh - 140px);
+}
+
 button {
   color: white;
   background: #0c0c0c;
+  border: 1px solid #252525;
   border: none;
   border-radius: 7px;
   padding: 15px 30px;
@@ -294,10 +299,6 @@ button:hover, button:focus-visible {
   transform: scale(1.06);
   background-color: #ff4136;
   cursor: pointer;
-}
-
-main {
-  height: calc(100vh - 140px);
 }
 
 @keyframes flip1 {
@@ -625,14 +626,12 @@ footer a:hover {
   text-align: center;
   list-style: none;
 }
-
 .buttonGuide li button {
   cursor: default;
 }
 .buttonGuide li p {
   margin-top: 10px;
 }
-
 
 @media (max-width: 1175px) {
   .modalFlex .gameRules {
@@ -667,7 +666,8 @@ footer a:hover {
     margin-left: 0;
   }
 }
-.characterSelect {
+.characterSelect,
+.characterSelect .wrapper {
   height: 100%;
 }
 
@@ -679,7 +679,7 @@ footer a:hover {
 }
 .characterForm h2 {
   font-family: rixvideogame-pro, sans-serif;
-  font-size: 59px;
+  font-size: 55px;
   letter-spacing: 7.847px;
 }
 .characterForm button {
@@ -813,7 +813,7 @@ footer a:hover {
 }
 
 .dealerCardList.reveal li:nth-child(1) .innerCard {
-  animation: flip3 1.4s forwards;
+  animation: flip3 1s forwards;
 }
 
 li.cardContainer {

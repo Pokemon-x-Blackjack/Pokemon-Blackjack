@@ -71,7 +71,7 @@
 .dealerCardList.reveal {
         li:nth-child(1) {
             .innerCard {
-                @include flipAnime(flip3, 1.4s)
+                @include flipAnime(flip3, 1s)
             }
         }
 }

@@ -23,7 +23,7 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
     setTimeout(() => {
       setProgress({ height: progressHeight, color: progressColor })
-    }, 2000)
+    }, 1000)
 
   }, [evolutionPoint])
 
