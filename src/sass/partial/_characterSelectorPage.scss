@@ -3,6 +3,7 @@
 .characterSelect,
 .characterSelect .wrapper {
     height: 100%;
+    background-color: $accentColor;
 }
 
 
@@ -14,18 +15,14 @@
     align-items: center;
 
     h2 {
-        font-family: rixvideogame-pro, sans-serif;
+        font-family: $primaryFont;
         font-size: 55px;
         letter-spacing: 7.847px;
+        color: $primarycolor;
     }
 
     button {
-        background: #0c0c0c;
-        border-radius: 7px;
-        border: 1px solid #252525;
-        backdrop-filter: blur(17.8px);
-        -webkit-backdrop-filter: blur(17.8px);
-        color: white;
+
 
         margin: 15px 0 0 0;
     }
@@ -56,8 +53,8 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #CED0D2;
-    border: 6px solid #333;
+    background-color: $primarycolor;
+    border: 6px solid $accentColor;
     border-radius: 0% 0% 52% 52% / 25% 25% 25% 25%;
 
     transition: 0.2s ease;
@@ -79,12 +76,11 @@
     }
 
     h3 {
-        color: white;
         text-transform: capitalize;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-family: $secondaryFont;
         font-size: 25px;
         text-transform: uppercase;
-        color: #252525;
+        color: $accentColor;
         font-weight: bold;
     }
 

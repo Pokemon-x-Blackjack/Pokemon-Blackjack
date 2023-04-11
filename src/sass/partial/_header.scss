@@ -3,9 +3,8 @@
 header .wrapper {
    display: flex;
    justify-content: space-between;
-   color: black;
-
    padding-top: 20px;
+   transition: 0.2s ease;
 }
 
 
@@ -19,12 +18,22 @@ header .wrapper {
    flex-direction: row-reverse;
    gap: 20px;
 
+   position: relative;
 
 
-   input,
+
+   input[type=range],
    .musicToggleBtn {
       transform: scaleX(-1);
+   }
+
+   input[type=range] {
       cursor: pointer;
+      position: absolute;
+      right: 60px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
    }
 }
 
@@ -32,4 +41,15 @@ header .wrapper {
    height: 50px;
    width: 50px;
    padding: 0px;
+}
+
+@media(max-width: 470px) {
+   .audioContainer {
+      input[type=range] {
+         transform: rotate(-90deg);
+         bottom: -230px;
+         right: -50px;
+         width: 150px;
+      }
+   }
 }

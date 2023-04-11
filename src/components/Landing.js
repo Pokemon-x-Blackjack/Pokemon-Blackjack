@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import CharacterSelector from './CharacterSelector';
 import HowToPlay from './HowToPlay';
-import snorlax from '../assets/snorlax-pokemon.gif'
 
 
-const Landing = () => {
+const Landing = ({ setCurrentPage }) => {
   const [buttonSelected, setButtonSelected] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
@@ -26,6 +25,7 @@ const Landing = () => {
       {buttonSelected ? (
         <CharacterSelector
           setButtonSelected={setButtonSelected}
+          setCurrentPage={setCurrentPage}
         />
       ) : (
         <section className="landing">
@@ -40,7 +40,7 @@ const Landing = () => {
               <button onClick={handleButtonClick}>START</button>
               <button onClick={handleHowToPlayClick}>HOW TO PLAY</button> {/* Add a button to show/hide the HowToPlay component */}
             </div>
-           
+
           </div>
         </section>
       )}

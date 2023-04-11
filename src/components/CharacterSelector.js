@@ -7,7 +7,8 @@ import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
 
 
 
-const CharacterSelector = (props) => {
+const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
+
     // pokemon data from starting roster
     const [rosterArr, setRosterArr] = useState([])
 
@@ -145,6 +146,8 @@ const CharacterSelector = (props) => {
         // loading page on page load
         setIsLoading(true);
 
+        // update current page
+        setCurrentPage('chooseCharacter')
         // empty promise arr
         const starterPromises = []
 
@@ -210,7 +213,7 @@ const CharacterSelector = (props) => {
 
         // checks if pokemon is chosen
         // renders game.js
-        if (evolveReady === true) {
+        if (userPokemon !== '' && evolveReady === true) {
             setFormSubmit(true)
         }
     }
@@ -223,7 +226,7 @@ const CharacterSelector = (props) => {
 
                     <ErrorPage
                         apiError={apiError}
-                        setButtonSelected={props.setButtonSelected}
+                        setButtonSelected={setButtonSelected}
                     />) :
 
                     // loading state for apiCallPokemon
@@ -241,6 +244,7 @@ const CharacterSelector = (props) => {
                             <Game
                                 evolutionArr={evolutionArr}
                                 dealerEvolutionArr={dealerEvolutionArr}
+                                setCurrentPage={setCurrentPage}
                             />) :
 
 

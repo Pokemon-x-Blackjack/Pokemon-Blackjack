@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Landing from './components/Landing';
 import Result from './components/Result';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import CharacterSelector from './components/CharacterSelector';
 import ErrorPage from './components/Error404';
 
 import './css/App.css';
@@ -13,6 +13,9 @@ import './css/App.css';
 
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('')
+
+
   return (
     <div className="App">
 
@@ -21,11 +24,17 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
       </Routes>
 
-      <Header />
+      <Header
+        currentPage={currentPage}
+      />
       <main>
-        <Landing />
+        <Landing
+          setCurrentPage={setCurrentPage}
+        />
       </main>
-      <Footer />
+      <Footer
+        currentPage={currentPage}
+      />
 
 
     </div>
