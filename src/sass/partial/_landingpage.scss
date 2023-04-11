@@ -78,6 +78,9 @@
           transform: scale(1.06);
           box-shadow: 0 0 8px white; 
         }
+        &:focus {
+          background-color: red;
+        }
       }
     }
   }
