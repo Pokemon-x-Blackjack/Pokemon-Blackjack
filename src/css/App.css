@@ -470,6 +470,18 @@ footer a:hover {
   color: #F5F5F7;
 }
 
+@media (max-width: 470px) {
+  footer {
+    padding: 0;
+  }
+  footer .wrapper {
+    width: 90%;
+  }
+  .socialLinks,
+  p {
+    text-align: center;
+  }
+}
 .errorContainer {
   background-color: #ffffff;
   color: #0f0f0f;
@@ -729,9 +741,10 @@ footer a:hover {
   font-size: 55px;
   letter-spacing: 7.847px;
   color: #F5F5F7;
+  text-align: center;
 }
 .characterForm button {
-  margin: 15px 0 0 0;
+  margin: 15px 0;
 }
 
 .pokeRoster {
