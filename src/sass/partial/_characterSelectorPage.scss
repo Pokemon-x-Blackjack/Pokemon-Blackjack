@@ -1,0 +1,105 @@
+@use './variables' as *;
+
+.characterSelect,
+.characterSelect .wrapper {
+    height: 100%;
+    background-color: $accentColor;
+}
+
+
+
+.characterForm {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        font-family: $primaryFont;
+        font-size: 55px;
+        letter-spacing: 7.847px;
+        color: $primarycolor;
+        text-align: center;
+    }
+
+    button {
+        margin: 15px 0;
+    }
+}
+
+.pokeRoster {
+    height: 100%;
+    max-height: 57vh;
+    width: 85%;
+
+    padding: 120px 0 0 0;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    overflow-y: scroll;
+}
+
+.pokemonCard {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primarycolor;
+    border: 6px solid $accentColor;
+    border-radius: 0% 0% 52% 52% / 25% 25% 25% 25%;
+
+    transition: 0.2s ease;
+    position: relative;
+
+    img,
+    h3 {
+        pointer-events: none;
+    }
+
+    img {
+        width: 75%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        position: absolute;
+        bottom: 40px;
+        bottom: 150px;
+        /* adjust this value to move the image up or down */
+    }
+
+    h3 {
+        text-transform: capitalize;
+        font-family: $secondaryFont;
+        font-size: 25px;
+        text-transform: uppercase;
+        color: $accentColor;
+        font-weight: bold;
+    }
+
+
+
+    &:hover,
+    &:focus {
+        background-color: #D52E26;
+        cursor: pointer;
+    }
+}
+
+.activeCard {
+    background-color: #D52E26;
+    scale: 1.05;
+    rotate: 2deg;
+
+    &:hover,
+    &:focus {
+        background-color: #D52E26;
+        outline: none;
+    }
+}

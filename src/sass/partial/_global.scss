@@ -1,0 +1,69 @@
+@use './variables' as *;
+
+html {
+    font-size: 125%;
+    background-color: #F5F5F7;
+    color: #333;
+}
+
+.wrapper {
+    max-width: 1440px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+figure {
+    margin: 0;
+}
+
+main {
+    min-height: calc(100vh - 140px);
+}
+
+button {
+    color: white;
+    background: #0c0c0c;
+    border: 1px solid #252525;
+    border: none;
+    border-radius: 7px;
+    padding: 15px 30px;
+    backdrop-filter: blur(17.8px);
+    -webkit-backdrop-filter: blur(17.8px);
+    transition: all .4s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.06);
+        // box-shadow: 0 0 8px white;
+        background-color: #ff4136;
+        cursor: pointer;
+    }
+}
+
+
+// affects header and footer
+.chooseCharacter {
+    background-color: #333;
+}
+

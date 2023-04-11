@@ -1,0 +1,144 @@
+@use './variables' as *;
+
+@mixin flipAnime($animeName, $duration) {
+    animation: $animeName $duration forwards;
+}
+
+.gameBoard {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    width: 85%;
+    margin: 0 auto;
+    text-transform: uppercase;
+
+    button {
+        width: 50%;
+        margin: 10px;
+        margin: 0 auto; 
+    }
+}
+
+
+  
+.playerDealerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.dealerCardList{
+    position: relative;
+}
+  
+.playerCardList,
+.dealerCardList {
+    display: flex;
+    margin: 50px;
+
+    li:nth-child(n+3) {
+        .innerCard{
+            @include flipAnime(flipN, 0.8s);
+        }
+    }
+}
+
+.playerCardList {
+    li:nth-child(1) {
+        .innerCard {
+            @include flipAnime(flip1, 1s);
+        }
+    }
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip2, 1.2s);
+        }
+    }
+}
+
+.dealerCardList {
+    li:nth-child(2) {
+        .innerCard {
+            @include flipAnime(flip3, 1.4s);
+        }
+    }
+}
+
+.dealerCardList.reveal {
+        li:nth-child(1) {
+            .innerCard {
+                @include flipAnime(flip3, 1s)
+            }
+        }
+}
+
+li.cardContainer {
+    position: relative;
+    width: 100px;
+    perspective: 800px;
+
+
+    .innerCard {
+        display: flex;
+        align-items: center;
+        height: 175px;
+        transform-style: preserve-3d;
+
+        .card {
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .cardFront {
+            transform: rotateY(180deg)
+        }
+    }
+}
+
+
+p.bust {
+    color: $secondaryAccentColor;
+}
+.playerSection{
+    width: 50%;
+
+}
+
+.dealerSection{
+    width: 50%;
+    height: 100%;
+}
+
+
+
+.pokemonMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+
+    .playerCardList{
+        align-self: flex-end;
+    }
+    .dealerCardList{
+        align-items: flex-start;
+    }
+
+    
+
+    .playStats{
+        align-self: flex-start;
+        img{
+            width: 300px;
+            object-fit: contain;
+            aspect-ratio: 1 / 1;
+        }
+    }
+    .dealStats{
+        align-self: flex-end;
+
+    }
+
+
+}

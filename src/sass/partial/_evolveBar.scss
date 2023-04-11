@@ -1,0 +1,89 @@
+@use './variables' as *;
+@use './keyFrames' as *;
+
+.evolutionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;    
+}
+
+.evolveContainer {
+    height:40px;
+    width: 200px;
+    background-color: rgb(121, 121, 121);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30%;
+    padding: 8px;
+}
+
+.evolveProgress {
+    transition: 0.2s ease;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+}
+
+
+.evolutionThumbs {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.thumbContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(242, 242, 242);
+    background: radial-gradient(circle, rgba(242, 242, 242, 1) 29%, grey 71%);
+
+    position: relative;
+
+    // img hidden by default
+    img {
+        border-radius: 50%;
+        object-fit: cover;
+        filter: brightness(0) blur(2px);
+    }
+}
+
+
+.pokeOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: contain;
+    background-position: top;
+
+    z-index: 10;
+    opacity: 1;
+
+    transition: 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 0;
+    }
+}
+
+// idle animation class when hidden
+.pokeballAnimate {
+    animation: wiggle 1.25s cubic-bezier(.36, .07, .19, .97) infinite;
+}
+
+.revealPokemon {
+
+    .pokeOverlay {
+        animation: pokeballGone 1s forwards;
+    }
+
+    img {
+        animation: evolutionReveal .70s 2s forwards ease;
+    }
+}

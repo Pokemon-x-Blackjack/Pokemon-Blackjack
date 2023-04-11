@@ -1,18 +1,84 @@
-// Player.js
-        // Contains: player pokemon, current cards, action buttons
-            // all render onLoad
-        
-        // PlayerInfo.js (player pokemon)   
-            // listens to: "selected pokemon" state, "player evolution" state
+import { useEffect, useState } from 'react';
 
-        // Cards.js
-            // listens to: "player drawn card" state
+import cardBack from '../assets/card-back.png';
+import Evolvebar from './Evolvebar';
 
-        // ButtonList.js
-            // Stand: set "status" state to "stand" (or false), pass turn to dealer (disable action buttons)
-            // Hit: 
-                // 1. run draw card function 
-                // 2. evaluate player's card value
-                    // if player card value >21, set player bust status = true
-                    // if player card value <21, set player stand mode = false
-                    // if player card value =21, set player stand mode = true
+// TO DO: destructing props
+const Player = (props) => {
+
+    const [ pokemonUrl, setPokemonUrl ] = useState(props.evolutionArr[props.playerEvolution].frontGifUrl);
+    
+    const playerCardsProp =  props.playerCards    
+    
+    const currentEvolution = props.evolutionArr[props.playerEvolution];
+ 
+// evolution animation 
+    useEffect(() => {
+        if (props.evolutionArr[props.playerEvolution - 1]?.frontGifUrl !== undefined){
+            setTimeout(() => {
+                let intervalId = setInterval(() => {
+                    setPokemonUrl((pokemon) => 
+                    pokemon === props.evolutionArr[props.playerEvolution].frontGifUrl
+                    ? props.evolutionArr[props.playerEvolution - 1].frontGifUrl
+                    : props.evolutionArr[props.playerEvolution].frontGifUrl
+                    )
+                }, 50) // how fast the image toggles
+                
+                setTimeout(() => {
+                    clearInterval(intervalId);
+                    setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
+                }, 1100); // evoluting time
+                
+                setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
+            }, 1000) // delay start of evolution
+        }
+    }, [props.playerEvolution])
+
+   
+    return (
+        <div className="playerSection">
+
+            <div className='pokemonEvolve'>
+                {/* Evolve Bar Component */}
+                <Evolvebar
+                    evolutionArray={props.evolutionArr}
+                    evolutionPoint={props.playerEvolution}
+                    barType='player'
+                />
+            </div>
+
+            <div className="pokemonMain">
+                <ul className='playerCardList'>
+                    {
+                        playerCardsProp.map((card) => {
+                            return (
+                                <li key={card.code} className="cardContainer">
+                                    <div className="innerCard">
+                                        <figure className='card cardBack'><img src={cardBack} alt="back of poker card" /></figure>
+                                        <figure className='card cardFront'><img src={card.image} alt={card.value + card.suit} /></figure>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+
+                {/* avatar and name */}
+                <div className="playStats">
+                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
+                    <h3>{currentEvolution.name}</h3>
+                </div>
+
+            </div>
+            <p>player's card value: {props.cardValue}</p>
+
+            {
+                props.bustStatus
+                    ? <p className="bust">BUST</p>
+                    : null
+            }
+        </div>
+    )
+}
+
+export default Player;

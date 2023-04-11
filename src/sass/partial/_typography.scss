@@ -1,0 +1,29 @@
+@use './variables' as *;
+
+h1{
+    
+    // font-size: clamp(2.77rem, 3vw, 4rem);
+    font-size: 50px;
+    font-weight: bold;
+    color:  #212121;
+}
+
+h3{
+    font-size: 50px;
+}
+
+li{
+    font-family: "ff-nuvo-mono-web-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 19px;
+
+}
+
+h1,h3{
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: rixvideogame-pro, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
