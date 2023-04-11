@@ -44,7 +44,6 @@ const Game = (props) => {
 
     // call a new deck, shuffle, draw 4 and save 2 each to playerCard and dealerCard state, save deckId
     const startNewRound = (cardDrawCount) => {
-        console.log('Start new round');
         setPlayerStandMode(false);
         setDealerStandMode(false);
         setPlayerBustStatus(false);
@@ -83,7 +82,6 @@ const Game = (props) => {
             setState([...state, res.data.cards[0]])
 
             setIsLoading(false);
-            console.log("draw one")
         }).catch((error) => {
             if (error.response) {
                 const errorStatus = `Having trouble fetching a new card: ${error.response.statusText}`;
@@ -93,7 +91,6 @@ const Game = (props) => {
     }
 
     const handleStand = () => {
-        console.log("player stand")
         setPlayerStandMode(true)
     }
 
@@ -119,7 +116,6 @@ const Game = (props) => {
                 const value = cardValues[card.value] || Number(card.value);
                 return value;
             })
-
 
             // reduce() is an array method that contains two argument: callbackFn & initial val (optional)
             // the callbackFn has two params: accumulator & currentValue
@@ -169,10 +165,7 @@ const Game = (props) => {
                 // ACE is still 11
                 setState(playerSum)
             }
-
-        } else {
-            console.log("no player card")
-        }
+        } 
     }
 
     const calcDealerVal = () => {
@@ -220,7 +213,6 @@ const Game = (props) => {
             const lastCardVal = cardValues[lastCard] || Number(lastCard)
 
             const firstSum = dealerCardVal + lastCardVal
-            console.log(firstSum)
 
             let finalVal
             if (firstSum > 21) {
@@ -229,27 +221,19 @@ const Game = (props) => {
                 } else {
                     finalVal = lastCardVal
                 }
-                console.log("final dealer val", dealerCardVal + finalVal)
                 setDealerCardVal(dealerCardVal + finalVal)
             } else {
-                console.log("final dealer val", firstSum)
                 setDealerCardVal(firstSum)
             }
-
-        } else {
-            console.log('no dealer card')
-        }
+        } 
     }
 
     const dealerLogic = () => {
         if (dealerCardVal > 21) {
-            console.log("dealer bust")
             setDealerBustStatus(true)
         } else if (dealerCardVal <= 21 && dealerCardVal >= 17) {
-            console.log("dealer stand")
             setDealerStandMode(true)
         } else if (dealerCardVal < 17) {
-            console.log("dealer continue")
             setTimeout(() => {
                 drawOne(deckId, dealerCards, setDealerCards);
             }, 500); // timer for dealer cards to appear slowly
@@ -272,13 +256,9 @@ const Game = (props) => {
     useEffect(() => {
         if (playerCardVal > 21) {
             setPlayerBustStatus(true)
-            console.log("player bust")
         } else if (playerCardVal === 21) {
             setPlayerStandMode(true)
-            console.log("player blackjack")
-        } else if (playerCardVal < 21) {
-            console.log("player continue game")
-        }
+        } 
     }, [playerCardVal])
     // *********** END: PLAYER LOGIC **************
 
@@ -286,7 +266,6 @@ const Game = (props) => {
     // *************** DEALER LOGIC *****************
     // Start Dealer logic once player's status is set to stand
     useEffect(() => {
-        console.log("run dealer")
         // this is running initially on load of game before deckId is created
         if (playerStandMode === true && dealerBustStatus === false) {
             if (deckId) {
@@ -297,19 +276,15 @@ const Game = (props) => {
 
     // after drawing one card to dealer, evaluate dealer's card value
     useEffect(() => {
-        console.log("dealer's cards", dealerCards)
         calcDealerVal()
     }, [dealerCards])
 
     // after evaluating dealer's card val, run dealerLogic to determine dealer's next step
     useEffect(() => {
         if (playerStandMode) {
-            console.log("dealer logic running, card valu:", dealerCardVal)
             dealerLogic()
         }
     }, [dealerCardVal])
-
-
     // *********** END: DEALER LOGIC ***************
 
 
@@ -342,7 +317,6 @@ const Game = (props) => {
                 }
             }
         }
-
     }, [playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
 
 
@@ -360,85 +334,87 @@ const Game = (props) => {
                 setWinner('player')
             } else if (dealerEvolution === 2) {
                 setWinner('dealer')
-            }
-
-        } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
+            } else if (playerBustStatus || dealerBustStatus || (playerStandMode && dealerStandMode)) {
             setTimeout(() => {
                 setShowButton(true);
             }, 3000)
         }
     }, [playerEvolution, dealerEvolution, playerBustStatus, dealerBustStatus, playerStandMode, dealerStandMode]);
+ // *********** END: GAME LOGIC ***************
 
-    // *********** END: GAME LOGIC ***************
+  return ( 
+    <div className="App">
+        {
+            
+            apiError !== '' ? (
 
+            <ErrorPage
+                apiError={apiError}
+                setButtonSelected={props.setButtonSelected}
+            />) :
 
-    return (
-        <div className="App">
-            {
+            isLoading ? (
+                <div className="loadingPage">
+                    <h2>Loading...</h2>
+                    <img src={pikaLoading} />
+                </div>
+            ) :
+            
+            gameOver ? (
+                <Result
+                    winner={winner}
+                    playerEvoArray = {evolutionArr}
+                    dealerEvoArray = {dealerEvolutionArr}
+                />
+                
+            ) : (
 
-                apiError !== '' ? (
+            <div className="gameBoard">
+                <div className="playerDealerContainer">
 
-                    <ErrorPage
-                        apiError={apiError}
-                        setButtonSelected={props.setButtonSelected}
-                    />) :
+                    <Player 
+                        standMode={playerStandMode}
+                        playerCards={playerCards}
+                        bustStatus={playerBustStatus}
+                        cardValue={playerCardVal}
+                        evolutionArr={evolutionArr}
+                        handleStand={handleStand}
+                        handleHit={handleHit}
+                        playerEvolution={playerEvolution}
+                    />
 
-                    isLoading ? (
-                        <div className="loadingPage">
-                            <h2>Loading...</h2>
-                            <img src={pikaLoading} />
-                        </div>
-                    ) :
+                    <Dealer
+                        dealerCards={dealerCards}
+                        cardValue={dealerCardVal}
+                        dealerEvolutionArr={dealerEvolutionArr}
+                        dealerEvolution={dealerEvolution}
+                        playerStand={playerStandMode}
+                        dealerStand={dealerStandMode}
+                        bustStatus={dealerBustStatus}
+                    />
 
-                        gameOver ? (
-                            <Result
-                                winner={winner}
-                                playerEvoArray={evolutionArr}
-                                dealerEvoArray={dealerEvolutionArr}
-                            />
+                </div>
 
-                        ) : (
-
-                            <div className="gameBoard">
-                                <div className="playerDealerContainer">
-
-                                    <div className="playerSection">
-                                        <Player
-                                            standMode={playerStandMode}
-                                            playerCards={playerCards}
-                                            bustStatus={playerBustStatus}
-                                            cardValue={playerCardVal}
-                                            evolutionArr={evolutionArr}
-                                            handleStand={handleStand}
-                                            handleHit={handleHit}
-                                            playerEvolution={playerEvolution}
-                                        />
-                                    </div>
-
-                                    <div className="dealerSection">
-                                        <Dealer
-                                            dealerCards={dealerCards}
-                                            cardValue={dealerCardVal}
-                                            dealerEvolutionArr={dealerEvolutionArr}
-                                            dealerEvolution={dealerEvolution}
-                                            playerStand={playerStandMode}
-                                            dealerStand={dealerStandMode}
-                                            bustStatus={dealerBustStatus}
-                                        />
-                                    </div>
-
-
-                                </div>
-                                {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
-                                    <button onClick={() => { startNewRound(4); setShowButton(false); }}>
-                                        New Round
-                                    </button>
-                                )}
-
-                            </div>
-
+                {
+                    playerStandMode || playerBustStatus
+                        ? null
+                        : (<>
+                            <button onClick={handleStand}>STAND</button>
+                            <button onClick={handleHit}>HIT</button>
+                        </>
                         )
-            }
+                }
+
+                {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
+                        <button onClick={() => { startNewRound(4); setShowButton(false); }}>
+                            New Round
+                        </button>
+                    )}
+
+            </div>
+
+            )
+           }
         </div>
     );
 }
