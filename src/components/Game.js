@@ -16,27 +16,27 @@ const Game = (props) => {
     const [playerCards, setPlayerCards] = useState([]) // 2
     const [dealerCards, setDealerCards] = useState([]) // 3
 
-    const [playerCardVal, setPlayerCardVal] = useState(0); // 4
-    const [dealerCardVal, setDealerCardVal] = useState(0); // 5
+    const [playerCardVal, setPlayerCardVal] = useState(0) // 4
+    const [dealerCardVal, setDealerCardVal] = useState(0) // 5
 
-    const [playerStandMode, setPlayerStandMode] = useState(false); // 6
-    const [dealerStandMode, setDealerStandMode] = useState(false); // 7
+    const [playerStandMode, setPlayerStandMode] = useState(false) // 6
+    const [dealerStandMode, setDealerStandMode] = useState(false) // 7
 
-    const [playerBustStatus, setPlayerBustStatus] = useState(false); // 8
-    const [dealerBustStatus, setDealerBustStatus] = useState(false); // 9
+    const [playerBustStatus, setPlayerBustStatus] = useState(false) // 8
+    const [dealerBustStatus, setDealerBustStatus] = useState(false) // 9
 
-    const [winner, setWinner] = useState(""); // 10
+    const [winner, setWinner] = useState("") // 10
 
-    const [playerEvolution, setPlayerEvolution] = useState(0); // 11
-    const [dealerEvolution, setDealerEvolution] = useState(0); // 12 
+    const [playerEvolution, setPlayerEvolution] = useState(0) // 11
+    const [dealerEvolution, setDealerEvolution] = useState(0);// 12 
 
     const [apiError, setApiError] = useState('') // 13
 
-    const [showButton, setShowButton] = useState(false); // 14
+    const [showButton, setShowButton] = useState(false) // 14
 
-    const [gameOver, setGameOver] = useState(false); // 15
+    const [gameOver, setGameOver] = useState(false) // 15
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
     const evolutionArr = props.evolutionArr
     const dealerEvolutionArr = props.dealerEvolutionArr
@@ -90,6 +90,7 @@ const Game = (props) => {
         });
     }
 
+    // handle stand button on click
     const handleStand = () => {
         setPlayerStandMode(true)
     }
@@ -100,7 +101,7 @@ const Game = (props) => {
     }
 
 
-    // function that calculates total card value
+    // function that calculates player's total card value
     const calcCardValue = (cardListState, setState) => {
         // define value for the special cards
         const cardValues = {
@@ -168,6 +169,7 @@ const Game = (props) => {
         } 
     }
 
+    // function that calculates dealer's total card value
     const calcDealerVal = () => {
         const cardValues = {
             ACE: 11,
@@ -387,12 +389,12 @@ const Game = (props) => {
 
                     <Dealer
                         dealerCards={dealerCards}
-                        cardValue={dealerCardVal}
                         dealerEvolutionArr={dealerEvolutionArr}
                         dealerEvolution={dealerEvolution}
                         playerStand={playerStandMode}
                         dealerStand={dealerStandMode}
                         bustStatus={dealerBustStatus}
+                        cardValue={dealerCardVal}
                     />
 
                 </div>
@@ -401,14 +403,14 @@ const Game = (props) => {
                     playerStandMode || playerBustStatus
                         ? null
                         : (<div className='actionButtons'>
-                            <button onClick={handleStand}>STAND</button>
-                            <button onClick={handleHit}>HIT</button>
+                            <button onClick={handleStand} className='standBut'>STAND</button>
+                            <button onClick={handleHit} className='hitBut'>HIT</button>
                         </div>
                         )
                 }
 
                 {showButton && playerEvolution < 2 && dealerEvolution < 2 && (
-                        <button onClick={() => { startNewRound(4); setShowButton(false); }}>
+                        <button className='newRoundBut' onClick={() => { startNewRound(4); setShowButton(false); }}>
                             New Round
                         </button>
                     )}
