@@ -597,6 +597,9 @@ footer a:hover {
   transform: scale(1.06);
   box-shadow: 0 0 8px white;
 }
+.landing .wrapper button:focus {
+  background-color: red;
+}
 
 .howToPlayOverlay {
   position: fixed;
