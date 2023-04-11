@@ -243,7 +243,7 @@ const Game = (props) => {
     useEffect(() => {
         setIsLoading(true);
         startNewRound(4)
-        props.setCurrentPage('')
+        // props.setCurrentPage('')
     }, [])
 
     // ************* PLAYER LOGIC ****************

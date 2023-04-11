@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Landing from './components/Landing';
 import Result from './components/Result';
 import Header from './components/Header';
@@ -13,7 +13,7 @@ import './css/App.css';
 
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('')
+  // const [currentPage, setCurrentPage] = useState('')
 
 
   return (
@@ -25,15 +25,15 @@ function App() {
       </Routes>
 
       <Header
-        currentPage={currentPage}
+        // currentPage={currentPage}
       />
       <main>
         <Landing
-          setCurrentPage={setCurrentPage}
+          // setCurrentPage={setCurrentPage}
         />
       </main>
       <Footer
-        currentPage={currentPage}
+        // currentPage={currentPage}
       />
 
 

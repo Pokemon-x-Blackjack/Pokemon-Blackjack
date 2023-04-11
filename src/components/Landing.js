@@ -9,9 +9,9 @@ const Landing = ({ setCurrentPage }) => {
   const [buttonSelected, setButtonSelected] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
-  useEffect(() => {
-    setCurrentPage('');
-  }, [])
+  // useEffect(() => {
+  //   setCurrentPage('');
+  // }, [])
 
   const handleButtonClick = () => {
     setButtonSelected(true);
@@ -45,7 +45,7 @@ const Landing = ({ setCurrentPage }) => {
       {buttonSelected ? (
         <CharacterSelector
           setButtonSelected={setButtonSelected}
-          setCurrentPage={setCurrentPage}
+          // setCurrentPage={setCurrentPage}
         />
       ) : (
         <section className="landing">

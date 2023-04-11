@@ -7,7 +7,8 @@ const Footer = ({ currentPage }) => {
 
     return (
 
-        <footer className={currentPage ? currentPage : null}>
+        // <footer className={currentPage ? currentPage : null}>
+        <footer>
             {/* wrapper */}
             <div className="wrapper">
                 {/* copyright */}
