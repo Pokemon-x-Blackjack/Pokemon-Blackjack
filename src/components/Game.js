@@ -400,10 +400,10 @@ const Game = (props) => {
                 {
                     playerStandMode || playerBustStatus
                         ? null
-                        : (<>
+                        : (<div className='actionButtons'>
                             <button onClick={handleStand}>STAND</button>
                             <button onClick={handleHit}>HIT</button>
-                        </>
+                        </div>
                         )
                 }
 
