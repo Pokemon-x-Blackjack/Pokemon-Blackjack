@@ -38,13 +38,13 @@ figure {
 }
 
 main {
+    position: relative;
     min-height: calc(100vh - 140px);
 }
 
 button {
     color: white;
     background: #0c0c0c;
-    border: 1px solid #252525;
     border: none;
     border-radius: 7px;
     padding: 15px 30px;

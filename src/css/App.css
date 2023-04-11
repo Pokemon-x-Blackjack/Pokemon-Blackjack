@@ -245,6 +245,17 @@ h1, h3 {
   font-weight: 400;
 }
 
+.playPoint {
+  font-family: rixvideogame-pro, sans-serif;
+  font-size: 36px;
+}
+
+.bust {
+  font-size: 30px;
+  font-family: rixvideogame-pro, sans-serif;
+  color: red;
+}
+
 html {
   font-size: 125%;
   background-color: #F5F5F7;
@@ -282,13 +293,13 @@ figure {
 }
 
 main {
+  position: relative;
   min-height: calc(100vh - 140px);
 }
 
 button {
   color: white;
   background: #0c0c0c;
-  border: 1px solid #252525;
   border: none;
   border-radius: 7px;
   padding: 15px 30px;
@@ -394,6 +405,14 @@ button:hover, button:focus-visible {
   }
   100% {
     opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 header .wrapper {
@@ -839,6 +858,9 @@ footer a:hover {
   animation: flipN 0.8s forwards;
 }
 
+.playerCardList {
+  flex-direction: row-reverse;
+}
 .playerCardList li:nth-child(1) .innerCard {
   animation: flip1 1s forwards;
 }
@@ -851,7 +873,7 @@ footer a:hover {
 }
 
 .dealerCardList.reveal li:nth-child(1) .innerCard {
-  animation: flip3 1s forwards;
+  animation: flip3 0.5s forwards;
 }
 
 li.cardContainer {
@@ -873,10 +895,6 @@ li.cardContainer .innerCard .cardFront {
   transform: rotateY(180deg);
 }
 
-p.bust {
-  color: #D52E26;
-}
-
 .playerSection {
   width: 50%;
 }
@@ -887,6 +905,7 @@ p.bust {
 }
 
 .pokemonMain {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -911,16 +930,79 @@ p.bust {
 }
 
 .actionButtons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
   display: flex;
   justify-content: center;
 }
 .actionButtons button {
-  width: 150px;
-  margin: 20px;
+  border-radius: 50%;
+  font-weight: bold;
+  text-align: center;
+  float: left;
+  color: #e9e6e4;
+  height: 95px;
+  margin: 30px;
+  padding: 0;
+  position: relative;
+  width: 95px;
+  transition: all 0.1s linear;
+}
+.actionButtons button:hover {
+  cursor: pointer;
+  color: #252923;
+}
+.actionButtons .hitBut {
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3), inset 0px 4px 1px 1px rgb(177, 230, 182), inset 0px -3px 1px 1px rgba(29, 59, 28, 0.5);
+  background-color: #23a82c;
+  color: #83d244;
+}
+.actionButtons .hitBut:hover {
+  text-shadow: 0px 0px 6px #83d244;
+}
+.actionButtons .standBut {
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3), inset 0px 4px 1px 1px rgb(236, 82, 71), inset 0px -3px 1px 1px rgba(29, 59, 28, 0.5);
+  background-color: #c73727;
+  color: #f94e66;
+}
+.actionButtons .standBut:hover {
+  text-shadow: 0px 0px 6px #f94e66;
+}
+
+.newRoundBut {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .pokemonStats {
   display: flex;
+}
+
+.playStatus {
+  position: absolute;
+  right: 143px;
+  top: 250px;
+  width: fit-content;
+}
+.playStatus p {
+  text-align: center;
+}
+
+.playStatus.dealStatus {
+  left: 143px;
+}
+
+.dealerPoint {
+  opacity: 0;
+  animation: fadeIn 0.5s 0.5s forwards;
+}
+
+.playerPokemon {
+  transform: scaleX(-1);
 }
 
 .evolutionContainer {
@@ -1023,7 +1105,8 @@ p.bust {
   text-align: center;
 }
 .modalTitle .imgContain {
-  width: 30%;
+  width: 20%;
+  max-height: 370px;
 }
 .modalTitle img {
   width: 100%;

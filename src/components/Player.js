@@ -62,21 +62,22 @@ const Player = (props) => {
                         })
                     }
                 </ul>
+                <div className="playStatus">
+                    <p className='playPoint'>{props.cardValue}</p>
+                    {
+                        props.bustStatus
+                            ? <p className="bust">bust</p>
+                            : null
+                    }
+                </div>
 
                 {/* avatar and name */}
                 <div className="playStats">
-                    <img src={pokemonUrl} alt={currentEvolution.altFront} />
+                    <img className='playerPokemon' src={pokemonUrl} alt={currentEvolution.altFront} />
                     <h3>{currentEvolution.name}</h3>
                 </div>
 
             </div>
-            <p>player's card value: {props.cardValue}</p>
-
-            {
-                props.bustStatus
-                    ? <p className="bust">BUST</p>
-                    : null
-            }
         </div>
     )
 }
