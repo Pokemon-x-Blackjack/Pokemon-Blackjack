@@ -1,85 +1,69 @@
 @use './variables' as *;
 
 
-    .landing {
+.landing {
+  min-height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  .wrapper {
     min-height: 80vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;  
-    
-    .wrapper {
-      min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 55px;
+
+    .pokeBallContain {
+      background: $accentColor top left no-repeat;
+      width: 275px;
+      height: 250px;
+      border-top-left-radius: 15px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 55px;
-      
-      .pokeBallContain{
-        background: $accentColor top left no-repeat;
-        width: 275px;
-        height: 250px;
-        border-top-left-radius: 15px;
-        display: flex;
-        justify-content: center; 
-        overflow:visible;
-        position: relative;
-       
-      }
-      img{
-        position: absolute;
-        top: 40px;
-        left: 20px;
-        width: 80%;
-        position: relative;
+      overflow: visible;
+      position: relative;
 
-      }
-   
-      .text {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        h1{
+    }
 
-            font-size: clamp(3rem, 5vw, 5rem);
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: 5px;
-            text-align: center;
-          }
-        h3{
-          font-size: clamp(1.5rem, 3vw, 3rem );
-        }
-      }
-      .buttonContainer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        flex-basis: 100%;
-        margin-top: 20px;
-        gap: 40px;
-      }
-  
-      button {
-        height: 60px;
-        padding: 10px 40px;    
-        background: #0c0c0c;
-        border-radius: 7px; 
-        border: 1px solid #252525;
-        backdrop-filter: blur(17.8px);
-        -webkit-backdrop-filter: blur(17.8px);
-        color: white;
+    img {
+      position: absolute;
+      top: 40px;
+      left: 20px;
+      width: 80%;
+      position: relative;
 
-        transition: all .4s ease-in-out;
- 
-        &:hover {
-          transform: scale(1.06);
-          box-shadow: 0 0 8px white; 
-        }
-        &:focus {
-          background-color: red;
-        }
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h1 {
+
+        font-size: clamp(3rem, 5vw, 5rem);
+        font-weight: bold;
+        margin-bottom: 20px;
+        letter-spacing: 5px;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw, 3rem);
       }
     }
+
+    .buttonContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 100%;
+      margin-top: 20px;
+      gap: 40px;
+    }
+
   }
+}
