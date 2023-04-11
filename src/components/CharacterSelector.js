@@ -7,7 +7,7 @@ import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
 
 
 
-const CharacterSelector = ({ setButtonSelected }) => {
+const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
 
     // *********** USESTATES ***************
 
@@ -159,9 +159,6 @@ const CharacterSelector = ({ setButtonSelected }) => {
         // loading page on page load
         setIsLoading(true);
 
-        // update current page
-        // setCurrentPage('chooseCharacter')
-
         // empty promise arr
         const starterPromises = []
 
@@ -267,7 +264,6 @@ const CharacterSelector = ({ setButtonSelected }) => {
                             <Game
                                 evolutionArr={evolutionArr}
                                 dealerEvolutionArr={dealerEvolutionArr}
-                            // setCurrentPage={setCurrentPage}
                             />) :
 
 
