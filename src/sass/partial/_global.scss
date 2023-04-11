@@ -48,7 +48,7 @@ button {
 
     border: 1px solid #252525;
     border: none;
-    border-radius: 7px; 
+    border-radius: 7px;
     padding: 15px 30px;
     backdrop-filter: blur(17.8px);
     -webkit-backdrop-filter: blur(17.8px);
@@ -64,5 +64,7 @@ button {
 }
 
 
-
-
+// affects header and footer
+.chooseCharacter {
+    background-color: #333;
+}

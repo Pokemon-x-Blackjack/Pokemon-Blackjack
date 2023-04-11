@@ -1,11 +1,13 @@
 function getYear() {
+
     return new Date().getFullYear();
 }
 
-const Footer = () => {
+const Footer = ({ currentPage }) => {
+
     return (
 
-        <footer className='footer'>
+        <footer className={currentPage ? currentPage : null}>
             {/* wrapper */}
             <div className="wrapper">
                 {/* copyright */}

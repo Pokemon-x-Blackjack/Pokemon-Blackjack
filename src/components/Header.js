@@ -4,7 +4,7 @@ import audio from '../assets/audio/poke-chill.mp3';
 import pokeOverlay from '../assets/pokeballOverlay.png'
 
 
-const Header = () => {
+const Header = ({ currentPage }) => {
 
   const [volume, setVolume] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -30,14 +30,16 @@ const Header = () => {
     }
   };
 
+
   return (
-    <header className="header">
+
+    <header className={currentPage ? currentPage : null}>
       {/* wrapper */}
       <div className="wrapper">
 
         {/* logo */}
         <div className="logo">
-          <img src={pokeOverlay} alt="Main logo image for Pokemon Blackjack" />
+          <img src={pokeOverlay} alt="Main logo for Pokemon Blackjack." />
         </div>
 
         {/* audio section */}
