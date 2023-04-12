@@ -728,6 +728,12 @@ footer a:hover {
     margin-left: 0;
   }
 }
+@media (max-width: 460px) {
+  .modal .buttonGuide {
+    flex-direction: column;
+    margin: 0 0 20px 0;
+  }
+}
 .characterSelect,
 .characterSelect .wrapper {
   height: 100%;
@@ -838,6 +844,7 @@ footer a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-top: 20px;
 }
 
 .dealerCardList {
@@ -1121,6 +1128,9 @@ li.cardContainer .innerCard .cardFront {
   gap: 40px;
   flex-wrap: wrap;
 }
+.btnContain button {
+  width: 80%;
+}
 
 @media (max-width: 1160px) {
   .playStatus {
@@ -1128,34 +1138,70 @@ li.cardContainer .innerCard .cardFront {
   }
 }
 @media (max-width: 810px) {
+  .pokemonMain {
+    min-height: 600px;
+    justify-content: flex-start;
+  }
   .playerCardList,
   .dealerCardList {
     flex-wrap: wrap;
-    min-height: 175px;
+    min-height: 250px;
+    height: 250px;
     margin: 20px;
   }
   li.cardContainer {
-    width: 25%;
+    width: 30%;
     height: 50%;
   }
+  li.cardContainer .innerCard {
+    min-height: 165px;
+    height: auto;
+  }
+  li.cardContainer:nth-child(n+4) {
+    position: relative;
+    top: -80px;
+  }
+  .pokemonMain {
+    min-height: 600px;
+  }
   .pokemonMain .playStats {
+    position: relative;
+    top: -75px;
     align-self: center;
-    width: 60%;
+    width: 100%;
+    text-align: center;
   }
   .pokemonMain .playStats h3 {
     text-align: center;
   }
+  .pokemonMain .playStats img {
+    width: 65%;
+  }
   .playStatus {
-    position: static;
+    position: relative;
     margin: 0 auto 20px auto;
     height: 50px;
+    top: -75px;
+    right: 0;
+    left: 0;
+  }
+  .playStatus.dealStatus {
+    left: 0;
   }
   .actionButtons {
-    position: static;
+    position: relative;
+    top: -75px;
   }
   .actionButtons button {
     height: 85px;
     width: 85px;
+  }
+  .newRoundBut {
+    position: relative;
+    top: -75px;
+  }
+  .modalTitle .imgContain {
+    width: 35%;
   }
 }
 @media (max-width: 575px) {
@@ -1166,6 +1212,11 @@ li.cardContainer .innerCard .cardFront {
     width: 45px;
     height: 45px;
   }
+  .playerCardList,
+  .dealerCardList {
+    min-height: auto;
+    height: 250px;
+  }
 }
 @media (max-width: 435px) {
   .evolveContainer {
@@ -1175,7 +1226,14 @@ li.cardContainer .innerCard .cardFront {
     width: 40px;
     height: 40px;
   }
+  li.cardContainer {
+    width: 40%;
+  }
   li.cardContainer .innerCard {
     align-items: flex-start;
+  }
+  li.cardContainer:nth-child(n+3) {
+    position: relative;
+    top: -100px;
   }
 }

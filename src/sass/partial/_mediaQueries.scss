@@ -7,39 +7,81 @@
 }
 
 @media (max-width: 810px) {
+    .pokemonMain {
+        min-height: 600px;
+        justify-content: flex-start;
+    }
     .playerCardList,
     .dealerCardList {
         flex-wrap: wrap;
-        min-height: 175px;
+        min-height: 250px;
+        height: 250px;
         margin: 20px;
     }
 
     li.cardContainer {
-        width: 25%;
+        width: 30%;
         height: 50%;
+        .innerCard {
+            min-height: 165px;
+            height: auto;
+        }
+    }
+    li.cardContainer:nth-child(n+4) {
+        position: relative;
+        top: -80px;
     }
 
-    .pokemonMain .playStats {
-        align-self: center;
-        width: 60%;
-        h3 {
+    .pokemonMain {
+        min-height: 600px;
+        .playStats {
+            position: relative;
+            top: -75px;
+            align-self: center;
+            width: 100%;
             text-align: center;
+            h3 {
+                text-align: center;
+            }
+            img {
+                width: 65%;
+            }
         }
     }
 
     .playStatus {
-        position: static;
+        position: relative;
         margin: 0 auto 20px auto;
         height: 50px;
+        top: -75px;
+        right: 0;
+        left: 0;
+    }
+    
+    .playStatus.dealStatus {
+        left: 0;
     }
 
     .actionButtons{
-        position: static;
+        position: relative;
+        top: -75px;
         button {
             height: 85px;
             width: 85px;
         }
     }
+
+    .newRoundBut {
+        position: relative;
+        top: -75px;
+    }
+
+    .modalTitle{
+        .imgContain {
+            width: 35%;
+        }
+    }
+
 }
 
 @media (max-width: 575px) {
@@ -51,6 +93,12 @@
         width: 45px;
         height: 45px;;
     }
+
+    .playerCardList,
+    .dealerCardList {
+        min-height: auto;
+        height: 250px;
+    }
 }
 
 @media (max-width: 435px) {
@@ -59,12 +107,17 @@
     }
     .thumbContainer {
         width: 40px;
-        height: 40px;;
+        height: 40px;
     }
 
     li.cardContainer {
+        width: 40%;
         .innerCard {
             align-items: flex-start;
         }
+    }
+    li.cardContainer:nth-child(n+3) {
+        position: relative;
+        top: -100px;
     }
 }

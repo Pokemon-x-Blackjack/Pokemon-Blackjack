@@ -36,16 +36,15 @@ const HowToPlay = ({ closeHowToPlay }) => {
               </ul>
             </section>
 
-
           </div>
 
           <ul className='buttonGuide'>
             <li>
-              <button>HIT</button>
+              <button className='hitBut'>HIT</button>
               <p>Draw an additional card.</p>
             </li>
             <li>
-              <button>STAND</button>
+              <button className='standBut'>STAND</button>
               <p>End your turn</p>
             </li>
           </ul>
