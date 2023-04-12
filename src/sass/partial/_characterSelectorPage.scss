@@ -56,7 +56,7 @@
     border: 6px solid $accentColor;
     border-radius: 0% 0% 52% 52% / 25% 25% 25% 25%;
 
-    transition: 0.2s ease;
+    transition: 0.25s ease;
     position: relative;
 
     img,
@@ -69,13 +69,10 @@
         aspect-ratio: 1 / 1;
         object-fit: contain;
         position: absolute;
-        bottom: 40px;
         bottom: 150px;
-        /* adjust this value to move the image up or down */
     }
 
     h3 {
-        text-transform: capitalize;
         font-family: $secondaryFont;
         font-size: 25px;
         text-transform: uppercase;
@@ -87,19 +84,28 @@
 
     &:hover,
     &:focus {
-        background-color: #D52E26;
+        background-color: $secondaryAccentColor;
         cursor: pointer;
+
+        h3 {
+            color: $primarycolor;
+        }
     }
 }
 
 .activeCard {
-    background-color: #D52E26;
+    background-color: $secondaryAccentColor;
+
     scale: 1.05;
     rotate: 2deg;
 
     &:hover,
     &:focus {
-        background-color: #D52E26;
+        background-color: $secondaryAccentColor;
         outline: none;
+
+        h3 {
+            color: $primarycolor;
+        }
     }
 }

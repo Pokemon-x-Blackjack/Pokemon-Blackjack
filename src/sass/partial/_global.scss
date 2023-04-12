@@ -38,24 +38,23 @@ figure {
 }
 
 main {
+    position: relative;
     min-height: calc(100vh - 140px);
 }
 
 button {
     color: white;
     background: #0c0c0c;
-    border: 1px solid #252525;
     border: none;
     border-radius: 7px;
     padding: 15px 30px;
     backdrop-filter: blur(17.8px);
     -webkit-backdrop-filter: blur(17.8px);
-    transition: all .4s ease-in-out;
+    transition: .2s ease;
 
     &:hover,
     &:focus-visible {
-        transform: scale(1.06);
-        // box-shadow: 0 0 8px white;
+        scale: 1.08;
         background-color: #ff4136;
         cursor: pointer;
     }
@@ -66,4 +65,3 @@ button {
 .chooseCharacter {
     background-color: #333;
 }
-

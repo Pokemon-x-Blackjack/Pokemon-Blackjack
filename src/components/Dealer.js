@@ -63,22 +63,25 @@ const Dealer = (props) => {
                         })
                     }
                 </ul>
-
+                <div className="playStatus dealStatus">
+                    {
+                        props.playerStand
+                            ? <p className='playPoint dealerPoint'>{props.cardValue}</p>
+                            : null
+                    }
+                    {
+                        props.bustStatus
+                            ? <p className="bust">bust</p>
+                            : null
+                    }
+                </div>
 
                 <div className="playStats dealStats">
                     <img src={pokemonUrl} alt={currentEvolution.altFront} />
                     <h3 style={{textAlign: "end"}}>{currentEvolution.name}</h3>
                 </div>
 
-
-            </div>
-            <p style={{textAlign: "end"}}>DEALER'S CARD VALUE: {props.cardValue}</p>        
-
-            {
-                props.bustStatus
-                ? <p className="bust">BUST</p>
-                : null
-            }  
+            </div>    
         </div>
     )
 }
