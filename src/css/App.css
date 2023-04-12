@@ -728,6 +728,12 @@ footer a:hover {
     margin-left: 0;
   }
 }
+@media (max-width: 460px) {
+  .modal .buttonGuide {
+    flex-direction: column;
+    margin: 0 0 20px 0;
+  }
+}
 .characterSelect,
 .characterSelect .wrapper {
   height: 100%;
@@ -833,15 +839,12 @@ footer a:hover {
   margin: 0 auto;
   text-transform: uppercase;
 }
-.gameBoard button {
-  width: 300px;
-  margin: 10px auto;
-}
 
 .playerDealerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-top: 20px;
 }
 
 .dealerCardList {
@@ -851,6 +854,7 @@ footer a:hover {
 .playerCardList,
 .dealerCardList {
   display: flex;
+  width: 100%;
   margin: 50px;
 }
 .playerCardList li:nth-child(n+3) .innerCard,
@@ -919,9 +923,10 @@ li.cardContainer .innerCard .cardFront {
 }
 .pokemonMain .playStats {
   align-self: flex-start;
+  width: 50%;
 }
 .pokemonMain .playStats img {
-  width: 300px;
+  width: 100%;
   object-fit: contain;
   aspect-ratio: 1/1;
 }
@@ -973,6 +978,8 @@ li.cardContainer .innerCard .cardFront {
 
 .newRoundBut {
   position: absolute;
+  width: 176px;
+  margin: 0 auto 20px auto;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1120,4 +1127,113 @@ li.cardContainer .innerCard .cardFront {
   width: 60%;
   gap: 40px;
   flex-wrap: wrap;
+}
+.btnContain button {
+  width: 80%;
+}
+
+@media (max-width: 1160px) {
+  .playStatus {
+    top: 218px;
+  }
+}
+@media (max-width: 810px) {
+  .pokemonMain {
+    min-height: 600px;
+    justify-content: flex-start;
+  }
+  .playerCardList,
+  .dealerCardList {
+    flex-wrap: wrap;
+    min-height: 250px;
+    height: 250px;
+    margin: 20px;
+  }
+  li.cardContainer {
+    width: 30%;
+    height: 50%;
+  }
+  li.cardContainer .innerCard {
+    min-height: 165px;
+    height: auto;
+  }
+  li.cardContainer:nth-child(n+4) {
+    position: relative;
+    top: -80px;
+  }
+  .pokemonMain {
+    min-height: 600px;
+  }
+  .pokemonMain .playStats {
+    position: relative;
+    top: -75px;
+    align-self: center;
+    width: 100%;
+    text-align: center;
+  }
+  .pokemonMain .playStats h3 {
+    text-align: center;
+  }
+  .pokemonMain .playStats img {
+    width: 65%;
+  }
+  .playStatus {
+    position: relative;
+    margin: 0 auto 20px auto;
+    height: 50px;
+    top: -75px;
+    right: 0;
+    left: 0;
+  }
+  .playStatus.dealStatus {
+    left: 0;
+  }
+  .actionButtons {
+    position: relative;
+    top: -75px;
+  }
+  .actionButtons button {
+    height: 85px;
+    width: 85px;
+  }
+  .newRoundBut {
+    position: relative;
+    top: -75px;
+  }
+  .modalTitle .imgContain {
+    width: 35%;
+  }
+}
+@media (max-width: 575px) {
+  .evolveContainer {
+    width: 174px;
+  }
+  .thumbContainer {
+    width: 45px;
+    height: 45px;
+  }
+  .playerCardList,
+  .dealerCardList {
+    min-height: auto;
+    height: 250px;
+  }
+}
+@media (max-width: 435px) {
+  .evolveContainer {
+    width: 150px;
+  }
+  .thumbContainer {
+    width: 40px;
+    height: 40px;
+  }
+  li.cardContainer {
+    width: 40%;
+  }
+  li.cardContainer .innerCard {
+    align-items: flex-start;
+  }
+  li.cardContainer:nth-child(n+3) {
+    position: relative;
+    top: -100px;
+  }
 }

@@ -11,17 +11,13 @@
     width: 85%;
     margin: 0 auto;
     text-transform: uppercase;
-
-    button {
-        width: 300px;
-        margin: 10px auto; 
-    }
 }
   
 .playerDealerContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding-top: 20px;
 }
 
 .dealerCardList{
@@ -31,6 +27,7 @@
 .playerCardList,
 .dealerCardList {
     display: flex;
+    width: 100%;
     margin: 50px;
 
     li:nth-child(n+3) {
@@ -117,8 +114,9 @@ li.cardContainer {
     }
     .playStats{
         align-self: flex-start;
+        width: 50%;
         img{
-            width: 300px;
+            width: 100%;
             object-fit: contain;
             aspect-ratio: 1 / 1;
         }
@@ -176,6 +174,8 @@ li.cardContainer {
 
 .newRoundBut {
     position: absolute;
+    width: 176px;
+    margin: 0 auto 20px auto;
     bottom: 0;
     left: 0;
     right: 0;
