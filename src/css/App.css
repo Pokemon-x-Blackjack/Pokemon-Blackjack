@@ -1207,7 +1207,7 @@ li.cardContainer .innerCard .cardFront {
   }
   .newRoundBut {
     position: relative;
-    top: -75px;
+    top: -13px;
   }
   .modalTitle .imgContain {
     width: 35%;
@@ -1225,6 +1225,17 @@ li.cardContainer .innerCard .cardFront {
   .dealerCardList {
     min-height: auto;
     height: 250px;
+  }
+  .actionButtons {
+    height: 200px;
+    position: absolute;
+    bottom: -75px;
+    top: auto;
+  }
+  .newRoundBut {
+    position: absolute;
+    bottom: -7px;
+    top: auto;
   }
 }
 @media (max-width: 435px) {
