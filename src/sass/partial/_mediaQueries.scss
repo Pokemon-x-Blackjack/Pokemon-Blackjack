@@ -73,7 +73,7 @@
 
     .newRoundBut {
         position: relative;
-        top: -75px;
+        top: -13px;
     }
 
     .modalTitle{
@@ -85,19 +85,31 @@
 }
 
 @media (max-width: 575px) {
-
     .evolveContainer {
         width: 174px;
     }
     .thumbContainer {
         width: 45px;
-        height: 45px;;
+        height: 45px;
     }
 
     .playerCardList,
     .dealerCardList {
         min-height: auto;
         height: 250px;
+    }
+
+    .actionButtons {
+        height: 200px;
+        position: absolute;
+        bottom: -75px;
+        top:auto;
+    }
+
+    .newRoundBut {
+        position: absolute;
+        bottom: -7px;
+        top: auto;
     }
 }
 
