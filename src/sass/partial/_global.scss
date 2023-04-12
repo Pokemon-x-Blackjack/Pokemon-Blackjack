@@ -28,6 +28,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+h3 {
+    font-size:clamp(1.5rem, 5vw, 4rem);
+}
 
 ul {
     list-style: none;

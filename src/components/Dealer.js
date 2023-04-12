@@ -78,7 +78,7 @@ const Dealer = (props) => {
 
                 <div className="playStats dealStats">
                     <img src={pokemonUrl} alt={currentEvolution.altFront} />
-                    <h3 style={{textAlign: "end"}}>{currentEvolution.name}</h3>
+                    <h3>{currentEvolution.name}</h3>
                 </div>
 
             </div>    
