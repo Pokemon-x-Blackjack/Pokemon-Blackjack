@@ -284,6 +284,10 @@ ul {
   padding: 0;
 }
 
+h3 {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+}
+
 ul {
   list-style: none;
 }
@@ -941,6 +945,7 @@ li.cardContainer .innerCard .cardFront {
 }
 .pokemonMain .dealStats {
   align-self: flex-end;
+  text-align: end;
 }
 
 .actionButtons {
@@ -1185,6 +1190,9 @@ li.cardContainer .innerCard .cardFront {
   }
   .pokemonMain .playStats img {
     width: 65%;
+  }
+  .pokemonMain .dealStats h3 {
+    text-align: center;
   }
   .playStatus {
     position: relative;
