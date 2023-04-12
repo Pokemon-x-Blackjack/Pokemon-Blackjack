@@ -833,10 +833,6 @@ footer a:hover {
   margin: 0 auto;
   text-transform: uppercase;
 }
-.gameBoard button {
-  width: 300px;
-  margin: 10px auto;
-}
 
 .playerDealerContainer {
   display: flex;
@@ -851,6 +847,7 @@ footer a:hover {
 .playerCardList,
 .dealerCardList {
   display: flex;
+  width: 100%;
   margin: 50px;
 }
 .playerCardList li:nth-child(n+3) .innerCard,
@@ -919,9 +916,10 @@ li.cardContainer .innerCard .cardFront {
 }
 .pokemonMain .playStats {
   align-self: flex-start;
+  width: 50%;
 }
 .pokemonMain .playStats img {
-  width: 300px;
+  width: 100%;
   object-fit: contain;
   aspect-ratio: 1/1;
 }
@@ -973,6 +971,8 @@ li.cardContainer .innerCard .cardFront {
 
 .newRoundBut {
   position: absolute;
+  width: 176px;
+  margin: 0 auto 20px auto;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1120,4 +1120,62 @@ li.cardContainer .innerCard .cardFront {
   width: 60%;
   gap: 40px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 1160px) {
+  .playStatus {
+    top: 218px;
+  }
+}
+@media (max-width: 810px) {
+  .playerCardList,
+  .dealerCardList {
+    flex-wrap: wrap;
+    min-height: 175px;
+    margin: 20px;
+  }
+  li.cardContainer {
+    width: 25%;
+    height: 50%;
+  }
+  .pokemonMain .playStats {
+    align-self: center;
+    width: 60%;
+  }
+  .pokemonMain .playStats h3 {
+    text-align: center;
+  }
+  .playStatus {
+    position: static;
+    margin: 0 auto 20px auto;
+    height: 50px;
+  }
+  .actionButtons {
+    position: static;
+  }
+  .actionButtons button {
+    height: 85px;
+    width: 85px;
+  }
+}
+@media (max-width: 575px) {
+  .evolveContainer {
+    width: 174px;
+  }
+  .thumbContainer {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (max-width: 435px) {
+  .evolveContainer {
+    width: 150px;
+  }
+  .thumbContainer {
+    width: 40px;
+    height: 40px;
+  }
+  li.cardContainer .innerCard {
+    align-items: flex-start;
+  }
 }
