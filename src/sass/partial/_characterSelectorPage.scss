@@ -22,15 +22,16 @@
 
     h2 {
         font-family: $primaryFont;
-        font-size: 55px;
+        font-size: 77px;
         letter-spacing: 7.847px;
         color: $accentColor;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 70px;
     }
 
     button {
         margin: 15px 0;
+        margin-top: 80px;
     }
 }
 
@@ -45,13 +46,14 @@
 
 .overlayBtn {
     position: absolute;
-    height: 100%;
+    height: 25%;
     width: 15%;
-    top: 0px;
+    top: 100px;
+    align-self: flex-end;
 
     margin: 0;
     background-color: $secondaryAccentColor;
-    opacity: .3;
+    // opacity: .3;
 
     &:hover,
     &:focus-visible {
@@ -63,7 +65,8 @@
 .prevOverlay {
     left: 0px;
     border-radius: 7px 0 0 7px;
-    background: linear-gradient(270deg, rgba(242, 242, 242, 0) 0%, $secondaryAccentColor 100%);
+    background-color: $secondaryAccentColor;
+    // background: linear-gradient(270deg, rgba(242, 242, 242, 0) 0%, $secondaryAccentColor 100%);
 
     i {
         transform: rotate(180deg);
@@ -73,7 +76,8 @@
 .nextOverlay {
     right: 0px;
     border-radius: 0 7px 7px 0;
-    background: linear-gradient(90deg, rgba(242, 242, 242, 0) 0%, $secondaryAccentColor 100%);
+    background-color: $secondaryAccentColor;
+    // background: linear-gradient(90deg, rgba(242, 242, 242, 0) 0%, $secondaryAccentColor 100%);
 }
 
 .pokeRoster {

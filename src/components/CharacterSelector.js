@@ -310,7 +310,7 @@ const CharacterSelector = ({ setButtonSelected }) => {
                                         onSubmit={handleCharacterSubmit}
                                         className="characterForm">
 
-                                        <h2>Choose your Pokemon</h2>
+                                        <h2>CHOOSE YOUR POKEMON</h2>
 
                                         <div className="rosterContainer">
 

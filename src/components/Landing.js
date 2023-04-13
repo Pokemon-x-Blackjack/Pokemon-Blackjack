@@ -38,9 +38,7 @@ const Landing = ({ setCurrentPage }) => {
     setIsHovered(false);
   };
 
-  // useEffect(() => {
-  //   setCurrentPage('');
-  // }, [])
+
 
 
   // Pokeball hover
@@ -70,7 +68,6 @@ const Landing = ({ setCurrentPage }) => {
             {/* title */}
             <div className="text">
               <h1>POKEJACK</h1>
-              <h2>POKEMON x BLACKJACK</h2>
             </div>
 
             {/* title img */}
@@ -83,7 +80,6 @@ const Landing = ({ setCurrentPage }) => {
 
             {/* buttons */}
             <div className="buttonContainer">
-
               {/* start btn */}
               <button
                 onClick={handleButtonClick}
