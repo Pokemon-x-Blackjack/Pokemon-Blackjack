@@ -362,7 +362,7 @@ const CharacterSelector = ({ setButtonSelected }) => {
                                                     onClick={() => { moveRoster('left') }}
                                                     className="overlayBtn prevOverlay">
                                                     <span className="sr-only">move to previous pokemon</span>
-                                                    <i class="fa-solid fa-caret-right"></i>
+                                                    <i className="fa-solid fa-caret-right"></i>
                                                 </button>
 
                                                 <button
@@ -370,7 +370,7 @@ const CharacterSelector = ({ setButtonSelected }) => {
                                                     onClick={() => { moveRoster('right') }}
                                                     className="overlayBtn nextOverlay">
                                                     <span className="sr-only">move to next pokemon</span>
-                                                    <i class="fa-solid fa-caret-right"></i>
+                                                    <i className="fa-solid fa-caret-right"></i>
                                                 </button>
 
                                             </div>

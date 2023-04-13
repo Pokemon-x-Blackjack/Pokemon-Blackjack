@@ -34,6 +34,8 @@ header .wrapper {
       top: 0;
       bottom: 0;
       margin: auto;
+
+      z-index: 10;
    }
 }
 
@@ -41,15 +43,4 @@ header .wrapper {
    height: 50px;
    width: 50px;
    padding: 0px;
-}
-
-@media(max-width: 470px) {
-   .audioContainer {
-      input[type=range] {
-         transform: rotate(-90deg);
-         bottom: -230px;
-         right: -50px;
-         width: 150px;
-      }
-   }
 }
