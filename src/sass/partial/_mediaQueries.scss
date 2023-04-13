@@ -208,6 +208,12 @@
         }
     }
 
+    .btnContain {
+        button {
+            width: 85%;
+        }
+    }
+
 }
 
 @media (max-width: 575px) {
@@ -284,6 +290,13 @@
     li.cardContainer:nth-child(n+3) {
         position: relative;
         top: -100px;
+    }
+
+    // result
+    .btnContain {
+        button {
+            width: 95%;
+        }
     }
 
     // footer

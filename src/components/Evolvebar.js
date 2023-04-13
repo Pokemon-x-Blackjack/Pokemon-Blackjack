@@ -9,11 +9,11 @@ const Evolvebar = ({ evolutionArray, evolutionPoint, barType }) => {
 
     const checkColor = () => {
       if (evolutionPoint === 0) {
-        return 'red'
+        return '#C1071E'
       } else if (evolutionPoint === 1) {
         return 'yellow'
       } else {
-        return 'green'
+        return '#63BD42'
       }
     }
 
