@@ -2,12 +2,12 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import Game from "./Game"
 import ErrorPage from "./Error404"
-
 import pikaLoading from "../assets/loadingScreen/pikachu-running.gif"
+import CharacterCard from "./CharacterCard"
 
 
 
-const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
+const CharacterSelector = ({ setButtonSelected }) => {
 
     // *********** USESTATES ***************
 
@@ -37,6 +37,8 @@ const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
 
     // starter pokemon 
     const rosterList = ['pichu', 'charmander', 'squirtle', 'bulbasaur', 'poliwag', 'chikorita', 'torchic', 'nidoran-m']
+
+
 
 
     // *********** FUNCTIONS: API CALLS ***************
@@ -180,6 +182,9 @@ const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
                 })
                 // storing objs in state
                 setRosterArr(tempArr);
+                setCurrentCard(0);
+                setPrevCard(7);
+                setNextCard(1);
             })
 
     }, [])
@@ -238,6 +243,31 @@ const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
         }
     }
 
+
+
+    // carousel slide
+    const [currentCard, setCurrentCard] = useState(0);
+    const [prevCard, setPrevCard] = useState(7);
+    const [nextCard, setNextCard] = useState(1);
+
+
+
+    const moveRoster = (direction) => {
+        if (direction === 'left') {
+            // pokemon moves to left
+            setCurrentCard(currentCard === rosterArr.length - 1 ? 0 : currentCard + 1)
+            setPrevCard(prevCard === rosterArr.length - 1 ? 0 : prevCard + 1)
+            setNextCard(nextCard === rosterArr.length - 1 ? 0 : nextCard + 1)
+
+        } else {
+            // pokemon moves right
+            setCurrentCard(currentCard === 0 ? rosterArr.length - 1 : currentCard - 1)
+            setPrevCard(prevCard === 0 ? rosterArr.length - 1 : prevCard - 1)
+            setNextCard(nextCard === 0 ? rosterArr.length - 1 : nextCard - 1)
+
+        }
+    }
+
     return (
         <>
             {
@@ -282,31 +312,70 @@ const CharacterSelector = ({ setButtonSelected, setCurrentPage }) => {
 
                                         <h2>Choose your Pokemon</h2>
 
-                                        {/* list of pokemon to choose from */}
-                                        <ul className="pokeRoster">
+                                        <div className="rosterContainer">
 
-                                            {rosterArr.map((pokemon) => {
-                                                return (
+                                            {/* list of pokemon to choose from */}
+                                            <ul className="pokeRoster" >
 
-                                                    <li key={pokemon.id}>
-                                                        <div
-                                                            tabIndex={0}
-                                                            className={userPokemon === pokemon.name ? 'pokemonCard activeCard' : 'pokemonCard'}
-                                                            onClick={handleClickSelect}
-                                                            onFocus={handleFocusSelect}>
+                                                {/* previous pokemon */}
+                                                <li className="pokemonCardContainer">
+                                                    {rosterArr.length > 0 ?
+                                                        <CharacterCard
+                                                            userPokemon={userPokemon}
+                                                            rosterArr={rosterArr}
+                                                            cardOrder={prevCard}
+                                                            handleClickSelect={handleClickSelect}
+                                                            handleFocusSelect={handleFocusSelect}
+                                                        />
+                                                        : null}
+                                                </li>
 
-                                                            <img
-                                                                src={`${pokemon.frontGifUrl}`}
-                                                                alt={`${pokemon.altFront}`}
-                                                            />
+                                                {/* current pokemon */}
+                                                <li className="pokemonCardContainer">
+                                                    {rosterArr.length > 0 ?
+                                                        <CharacterCard
+                                                            userPokemon={userPokemon}
+                                                            rosterArr={rosterArr}
+                                                            cardOrder={currentCard}
+                                                            handleClickSelect={handleClickSelect}
+                                                            handleFocusSelect={handleFocusSelect}
+                                                        />
+                                                        : null}
+                                                </li>
+                                                {/* next pokemon */}
+                                                <li className="pokemonCardContainer">
+                                                    {rosterArr.length > 0 ?
+                                                        <CharacterCard
+                                                            userPokemon={userPokemon}
+                                                            rosterArr={rosterArr}
+                                                            cardOrder={nextCard}
+                                                            handleClickSelect={handleClickSelect}
+                                                            handleFocusSelect={handleFocusSelect}
+                                                        />
+                                                        : null}
+                                                </li>
 
-                                                            <h3>{pokemon.name}</h3>
-                                                        </div>
-                                                    </li>
-                                                )
-                                            })}
+                                            </ul>
+                                            <div className="overlay">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { moveRoster('left') }}
+                                                    className="overlayBtn prevOverlay">
+                                                    <span className="sr-only">move to previous pokemon</span>
+                                                    <i className="fa-solid fa-caret-right"></i>
+                                                </button>
 
-                                        </ul>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { moveRoster('right') }}
+                                                    className="overlayBtn nextOverlay">
+                                                    <span className="sr-only">move to next pokemon</span>
+                                                    <i className="fa-solid fa-caret-right"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
                                         {/* submit form */}
                                         <button>All Set!</button>
                                     </form>

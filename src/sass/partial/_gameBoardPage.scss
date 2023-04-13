@@ -12,7 +12,7 @@
     margin: 0 auto;
     text-transform: uppercase;
 }
-  
+
 .playerDealerContainer {
     display: flex;
     flex-direction: row;
@@ -20,10 +20,10 @@
     padding-top: 20px;
 }
 
-.dealerCardList{
+.dealerCardList {
     position: relative;
 }
-  
+
 .playerCardList,
 .dealerCardList {
     display: flex;
@@ -31,7 +31,7 @@
     margin: 50px;
 
     li:nth-child(n+3) {
-        .innerCard{
+        .innerCard {
             @include flipAnime(flipN, 0.8s);
         }
     }
@@ -39,11 +39,13 @@
 
 .playerCardList {
     flex-direction: row-reverse;
+
     li:nth-child(1) {
         .innerCard {
             @include flipAnime(flip1, 1s);
         }
     }
+
     li:nth-child(2) {
         .innerCard {
             @include flipAnime(flip2, 1.2s);
@@ -60,11 +62,11 @@
 }
 
 .dealerCardList.reveal {
-        li:nth-child(1) {
-            .innerCard {
-                @include flipAnime(flip3, 0.5s)
-            }
+    li:nth-child(1) {
+        .innerCard {
+            @include flipAnime(flip3, 0.5s)
         }
+    }
 }
 
 li.cardContainer {
@@ -90,11 +92,11 @@ li.cardContainer {
     }
 }
 
-.playerSection{
+.playerSection {
     width: 50%;
 }
 
-.dealerSection{
+.dealerSection {
     width: 50%;
     height: 100%;
 }
@@ -105,30 +107,35 @@ button:active {
 }
 // .button:hover {background-color: $secondaryAccentColor}
 
-.pokemonMain{
+.pokemonMain {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: space-between;
 
-    .playerCardList{
+    .playerCardList {
         align-self: flex-end;
     }
-    .dealerCardList{
+
+    .dealerCardList {
         align-items: flex-start;
     }
-    .playStats{
+
+    .playStats {
         align-self: flex-start;
         width: 50%;
-        img{
+
+        img {
             width: 100%;
             object-fit: contain;
             aspect-ratio: 1 / 1;
         }
     }
-    .dealStats{
+
+    .dealStats {
         align-self: flex-end;
+        text-align: end;
     }
 }
 
@@ -140,7 +147,7 @@ button:active {
     display: flex;
     justify-content: center;
 
-// REF: https://codepen.io/codekting/pen/VwEvmQj
+    // REF: https://codepen.io/codekting/pen/VwEvmQj
     button {
         border-radius: 30%;
         font-weight: bold;
@@ -151,9 +158,10 @@ button:active {
         margin: 30px;
         padding: 0;
         position: relative;
-        width: 95px;			
+        width: 95px;
         transition: all .1s linear;
-        &:hover{
+
+        &:hover {
             cursor: pointer;
 			color:$primarycolor;
         }

@@ -1,16 +1,132 @@
 @use './variables' as *;
 
-@media (max-width: 1160px) {
+
+@media (max-width: 1175px) {
+
+    // modal
+    .modalFlex {
+        .gameRules {
+            width: 50%
+        }
+
+        .rightSideFlex {
+            width: 50%;
+        }
+    }
+
+    .img {
+        display: none;
+    }
+
+    .cardKeyFlex {
+        .cardGamesText {
+            width: 100%;
+        }
+    }
+
+    // gameBoard
     .playStatus {
         top: 218px;
+    }
+
+    // character selector
+    .characterForm {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 935px) {
+    .modalFlex {
+        flex-direction: column;
+
+        .gameRules {
+            width: 100%;
+        }
+
+        .rightSideFlex {
+            width: 100%;
+            flex-direction: column-reverse;
+        }
+    }
+
+    .howToPlayModal {
+        ul {
+            justify-content: space-evenly;
+            margin-top: 0;
+
+            li {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media(max-width: 850px) {
+
+    // characterSelector 
+    .rosterContainer {
+        margin: 25px 0 0 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .overlay {
+        display: flex;
+        justify-content: center;
+    }
+
+    .overlayBtn {
+        width: 50px;
+        height: 50px;
+        opacity: 80%;
+    }
+
+    .prevOverlay,
+    .nextOverlay {
+        position: static;
+        border-radius: 7px;
+        background-color: $secondaryAccentColor;
+    }
+
+    .prevOverlay {
+        transform: rotate(90deg);
+    }
+
+    .nextOverlay {
+        transform: rotate(90deg);
+    }
+
+    // roster changes
+    .pokeRoster {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .pokemonCardContainer {
+        height: 70px;
+    }
+
+    .pokemonCard {
+        z-index: 20;
+
+        img {
+            width: 70px;
+            bottom: 0px;
+            right: -65px;
+        }
     }
 }
 
 @media (max-width: 810px) {
+
+    //gameBoard
     .pokemonMain {
         min-height: 600px;
         justify-content: flex-start;
     }
+
     .playerCardList,
     .dealerCardList {
         flex-wrap: wrap;
@@ -22,11 +138,13 @@
     li.cardContainer {
         width: 30%;
         height: 50%;
+
         .innerCard {
             min-height: 165px;
             height: auto;
         }
     }
+
     li.cardContainer:nth-child(n+4) {
         position: relative;
         top: -80px;
@@ -34,18 +152,25 @@
 
     .pokemonMain {
         min-height: 600px;
+
         .playStats {
             position: relative;
             top: -75px;
             align-self: center;
             width: 100%;
             text-align: center;
+
             h3 {
                 text-align: center;
             }
+
             img {
                 width: 65%;
             }
+        }
+
+        .dealStats h3 {
+            text-align: center;
         }
     }
 
@@ -57,14 +182,15 @@
         right: 0;
         left: 0;
     }
-    
+
     .playStatus.dealStatus {
         left: 0;
     }
 
-    .actionButtons{
+    .actionButtons {
         position: relative;
         top: -75px;
+
         button {
             height: 85px;
             width: 85px;
@@ -73,10 +199,10 @@
 
     .newRoundBut {
         position: relative;
-        top: -75px;
+        top: -13px;
     }
 
-    .modalTitle{
+    .modalTitle {
         .imgContain {
             width: 35%;
         }
@@ -86,12 +212,14 @@
 
 @media (max-width: 575px) {
 
+    // gameboard
     .evolveContainer {
         width: 174px;
     }
+
     .thumbContainer {
         width: 45px;
-        height: 45px;;
+        height: 45px;
     }
 
     .playerCardList,
@@ -99,12 +227,47 @@
         min-height: auto;
         height: 250px;
     }
+
+    .actionButtons {
+        height: 200px;
+        position: absolute;
+        bottom: -75px;
+        top: auto;
+    }
+
+    .newRoundBut {
+        position: absolute;
+        bottom: -7px;
+        top: auto;
+    }
+}
+
+@media (max-width: 460px) {
+    .modal {
+        .buttonGuide {
+            flex-direction: column;
+            margin: 0 0 20px 0;
+        }
+    }
 }
 
 @media (max-width: 435px) {
+
+    // header
+    .audioContainer {
+        input[type=range] {
+            transform: rotate(-90deg);
+            bottom: -230px;
+            right: -50px;
+            width: 150px;
+        }
+    }
+
+    //game board
     .evolveContainer {
         width: 150px;
     }
+
     .thumbContainer {
         width: 40px;
         height: 40px;
@@ -112,12 +275,28 @@
 
     li.cardContainer {
         width: 40%;
+
         .innerCard {
             align-items: flex-start;
         }
     }
+
     li.cardContainer:nth-child(n+3) {
         position: relative;
         top: -100px;
+    }
+
+    // footer
+    footer {
+        padding: 0;
+
+        .wrapper {
+            width: 90%;
+        }
+    }
+
+    .socialLinks,
+    p {
+        text-align: center;
     }
 }

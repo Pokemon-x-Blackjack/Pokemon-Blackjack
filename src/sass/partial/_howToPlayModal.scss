@@ -38,8 +38,8 @@
         font-size: 19px;
         line-height: 26px;
 
-    }
-
+   }
+   
     h3{
         font-weight: bold;
         margin-bottom: 20px;
@@ -69,8 +69,7 @@
 
     .gameRules{
         width: 40%;
-    }
-
+ }
     .rightSideFlex {
         width: 60%;
         display: flex;
@@ -112,7 +111,7 @@
         transition: all .1s linear;
         &:hover{
             cursor: pointer;
-			color:$primarycolor;
+			      color:$primarycolor;
         }
 
     }
@@ -142,58 +141,8 @@
             margin-top: 10px;
             text-align: left;
             align-self: center;
-        }
 
-    }
-}
-
-@media (max-width: 1175px) {
-    .modalFlex {
-        .gameRules {
-            width: 50%
-        }
-        .rightSideFlex {
-            width: 50%;
-        }
-    }
-    .img {
-        display: none;
-    }
-    .cardKeyFlex {
-        .cardGamesText {
-            width: 100%;
-        }
-    }
-}
-
-@media (max-width: 935px) {
-    .modalFlex {
-        flex-direction: column;
-        .gameRules {
-            width: 100%;
-        }
-        .rightSideFlex {
-            width: 100%;
-            flex-direction: column-reverse;
-        }
-    }
-
-    .howToPlayModal {
-        ul {
-            justify-content: space-evenly;
-            margin-top: 0;
-            li {
-                margin-left: 0;
             }
-        }
-    }
-}
 
-@media (max-width: 460px) {
-    .modal {
-        .buttonGuide {
-            flex-direction: column;
-            margin: 0 0 20px 0;
         }
     }
-}

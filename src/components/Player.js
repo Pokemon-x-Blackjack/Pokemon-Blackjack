@@ -6,35 +6,35 @@ import Evolvebar from './Evolvebar';
 // TO DO: destructing props
 const Player = (props) => {
 
-    const [ pokemonUrl, setPokemonUrl ] = useState(props.evolutionArr[props.playerEvolution].frontGifUrl);
-    
-    const playerCardsProp =  props.playerCards    
-    
+    const [pokemonUrl, setPokemonUrl] = useState(props.evolutionArr[props.playerEvolution].frontGifUrl);
+
+    const playerCardsProp = props.playerCards
+
     const currentEvolution = props.evolutionArr[props.playerEvolution];
- 
-// evolution animation 
+
+    // evolution animation 
     useEffect(() => {
-        if (props.evolutionArr[props.playerEvolution - 1]?.frontGifUrl !== undefined){
+        if (props.evolutionArr[props.playerEvolution - 1]?.frontGifUrl !== undefined) {
             setTimeout(() => {
                 let intervalId = setInterval(() => {
-                    setPokemonUrl((pokemon) => 
-                    pokemon === props.evolutionArr[props.playerEvolution].frontGifUrl
-                    ? props.evolutionArr[props.playerEvolution - 1].frontGifUrl
-                    : props.evolutionArr[props.playerEvolution].frontGifUrl
+                    setPokemonUrl((pokemon) =>
+                        pokemon === props.evolutionArr[props.playerEvolution].frontGifUrl
+                            ? props.evolutionArr[props.playerEvolution - 1].frontGifUrl
+                            : props.evolutionArr[props.playerEvolution].frontGifUrl
                     )
                 }, 50) // how fast the image toggles
-                
+
                 setTimeout(() => {
                     clearInterval(intervalId);
                     setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
                 }, 1100); // evoluting time
-                
+
                 setPokemonUrl(props.evolutionArr[props.playerEvolution].frontGifUrl)
             }, 1000) // delay start of evolution
         }
     }, [props.playerEvolution])
 
-   
+
     return (
         <div className="playerSection">
 

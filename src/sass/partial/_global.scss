@@ -28,6 +28,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+h3 {
+    font-size:clamp(1.5rem, 5vw, 4rem);
+}
 
 ul {
     list-style: none;
@@ -50,7 +53,7 @@ button {
     padding: 15px 30px;
     backdrop-filter: blur(17.8px);
     -webkit-backdrop-filter: blur(17.8px);
-    transition: .2s ease;
+    transition: .25s ease;
 
     &:hover,
     &:focus-visible {

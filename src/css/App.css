@@ -222,7 +222,7 @@ html {
 h1 {
   font-size: 50px;
   font-weight: bold;
-  color: #212121;
+  color: #333;
 }
 
 h3 {
@@ -236,23 +236,24 @@ li {
   font-size: 19px;
 }
 
-h1, h3 {
+h1,
+h3 {
   font-weight: bold;
   margin-bottom: 20px;
-  font-family: rixvideogame-pro, sans-serif;
+  font-family: "rixvideogame-pro", sans-serif;
   font-style: normal;
   font-weight: 400;
 }
 
 .playPoint {
-  font-family: rixvideogame-pro, sans-serif;
+  font-family: "rixvideogame-pro", sans-serif;
   font-size: 36px;
 }
 
 .bust {
   font-size: 30px;
-  font-family: rixvideogame-pro, sans-serif;
-  color: red;
+  font-family: "rixvideogame-pro", sans-serif;
+  color: #D52E26;
 }
 
 html {
@@ -283,6 +284,10 @@ ul {
   padding: 0;
 }
 
+h3 {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+}
+
 ul {
   list-style: none;
 }
@@ -304,7 +309,7 @@ button {
   padding: 15px 30px;
   backdrop-filter: blur(17.8px);
   -webkit-backdrop-filter: blur(17.8px);
-  transition: 0.2s ease;
+  transition: 0.25s ease;
 }
 button:hover, button:focus-visible {
   scale: 1.08;
@@ -442,6 +447,7 @@ header .wrapper {
   top: 0;
   bottom: 0;
   margin: auto;
+  z-index: 10;
 }
 
 .musicToggleBtn {
@@ -450,14 +456,6 @@ header .wrapper {
   padding: 0px;
 }
 
-@media (max-width: 470px) {
-  .audioContainer input[type=range] {
-    transform: rotate(-90deg);
-    bottom: -230px;
-    right: -50px;
-    width: 150px;
-  }
-}
 /* FOOTER */
 footer {
   font-size: 0.8rem;
@@ -470,6 +468,7 @@ footer {
 footer p {
   line-height: 22px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
 }
 footer a {
   text-decoration: none;
@@ -488,24 +487,12 @@ footer a:hover {
   color: #F5F5F7;
 }
 
-@media (max-width: 470px) {
-  footer {
-    padding: 0;
-  }
-  footer .wrapper {
-    width: 90%;
-  }
-  .socialLinks,
-  p {
-    text-align: center;
-  }
-}
 .errorContainer {
-  background-color: #ffffff;
-  color: #0f0f0f;
+  background-color: #F5F5F7;
+  color: #333;
   text-align: center;
   padding: 50px;
-  box-shadow: 2px 2px 20px #ff4136;
+  box-shadow: 2px 2px 20px #D52E26;
   border-radius: 10px;
   width: 60%;
   margin: 40px auto;
@@ -530,7 +517,7 @@ footer a:hover {
 }
 
 .goHomeBtn {
-  background-color: #ff4136;
+  background-color: #D52E26;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -590,12 +577,15 @@ footer a:hover {
   flex-direction: column;
   gap: 20px;
 }
+.landing .wrapper .text h1,
+.landing .wrapper .text h2 {
+  text-align: center;
+}
 .landing .wrapper .text h1 {
   font-size: clamp(3rem, 5vw, 5rem);
   font-weight: bold;
   margin-bottom: 20px;
   letter-spacing: 5px;
-  text-align: center;
 }
 .landing .wrapper .text h2 {
   font-size: clamp(1.5rem, 3vw, 3rem);
@@ -737,83 +727,93 @@ footer a:hover {
   align-self: center;
 }
 
-@media (max-width: 1175px) {
-  .modalFlex .gameRules {
-    width: 50%;
-  }
-  .modalFlex .rightSideFlex {
-    width: 50%;
-  }
-  .img {
-    display: none;
-  }
-  .cardKeyFlex .cardGamesText {
-    width: 100%;
-  }
-}
-@media (max-width: 935px) {
-  .modalFlex {
-    flex-direction: column;
-  }
-  .modalFlex .gameRules {
-    width: 100%;
-  }
-  .modalFlex .rightSideFlex {
-    width: 100%;
-    flex-direction: column-reverse;
-  }
-  .howToPlayModal ul {
-    justify-content: space-evenly;
-    margin-top: 0;
-  }
-  .howToPlayModal ul li {
-    margin-left: 0;
-  }
-}
-@media (max-width: 460px) {
-  .modal .buttonGuide {
-    flex-direction: column;
-    margin: 0 0 20px 0;
-  }
-}
 .characterSelect,
 .characterSelect .wrapper {
-  height: 100%;
-  background-color: #333;
+  background-color: #F5F5F7;
+  min-height: calc(100vh - 140px);
 }
 
-.characterForm {
-  height: 100%;
+.characterSelect .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.characterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
 }
 .characterForm h2 {
   font-family: "rixvideogame-pro", sans-serif;
   font-size: 55px;
   letter-spacing: 7.847px;
-  color: #F5F5F7;
+  color: #333;
   text-align: center;
+  margin-bottom: 20px;
 }
 .characterForm button {
   margin: 15px 0;
 }
 
-.pokeRoster {
+.rosterContainer {
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  width: 100%;
+}
+
+.overlayBtn {
+  position: absolute;
   height: 100%;
-  max-height: 57vh;
-  width: 85%;
-  padding: 120px 0 0 0;
+  width: 15%;
+  top: 0px;
+  margin: 0;
+  background-color: #D52E26;
+  opacity: 0.3;
+}
+.overlayBtn:hover, .overlayBtn:focus-visible {
+  scale: 1;
+  opacity: 0.6;
+}
+
+.prevOverlay {
+  left: 0px;
+  border-radius: 7px 0 0 7px;
+  background: linear-gradient(270deg, rgba(242, 242, 242, 0) 0%, #D52E26 100%);
+}
+.prevOverlay i {
+  transform: rotate(180deg);
+}
+
+.nextOverlay {
+  right: 0px;
+  border-radius: 0 7px 7px 0;
+  background: linear-gradient(90deg, rgba(242, 242, 242, 0) 0%, #D52E26 100%);
+}
+
+.pokeRoster {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 50px;
-  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  padding: 120px 0 0 0;
+  gap: 25px;
+  transition: 0.5s ease-in-out;
+}
+
+.pokemonCardContainer {
+  height: 200px;
+  width: 200px;
 }
 
 .pokemonCard {
-  height: 200px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -980,6 +980,7 @@ button:active {
 }
 .pokemonMain .dealStats {
   align-self: flex-end;
+  text-align: end;
 }
 
 .actionButtons {
@@ -1012,9 +1013,12 @@ button:active {
   background-color: black;
   color: #F5F5F7;
 }
+
 .actionButtons .hitBut .standBut:hover {
   text-shadow: 0px 0px 6px #F5F5F7;
   background-color: #C1071E;
+.actionButtons .standBut:hover {
+  text-shadow: 0px 0px 6px #fd697d;
 }
 
 .newRoundBut {
@@ -1173,9 +1177,87 @@ button:active {
   width: 80%;
 }
 
-@media (max-width: 1160px) {
+@media (max-width: 1175px) {
+  .modalFlex .gameRules {
+    width: 50%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 50%;
+  }
+  .img {
+    display: none;
+  }
+  .cardKeyFlex .cardGamesText {
+    width: 100%;
+  }
   .playStatus {
     top: 218px;
+  }
+  .characterForm {
+    width: 100%;
+  }
+}
+@media (max-width: 935px) {
+  .modalFlex {
+    flex-direction: column;
+  }
+  .modalFlex .gameRules {
+    width: 100%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .howToPlayModal ul {
+    justify-content: space-evenly;
+    margin-top: 0;
+  }
+  .howToPlayModal ul li {
+    margin-left: 0;
+  }
+}
+@media (max-width: 850px) {
+  .rosterContainer {
+    margin: 25px 0 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .overlay {
+    display: flex;
+    justify-content: center;
+  }
+  .overlayBtn {
+    width: 50px;
+    height: 50px;
+    opacity: 80%;
+  }
+  .prevOverlay,
+  .nextOverlay {
+    position: static;
+    border-radius: 7px;
+    background-color: #D52E26;
+  }
+  .prevOverlay {
+    transform: rotate(90deg);
+  }
+  .nextOverlay {
+    transform: rotate(90deg);
+  }
+  .pokeRoster {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  .pokemonCardContainer {
+    height: 70px;
+  }
+  .pokemonCard {
+    z-index: 20;
+  }
+  .pokemonCard img {
+    width: 70px;
+    bottom: 0px;
+    right: -65px;
   }
 }
 @media (max-width: 810px) {
@@ -1218,6 +1300,9 @@ button:active {
   .pokemonMain .playStats img {
     width: 65%;
   }
+  .pokemonMain .dealStats h3 {
+    text-align: center;
+  }
   .playStatus {
     position: relative;
     margin: 0 auto 20px auto;
@@ -1239,7 +1324,7 @@ button:active {
   }
   .newRoundBut {
     position: relative;
-    top: -75px;
+    top: -13px;
   }
   .modalTitle .imgContain {
     width: 35%;
@@ -1258,8 +1343,31 @@ button:active {
     min-height: auto;
     height: 250px;
   }
+  .actionButtons {
+    height: 200px;
+    position: absolute;
+    bottom: -75px;
+    top: auto;
+  }
+  .newRoundBut {
+    position: absolute;
+    bottom: -7px;
+    top: auto;
+  }
+}
+@media (max-width: 460px) {
+  .modal .buttonGuide {
+    flex-direction: column;
+    margin: 0 0 20px 0;
+  }
 }
 @media (max-width: 435px) {
+  .audioContainer input[type=range] {
+    transform: rotate(-90deg);
+    bottom: -230px;
+    right: -50px;
+    width: 150px;
+  }
   .evolveContainer {
     width: 150px;
   }
@@ -1276,5 +1384,15 @@ button:active {
   li.cardContainer:nth-child(n+3) {
     position: relative;
     top: -100px;
+  }
+  footer {
+    padding: 0;
+  }
+  footer .wrapper {
+    width: 90%;
+  }
+  .socialLinks,
+  p {
+    text-align: center;
   }
 }
