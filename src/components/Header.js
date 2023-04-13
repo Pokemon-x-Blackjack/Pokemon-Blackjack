@@ -1,7 +1,7 @@
 
 import { useState, useRef } from 'react';
 import audio from '../assets/audio/poke-chill.mp3';
-import pokeOverlay from '../assets/pokeballOverlay.png'
+import logo from '../assets/logo.png'
 
 
 const Header = ({ currentPage }) => {
@@ -39,7 +39,7 @@ const Header = ({ currentPage }) => {
 
         {/* logo */}
         <div className="logo">
-          <img src={pokeOverlay} alt="Main logo for Pokemon Blackjack." />
+          <img src={logo} alt="Main logo for Pokemon Blackjack." />
         </div>
 
         {/* audio section */}

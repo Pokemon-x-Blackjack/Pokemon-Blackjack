@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import ErrorPage from './components/Error404';
 
 import './css/App.css';
-// import './sass/App.scss';
 
 
 

@@ -2,7 +2,7 @@
 
 html {
     font-size: 125%;
-    background-color: #F5F5F7;
+    background-color: #f5f5fa;
     color: #333;
 }
 
@@ -54,17 +54,18 @@ button {
     backdrop-filter: blur(17.8px);
     -webkit-backdrop-filter: blur(17.8px);
     transition: .25s ease;
+    font-weight: 700;
 
     &:hover,
     &:focus-visible {
-        scale: 1.08;
         background-color: $secondaryAccentColor;
         cursor: pointer;
     }
+
+    button:active {
+        background-color: #666;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 }
 
-
-// affects header and footer
-.chooseCharacter {
-    background-color: #333;
-}
