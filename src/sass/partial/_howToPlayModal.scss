@@ -1,110 +1,147 @@
-    // HOW TO PLAY MODULE
+@use './variables' as *;
+// HOW TO PLAY MODULE
+      
 
 
+.howToPlayOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+}
+      
+.modal {
+    background-color: #F5F5F7;;
+    border: 6px solid #333;
+    border-radius: 10px 10px 40px 40px;
+    padding: 20px;
+    max-height: 75%;
+    overflow-y: auto;
+    position: relative;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    gap: 20px;
 
-    .howToPlayOverlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+    li{
+        font-family: $secondaryFont;
+        letter-spacing: -0.008px;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 19px;
+        line-height: 26px;
+
+   }
+   
+    h3{
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-family: rixvideogame-pro, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    ul {
+        list-style: outside;
+    }
+
+    ul{
+        margin: 35px;
+        margin-right: 0px;
+        
+        li{
+            margin-bottom: 15px;
+            margin-left: 15px;
+            letter-spacing: -0.008px;        
+        }
+    }
+}
+
+.modalFlex {
+    display: flex;
+
+    .gameRules{
+        width: 40%;
+ }
+    .rightSideFlex {
+        width: 60%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        z-index: 1;
     }
+}
 
-    .modal {
-        background-color: #F5F5F7;
-        ;
-        border: 6px solid #333;
-        border-radius: 10px 10px 40px 40px;
-        padding: 20px;
-        max-height: 70%;
-        overflow-y: auto;
+.cardKeyFlex {
+    display: flex;
+    
+    .cardGamesText{
+        padding-left: 20px;
+        flex-shrink: 1;
+        width: 70%;
+    }
+    .img{
+        width: 30%;
+        flex-shrink: 5;
+        margin-top: 60px;
+    }
+}
+  
+.buttonGuide {
+    display: flex;
+
+    ul{
+        margin-top: 60px;
+    }
+    
+    button {
+        border-radius: 30%;
+        font-weight: bold;
+        text-align: center;
+        color:$primarycolor;
+        height: 85px;
+        padding: 0;
         position: relative;
-        width: 80%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        gap: 20px;
-
-        li {
-            font-family: "ff-nuvo-mono-web-pro", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 19px;
-
+        width: 95px;			
+        transition: all .1s linear;
+        &:hover{
+            cursor: pointer;
+			      color:$primarycolor;
         }
 
-        h3 {
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-family: rixvideogame-pro, sans-serif;
-            font-style: normal;
-            font-weight: 400;
-        }
-
-        ul {
-            list-style: circle;
-        }
-
-        ul {
-            margin: 35px;
-            margin-right: 0px;
-
-            li {
-                margin-bottom: 15px;
-                margin-left: 25px;
-                letter-spacing: 0.4px;
-            }
-        }
     }
 
-    .modalFlex {
-        display: flex;
-
-        .gameRules {
-            width: 40%;
-        }
-
-        .rightSideFlex {
-            width: 60%;
-            display: flex;
-            flex-direction: column;
+    .hitBut, .standBut {
+        box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3);
+        background-color: black;
+        color:$primarycolor;
+        &:hover{
+            text-shadow:0px 0px 6px $primarycolor;
+            background-color: $secondaryAccentColor;
         }
     }
-
-    .cardKeyFlex {
+    
+    li {
+        list-style: none;
+        gap: 30px;
         display: flex;
+        margin-top: 10px;
+        margin-right: 35px;
 
-        .cardGamesText {
-            padding-left: 20px;
-            flex-shrink: 1;
-            width: 70%;
+        button {
+            cursor: default;
         }
 
-        .img {
-            width: 30%;
-            flex-shrink: 5;
-            margin-top: 60px;
-        }
-    }
+        p {
+            margin-top: 10px;
+            text-align: left;
+            align-self: center;
 
-    .buttonGuide {
-        display: flex;
-
-        li {
-            text-align: center;
-            list-style: none;
-
-            button {
-                cursor: default;
-            }
-
-            p {
-                margin-top: 10px;
             }
 
         }

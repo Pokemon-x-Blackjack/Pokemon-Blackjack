@@ -58,7 +58,7 @@ button {
     &:hover,
     &:focus-visible {
         scale: 1.08;
-        background-color: #ff4136;
+        background-color: $secondaryAccentColor;
         cursor: pointer;
     }
 }
