@@ -1332,6 +1332,9 @@ button:active {
   .modalTitle .imgContain {
     width: 35%;
   }
+  .btnContain button {
+    width: 85%;
+  }
 }
 @media (max-width: 575px) {
   .evolveContainer {
@@ -1387,6 +1390,9 @@ button:active {
   li.cardContainer:nth-child(n+3) {
     position: relative;
     top: -100px;
+  }
+  .btnContain button {
+    width: 95%;
   }
   footer {
     padding: 0;
