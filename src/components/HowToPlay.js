@@ -2,7 +2,6 @@ import React from 'react';
 import '../sass/App.scss';
 import cardBack from '../assets/card-back.png';
 
-// Prop coming from Landing.js
 const HowToPlay = ({ closeHowToPlay }) => {
   return (
     <div className="howToPlayOverlay">
