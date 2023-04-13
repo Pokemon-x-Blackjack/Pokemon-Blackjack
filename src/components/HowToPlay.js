@@ -41,7 +41,7 @@ const HowToPlay = ({ closeHowToPlay }) => {
           <ul className='buttonGuide'>
             <li>
               <button className='hitBut'>HIT</button>
-              <p>Draw an additional card.</p>
+              <p>Draw a card</p>
             </li>
             <li>
               <button className='standBut'>STAND</button>
