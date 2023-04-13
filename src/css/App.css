@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -223,7 +222,7 @@ html {
 h1 {
   font-size: 50px;
   font-weight: bold;
-  color: #212121;
+  color: #333;
 }
 
 h3 {
@@ -231,18 +230,30 @@ h3 {
 }
 
 li {
-  font-family: "ff-nuvo-mono-web-pro", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 19px;
 }
 
-h1, h3 {
+h1,
+h3 {
   font-weight: bold;
   margin-bottom: 20px;
-  font-family: rixvideogame-pro, sans-serif;
+  font-family: "rixvideogame-pro", sans-serif;
   font-style: normal;
   font-weight: 400;
+}
+
+.playPoint {
+  font-family: "rixvideogame-pro", sans-serif;
+  font-size: 36px;
+}
+
+.bust {
+  font-size: 30px;
+  font-family: "rixvideogame-pro", sans-serif;
+  color: #C1071E;
 }
 
 html {
@@ -273,6 +284,10 @@ ul {
   padding: 0;
 }
 
+h3 {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+}
+
 ul {
   list-style: none;
 }
@@ -282,23 +297,23 @@ figure {
 }
 
 main {
+  position: relative;
   min-height: calc(100vh - 140px);
 }
 
 button {
   color: white;
   background: #0c0c0c;
-  border: 1px solid #252525;
   border: none;
   border-radius: 7px;
   padding: 15px 30px;
   backdrop-filter: blur(17.8px);
   -webkit-backdrop-filter: blur(17.8px);
-  transition: all 0.4s ease-in-out;
+  transition: 0.25s ease;
 }
 button:hover, button:focus-visible {
-  transform: scale(1.06);
-  background-color: #ff4136;
+  scale: 1.08;
+  background-color: #C1071E;
   cursor: pointer;
 }
 
@@ -396,6 +411,14 @@ button:hover, button:focus-visible {
     opacity: 0;
   }
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 header .wrapper {
   display: flex;
   justify-content: space-between;
@@ -424,6 +447,7 @@ header .wrapper {
   top: 0;
   bottom: 0;
   margin: auto;
+  z-index: 10;
 }
 
 .musicToggleBtn {
@@ -432,14 +456,6 @@ header .wrapper {
   padding: 0px;
 }
 
-@media (max-width: 470px) {
-  .audioContainer input[type=range] {
-    transform: rotate(-90deg);
-    bottom: -230px;
-    right: -50px;
-    width: 150px;
-  }
-}
 /* FOOTER */
 footer {
   font-size: 0.8rem;
@@ -451,7 +467,7 @@ footer {
 }
 footer p {
   line-height: 22px;
-  font-family: “ff-nuvo-mono-web-pro”, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 footer a {
   text-decoration: none;
@@ -459,7 +475,7 @@ footer a {
   color: #333;
 }
 footer a:hover {
-  color: #D52E26;
+  color: #C1071E;
 }
 
 .chooseCharacter {
@@ -470,24 +486,12 @@ footer a:hover {
   color: #F5F5F7;
 }
 
-@media (max-width: 470px) {
-  footer {
-    padding: 0;
-  }
-  footer .wrapper {
-    width: 90%;
-  }
-  .socialLinks,
-  p {
-    text-align: center;
-  }
-}
 .errorContainer {
-  background-color: #ffffff;
-  color: #0f0f0f;
+  background-color: #F5F5F7;
+  color: #333;
   text-align: center;
   padding: 50px;
-  box-shadow: 2px 2px 20px #ff4136;
+  box-shadow: 2px 2px 20px #C1071E;
   border-radius: 10px;
   width: 60%;
   margin: 40px auto;
@@ -512,7 +516,7 @@ footer a:hover {
 }
 
 .goHomeBtn {
-  background-color: #ff4136;
+  background-color: #C1071E;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -551,6 +555,15 @@ footer a:hover {
   overflow: visible;
   position: relative;
 }
+.landing .wrapper .buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  margin: 20px 0;
+  gap: 40px;
+}
 .landing .wrapper img {
   position: absolute;
   top: 40px;
@@ -563,14 +576,17 @@ footer a:hover {
   flex-direction: column;
   gap: 20px;
 }
+.landing .wrapper .text h1,
+.landing .wrapper .text h2 {
+  text-align: center;
+}
 .landing .wrapper .text h1 {
   font-size: clamp(3rem, 5vw, 5rem);
   font-weight: bold;
   margin-bottom: 20px;
   letter-spacing: 5px;
-  text-align: center;
 }
-.landing .wrapper .text h3 {
+.landing .wrapper .text h2 {
   font-size: clamp(1.5rem, 3vw, 3rem);
 }
 .landing .wrapper .buttonContainer {
@@ -581,24 +597,6 @@ footer a:hover {
   flex-basis: 100%;
   margin-top: 20px;
   gap: 40px;
-}
-.landing .wrapper button {
-  height: 60px;
-  padding: 10px 40px;
-  background: #0c0c0c;
-  border-radius: 7px;
-  border: 1px solid #252525;
-  backdrop-filter: blur(17.8px);
-  -webkit-backdrop-filter: blur(17.8px);
-  color: white;
-  transition: all 0.4s ease-in-out;
-}
-.landing .wrapper button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 8px white;
-}
-.landing .wrapper button:focus {
-  background-color: red;
 }
 
 .howToPlayOverlay {
@@ -621,7 +619,7 @@ footer a:hover {
   border: 6px solid #333;
   border-radius: 10px 10px 40px 40px;
   padding: 20px;
-  max-height: 70%;
+  max-height: 75%;
   overflow-y: auto;
   position: relative;
   width: 80%;
@@ -629,10 +627,12 @@ footer a:hover {
   gap: 20px;
 }
 .modal li {
-  font-family: "ff-nuvo-mono-web-pro", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: -0.008px;
   font-weight: 400;
   font-style: normal;
   font-size: 19px;
+  line-height: 26px;
 }
 .modal h3 {
   font-weight: bold;
@@ -642,7 +642,7 @@ footer a:hover {
   font-weight: 400;
 }
 .modal ul {
-  list-style: circle;
+  list-style: outside;
 }
 .modal ul {
   margin: 35px;
@@ -650,8 +650,8 @@ footer a:hover {
 }
 .modal ul li {
   margin-bottom: 15px;
-  margin-left: 25px;
-  letter-spacing: 0.4px;
+  margin-left: 15px;
+  letter-spacing: -0.008px;
 }
 
 .modalFlex {
@@ -683,88 +683,136 @@ footer a:hover {
 .buttonGuide {
   display: flex;
 }
-.buttonGuide li {
+.buttonGuide ul {
+  margin-top: 60px;
+}
+.buttonGuide button {
+  border-radius: 30%;
+  font-weight: bold;
   text-align: center;
+  color: #F5F5F7;
+  height: 85px;
+  padding: 0;
+  position: relative;
+  width: 95px;
+  transition: all 0.1s linear;
+}
+.buttonGuide button:hover {
+  cursor: pointer;
+  color: #F5F5F7;
+}
+.buttonGuide .hitBut, .buttonGuide .standBut {
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
+  background-color: black;
+  color: #F5F5F7;
+}
+.buttonGuide .hitBut:hover, .buttonGuide .standBut:hover {
+  text-shadow: 0px 0px 6px #F5F5F7;
+  background-color: #C1071E;
+}
+.buttonGuide li {
   list-style: none;
+  gap: 30px;
+  display: flex;
+  margin-top: 10px;
+  margin-right: 35px;
 }
 .buttonGuide li button {
   cursor: default;
 }
 .buttonGuide li p {
   margin-top: 10px;
+  text-align: left;
+  align-self: center;
 }
 
-@media (max-width: 1175px) {
-  .modalFlex .gameRules {
-    width: 50%;
-  }
-  .modalFlex .rightSideFlex {
-    width: 50%;
-  }
-  .img {
-    display: none;
-  }
-  .cardKeyFlex .cardGamesText {
-    width: 100%;
-  }
-}
-@media (max-width: 935px) {
-  .modalFlex {
-    flex-direction: column;
-  }
-  .modalFlex .gameRules {
-    width: 100%;
-  }
-  .modalFlex .rightSideFlex {
-    width: 100%;
-    flex-direction: column-reverse;
-  }
-  .howToPlayModal ul {
-    justify-content: space-evenly;
-    margin-top: 0;
-  }
-  .howToPlayModal ul li {
-    margin-left: 0;
-  }
-}
 .characterSelect,
 .characterSelect .wrapper {
-  height: 100%;
-  background-color: #333;
+  background-color: #F5F5F7;
+  min-height: calc(100vh - 140px);
 }
 
-.characterForm {
-  height: 100%;
+.characterSelect .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.characterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
 }
 .characterForm h2 {
   font-family: "rixvideogame-pro", sans-serif;
   font-size: 55px;
   letter-spacing: 7.847px;
-  color: #F5F5F7;
+  color: #333;
   text-align: center;
+  margin-bottom: 20px;
 }
 .characterForm button {
   margin: 15px 0;
 }
 
-.pokeRoster {
+.rosterContainer {
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  width: 100%;
+}
+
+.overlayBtn {
+  position: absolute;
   height: 100%;
-  max-height: 57vh;
-  width: 85%;
-  padding: 120px 0 0 0;
+  width: 15%;
+  top: 0px;
+  margin: 0;
+  background-color: #C1071E;
+  opacity: 0.3;
+}
+.overlayBtn:hover, .overlayBtn:focus-visible {
+  scale: 1;
+  opacity: 0.6;
+}
+
+.prevOverlay {
+  left: 0px;
+  border-radius: 7px 0 0 7px;
+  background: linear-gradient(270deg, rgba(242, 242, 242, 0) 0%, #C1071E 100%);
+}
+.prevOverlay i {
+  transform: rotate(180deg);
+}
+
+.nextOverlay {
+  right: 0px;
+  border-radius: 0 7px 7px 0;
+  background: linear-gradient(90deg, rgba(242, 242, 242, 0) 0%, #C1071E 100%);
+}
+
+.pokeRoster {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 50px;
-  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  padding: 120px 0 0 0;
+  gap: 25px;
+  transition: 0.5s ease-in-out;
+}
+
+.pokemonCardContainer {
+  height: 200px;
+  width: 200px;
 }
 
 .pokemonCard {
-  height: 200px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -773,7 +821,7 @@ footer a:hover {
   background-color: #F5F5F7;
   border: 6px solid #333;
   border-radius: 0% 0% 52% 52%/25% 25% 25% 25%;
-  transition: 0.2s ease;
+  transition: 0.25s ease;
   position: relative;
 }
 .pokemonCard img,
@@ -785,31 +833,34 @@ footer a:hover {
   aspect-ratio: 1/1;
   object-fit: contain;
   position: absolute;
-  bottom: 40px;
   bottom: 150px;
-  /* adjust this value to move the image up or down */
 }
 .pokemonCard h3 {
-  text-transform: capitalize;
-  font-family: “ff-nuvo-mono-web-pro”, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 25px;
   text-transform: uppercase;
   color: #333;
   font-weight: bold;
 }
 .pokemonCard:hover, .pokemonCard:focus {
-  background-color: #D52E26;
+  background-color: #C1071E;
   cursor: pointer;
+}
+.pokemonCard:hover h3, .pokemonCard:focus h3 {
+  color: #F5F5F7;
 }
 
 .activeCard {
-  background-color: #D52E26;
+  background-color: #C1071E;
   scale: 1.05;
   rotate: 2deg;
 }
 .activeCard:hover, .activeCard:focus {
-  background-color: #D52E26;
+  background-color: #C1071E;
   outline: none;
+}
+.activeCard:hover h3, .activeCard:focus h3 {
+  color: #F5F5F7;
 }
 
 .loadingPage {
@@ -829,16 +880,12 @@ footer a:hover {
   margin: 0 auto;
   text-transform: uppercase;
 }
-.gameBoard button {
-  width: 50%;
-  margin: 10px;
-  margin: 0 auto;
-}
 
 .playerDealerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-top: 20px;
 }
 
 .dealerCardList {
@@ -848,6 +895,7 @@ footer a:hover {
 .playerCardList,
 .dealerCardList {
   display: flex;
+  width: 100%;
   margin: 50px;
 }
 .playerCardList li:nth-child(n+3) .innerCard,
@@ -855,6 +903,9 @@ footer a:hover {
   animation: flipN 0.8s forwards;
 }
 
+.playerCardList {
+  flex-direction: row-reverse;
+}
 .playerCardList li:nth-child(1) .innerCard {
   animation: flip1 1s forwards;
 }
@@ -867,7 +918,7 @@ footer a:hover {
 }
 
 .dealerCardList.reveal li:nth-child(1) .innerCard {
-  animation: flip3 1s forwards;
+  animation: flip3 0.5s forwards;
 }
 
 li.cardContainer {
@@ -889,10 +940,6 @@ li.cardContainer .innerCard .cardFront {
   transform: rotateY(180deg);
 }
 
-p.bust {
-  color: #D52E26;
-}
-
 .playerSection {
   width: 50%;
 }
@@ -902,7 +949,14 @@ p.bust {
   height: 100%;
 }
 
+button:active {
+  background-color: #666;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .pokemonMain {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -916,18 +970,87 @@ p.bust {
 }
 .pokemonMain .playStats {
   align-self: flex-start;
+  width: 50%;
 }
 .pokemonMain .playStats img {
-  width: 300px;
+  width: 100%;
   object-fit: contain;
   aspect-ratio: 1/1;
 }
 .pokemonMain .dealStats {
   align-self: flex-end;
+  text-align: end;
+}
+
+.actionButtons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.actionButtons button {
+  border-radius: 30%;
+  font-weight: bold;
+  text-align: center;
+  float: left;
+  color: #F5F5F7;
+  height: 85px;
+  margin: 30px;
+  padding: 0;
+  position: relative;
+  width: 95px;
+  transition: all 0.1s linear;
+}
+.actionButtons button:hover {
+  cursor: pointer;
+  color: #F5F5F7;
+}
+.actionButtons .hitBut .standBut {
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
+  background-color: black;
+  color: #F5F5F7;
+}
+.actionButtons .hitBut .standBut:hover {
+  text-shadow: 0px 0px 6px #F5F5F7;
+  background-color: #C1071E;
+}
+
+.newRoundBut {
+  position: absolute;
+  width: 200px;
+  margin: 0 auto 20px auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .pokemonStats {
   display: flex;
+}
+
+.playStatus {
+  position: absolute;
+  right: 143px;
+  top: 250px;
+  width: fit-content;
+}
+.playStatus p {
+  text-align: center;
+}
+
+.playStatus.dealStatus {
+  left: 143px;
+}
+
+.dealerPoint {
+  opacity: 0;
+  animation: fadeIn 0.5s 0.5s forwards;
+}
+
+.playerPokemon {
+  transform: scaleX(-1);
 }
 
 .evolutionContainer {
@@ -1030,7 +1153,8 @@ p.bust {
   text-align: center;
 }
 .modalTitle .imgContain {
-  width: 30%;
+  width: 20%;
+  max-height: 370px;
 }
 .modalTitle img {
   width: 100%;
@@ -1044,4 +1168,227 @@ p.bust {
   width: 60%;
   gap: 40px;
   flex-wrap: wrap;
+}
+.btnContain button {
+  width: 80%;
+}
+
+@media (max-width: 1175px) {
+  .modalFlex .gameRules {
+    width: 50%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 50%;
+  }
+  .img {
+    display: none;
+  }
+  .cardKeyFlex .cardGamesText {
+    width: 100%;
+  }
+  .playStatus {
+    top: 218px;
+  }
+  .characterForm {
+    width: 100%;
+  }
+}
+@media (max-width: 935px) {
+  .modalFlex {
+    flex-direction: column;
+  }
+  .modalFlex .gameRules {
+    width: 100%;
+  }
+  .modalFlex .rightSideFlex {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .howToPlayModal ul {
+    justify-content: space-evenly;
+    margin-top: 0;
+  }
+  .howToPlayModal ul li {
+    margin-left: 0;
+  }
+}
+@media (max-width: 850px) {
+  .rosterContainer {
+    margin: 25px 0 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .overlay {
+    display: flex;
+    justify-content: center;
+  }
+  .overlayBtn {
+    width: 50px;
+    height: 50px;
+    opacity: 80%;
+  }
+  .prevOverlay,
+  .nextOverlay {
+    position: static;
+    border-radius: 7px;
+    background-color: #C1071E;
+  }
+  .prevOverlay {
+    transform: rotate(90deg);
+  }
+  .nextOverlay {
+    transform: rotate(90deg);
+  }
+  .pokeRoster {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  .pokemonCardContainer {
+    height: 70px;
+  }
+  .pokemonCard {
+    z-index: 20;
+  }
+  .pokemonCard img {
+    width: 70px;
+    bottom: 0px;
+    right: -65px;
+  }
+}
+@media (max-width: 810px) {
+  .pokemonMain {
+    min-height: 600px;
+    justify-content: flex-start;
+  }
+  .playerCardList,
+  .dealerCardList {
+    flex-wrap: wrap;
+    min-height: 250px;
+    height: 250px;
+    margin: 20px;
+  }
+  li.cardContainer {
+    width: 30%;
+    height: 50%;
+  }
+  li.cardContainer .innerCard {
+    min-height: 165px;
+    height: auto;
+  }
+  li.cardContainer:nth-child(n+4) {
+    position: relative;
+    top: -80px;
+  }
+  .pokemonMain {
+    min-height: 600px;
+  }
+  .pokemonMain .playStats {
+    position: relative;
+    top: -75px;
+    align-self: center;
+    width: 100%;
+    text-align: center;
+  }
+  .pokemonMain .playStats h3 {
+    text-align: center;
+  }
+  .pokemonMain .playStats img {
+    width: 65%;
+  }
+  .pokemonMain .dealStats h3 {
+    text-align: center;
+  }
+  .playStatus {
+    position: relative;
+    margin: 0 auto 20px auto;
+    height: 50px;
+    top: -75px;
+    right: 0;
+    left: 0;
+  }
+  .playStatus.dealStatus {
+    left: 0;
+  }
+  .actionButtons {
+    position: relative;
+    top: -75px;
+  }
+  .actionButtons button {
+    height: 85px;
+    width: 85px;
+  }
+  .newRoundBut {
+    position: relative;
+    top: -13px;
+  }
+  .modalTitle .imgContain {
+    width: 35%;
+  }
+}
+@media (max-width: 575px) {
+  .evolveContainer {
+    width: 174px;
+  }
+  .thumbContainer {
+    width: 45px;
+    height: 45px;
+  }
+  .playerCardList,
+  .dealerCardList {
+    min-height: auto;
+    height: 250px;
+  }
+  .actionButtons {
+    height: 200px;
+    position: absolute;
+    bottom: -75px;
+    top: auto;
+  }
+  .newRoundBut {
+    position: absolute;
+    bottom: -7px;
+    top: auto;
+  }
+}
+@media (max-width: 460px) {
+  .modal .buttonGuide {
+    flex-direction: column;
+    margin: 0 0 20px 0;
+  }
+}
+@media (max-width: 435px) {
+  .audioContainer input[type=range] {
+    transform: rotate(-90deg);
+    bottom: -230px;
+    right: -50px;
+    width: 150px;
+  }
+  .evolveContainer {
+    width: 150px;
+  }
+  .thumbContainer {
+    width: 40px;
+    height: 40px;
+  }
+  li.cardContainer {
+    width: 40%;
+  }
+  li.cardContainer .innerCard {
+    align-items: flex-start;
+  }
+  li.cardContainer:nth-child(n+3) {
+    position: relative;
+    top: -100px;
+  }
+  footer {
+    padding: 0;
+  }
+  footer .wrapper {
+    width: 90%;
+  }
+  .socialLinks,
+  p {
+    text-align: center;
+  }
 }

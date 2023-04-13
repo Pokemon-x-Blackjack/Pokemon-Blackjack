@@ -33,20 +33,3 @@ footer {
         color: $primarycolor;
     }
 }
-
-
-
-@media(max-width: 470px) {
-    footer {
-        padding: 0;
-
-        .wrapper {
-            width: 90%;
-        }
-    }
-
-    .socialLinks,
-    p {
-        text-align: center;
-    }
-}

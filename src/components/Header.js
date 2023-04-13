@@ -33,7 +33,6 @@ const Header = ({ currentPage }) => {
 
   return (
 
-    // <header className={currentPage ? currentPage : null}>
     <header>
       {/* wrapper */}
       <div className="wrapper">

@@ -5,24 +5,24 @@ import Evolvebar from './Evolvebar';
 import { useState, useEffect } from 'react'
 
 const Dealer = (props) => {
-    const [ pokemonUrl, setPokemonUrl ] = useState(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl);
+    const [pokemonUrl, setPokemonUrl] = useState(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl);
 
     const dealerCardsProp = props.dealerCards
 
     const currentEvolution = props.dealerEvolutionArr[props.dealerEvolution]
 
-// evolution animation 
+    // evolution animation 
     useEffect(() => {
-        if (props.dealerEvolutionArr[props.dealerEvolution - 1]?.frontGifUrl !== undefined){
+        if (props.dealerEvolutionArr[props.dealerEvolution - 1]?.frontGifUrl !== undefined) {
             setTimeout(() => {
                 let intervalId = setInterval(() => {
-                    setPokemonUrl((pokemon) => 
-                    pokemon === props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
-                    ? props.dealerEvolutionArr[props.dealerEvolution - 1].frontGifUrl
-                    : props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
+                    setPokemonUrl((pokemon) =>
+                        pokemon === props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
+                            ? props.dealerEvolutionArr[props.dealerEvolution - 1].frontGifUrl
+                            : props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl
                     )
                 }, 50) // how fast the image toggles
-                
+
                 setTimeout(() => {
                     clearInterval(intervalId);
                     setPokemonUrl(props.dealerEvolutionArr[props.dealerEvolution].frontGifUrl)
@@ -63,22 +63,25 @@ const Dealer = (props) => {
                         })
                     }
                 </ul>
-
+                <div className="playStatus dealStatus">
+                    {
+                        props.playerStand
+                            ? <p className='playPoint dealerPoint'>{props.cardValue}</p>
+                            : null
+                    }
+                    {
+                        props.bustStatus
+                            ? <p className="bust">bust</p>
+                            : null
+                    }
+                </div>
 
                 <div className="playStats dealStats">
                     <img src={pokemonUrl} alt={currentEvolution.altFront} />
-                    <h3 style={{textAlign: "end"}}>{currentEvolution.name}</h3>
+                    <h3>{currentEvolution.name}</h3>
                 </div>
 
-
             </div>
-            <p style={{textAlign: "end"}}>DEALER'S CARD VALUE: {props.cardValue}</p>        
-
-            {
-                props.bustStatus
-                ? <p className="bust">BUST</p>
-                : null
-            }  
         </div>
     )
 }

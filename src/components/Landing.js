@@ -6,13 +6,15 @@ import pokeballOpen from "../assets/pokeBallOpen.png";
 
 
 const Landing = ({ setCurrentPage }) => {
+  // *********** USESTATES ***************
+
   const [buttonSelected, setButtonSelected] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
-  // useEffect(() => {
-  //   setCurrentPage('');
-  // }, [])
+  const [isHovered, setIsHovered] = useState(false);
 
+
+  // *********** FUNCTIONS: EVENT HANDLERS ***************
   const handleButtonClick = () => {
     setButtonSelected(true);
   }
@@ -27,7 +29,6 @@ const Landing = ({ setCurrentPage }) => {
 
   // Mouse hover states
 
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -36,38 +37,63 @@ const Landing = ({ setCurrentPage }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-// Pokeball hover
+
+  // useEffect(() => {
+  //   setCurrentPage('');
+  // }, [])
+
+
+  // Pokeball hover
 
   const pokeballSrc = isHovered ? pokeballOpen : pokeball;
+
   return (
     <>
+      {/* how to play modal */}
+
       {showHowToPlay && <HowToPlay closeHowToPlay={handleCloseHowToPlay} />}
+
+      {/* render characterSelector */}
+
       {buttonSelected ? (
         <CharacterSelector
           setButtonSelected={setButtonSelected}
-          // setCurrentPage={setCurrentPage}
+          setCurrentPage={setCurrentPage}
         />
       ) : (
+        // landing page
+
         <section className="landing">
+          {/* wrapper */}
           <div className="wrapper">
+
+            {/* title */}
             <div className="text">
               <h1>POKEJACK</h1>
-              <h3>POKEMON x BLACKJACK</h3>
-            </div>
-            <div className="pokeBallContain">
-                <img
-                  src={pokeballSrc}
-                  alt="Pokeball"
-            
-                />
+              <h2>POKEMON x BLACKJACK</h2>
             </div>
 
+            {/* title img */}
+            <div className="pokeBallContain">
+              <img
+                src={pokeballSrc}
+                alt="Pokeball"
+              />
+            </div>
+
+            {/* buttons */}
             <div className="buttonContainer">
-              <button 
-                    onClick={handleButtonClick}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>START</button>
-              <button onClick={handleHowToPlayClick}>HOW TO PLAY</button> {/* Add a button to show/hide the HowToPlay component */}
+
+              {/* start btn */}
+              <button
+                onClick={handleButtonClick}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                START
+              </button>
+
+              {/* How to play btn */}
+              <button onClick={handleHowToPlayClick}>HOW TO PLAY</button>
             </div>
 
           </div>

@@ -3,11 +3,10 @@ function getYear() {
     return new Date().getFullYear();
 }
 
-const Footer = ({ currentPage }) => {
+const Footer = () => {
 
     return (
 
-        // <footer className={currentPage ? currentPage : null}>
         <footer>
             {/* wrapper */}
             <div className="wrapper">
