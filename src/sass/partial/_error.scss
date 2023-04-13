@@ -1,9 +1,11 @@
+@use './variables' as *;
+
 .errorContainer {
-  background-color: #ffffff;
-  color: #0f0f0f;
+  background-color: $primarycolor;
+  color: $accentColor;
   text-align: center;
   padding: 50px;
-  box-shadow: 2px 2px 20px #ff4136;
+  box-shadow: 2px 2px 20px $secondaryAccentColor;
   border-radius: 10px;
   width: 60%;
   margin: 40px auto;
@@ -29,7 +31,7 @@
 }
 
 .goHomeBtn {
-  background-color: #ff4136;
+  background-color: $secondaryAccentColor;
   color: #fff;
   border: none;
   border-radius: 4px;
